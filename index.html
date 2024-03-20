@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Overpass:wght@500&family=Poppins:wght@400;500;600;700;800&family=Rubik:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <title>Frontend Mentor | Intro component with sign up form</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>DESCRIÇÃO DO SITE</h1>
+      <h2>DESCRIÇÃO.</h2>
+    </header>
+    <section class="parte2">
+      <div class="container1">
+        <p><b>CADASTRO</b></p>
+      </div>
+      <form onsubmit="return validateForm(this)" class="container-inputs">
+        <input type="text" name="firstName" placeholder="First Name" id="firstname-id">
+        <span id="span4"> </span>
+        <input type="text" placeholder="Last Name" id="lastname-id">
+        <span id="span5"> </span>
+        <input type="address" placeholder="Email Address" id="email-id">
+        <span id="span6"> </span>
+        <input type="password" name="Password" placeholder="Password" id="password-id">
+        <span id="span7"></span>
+        <button>CADASTRAR</button>
+        <div class="container-spans"><span class="span2">JA É CADASTRADO?</span><span
+            class="span3"> <a href="/paginadelogin.html">LOGIN</a></span>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p class="attribution" id="attr">
+      RODA PÉ</a>.
+    </p>
+  </footer>
+  <script src="/script.js"></script>
+</body>
+
+</html>
