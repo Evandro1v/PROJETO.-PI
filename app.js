@@ -5,7 +5,7 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 
 //importar modulo mysql
-const mysql = require('mysql');
+const mysql = require('mysql2');
 //app
 const app = express();
 //importar css
@@ -24,10 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //configuração de conexão
+
 const conexao = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Vando@10',
+  password: '123456',
   database: 'tapaburaco'
 });
 //testa conexao
@@ -52,6 +53,7 @@ app.get('/paginalogada', function (req, res) {
 app.post('/cadastro', function (req, res) {
   // Obtém os dados do formulário de cadastro
   const nome = req.body.nome; // Nome do usuário
+  const telefone = req.body.telefone; // telefone do usuário
   const email = req.body.email; // E-mail do usuário
   const senha = req.body.senha; // Senha do usuário
 
