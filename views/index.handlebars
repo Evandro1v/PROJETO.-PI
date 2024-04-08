@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Overpass:wght@500&family=Poppins:wght@400;500;600;700;800&family=Rubik:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/script.js"></script>
+
+  <title>OPERAÇÃO TAPA BURACOS</title>
+  <style>
+    .attribution {
+      font-size: 11px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  {{#if message}}
+      <div class="error-message">{{message}}</div>
+    {{/if}}
+  <main>
+    <header>
+      <h1>DESCRIÇÃO DO SITE</h1>
+      <h2>DESCRIÇÃO.</h2>
+    </header>
+    <section class="parte2">
+      <div class="container1">
+        <p><b>LOGIN</b></p>
+      </div>
+      <form  method="post" onsubmit="return validateLOGIN(this)" action="/login" class="container-inputs">
+        <label for="email-id">Email:</label>
+        <input type="email" name="email" id="email-id" placeholder="Email" required>
+        <span id="span6"></span>
+
+        <label for="password-id">Senha:</label>
+        <input type="password" name="password" id="password-id" placeholder="password" required>
+        <span id="span7"></span>
+
+        <input type="submit" class="button" value="LOGAR">
+        <div class="container-spans">
+          <span class="span2">NÃO TEM CADASTRO?</span>
+          <span class="span3"><a href="/paginadecadastro">CADASTRAR</a></span>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p class="attribution" id="attr">
+      RODA PÉ</a>.
+    </p>
+  </footer>
+</body>
