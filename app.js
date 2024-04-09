@@ -71,8 +71,8 @@ app.post('/cadastro', function (req, res) {
       res.render('paginadecadastro', { message: 'Esse email já está cadastrado!' }); // Envia o template `paginadecadastro.handlebars` com a mensagem de erro
       return; // Interrompe a execução da função
     }// Se o email não existe, cadastra o novo usuário
-    const sqlInsertUser = `INSERT INTO cad_usuarios (nome, email, senha) VALUES (?, ?, ?)`;
-    conexao.query(sqlInsertUser, [nome,telefone, email, senha], function (error, results) {
+    const sqlInsertUser = `INSERT INTO cad_usuarios (nome,telefone, email, senha) VALUES (?,?, ?, ?)`;
+    conexao.query(sqlInsertUser, [nome,telefone,email,senha], function (error, results) {
       if (error) {
         console.error('Erro ao cadastrar usuário:', error);
         res.status(500).send('Erro ao cadastrar usuário');
