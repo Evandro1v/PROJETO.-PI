@@ -1,37 +1,124 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style2.css">
-  <title>OPERAÇÃO TAPA BURACOS</title>
-</head>
-
-<body>
-  <div class="container">
-    <h2>INFORMAÇOES DO USUARIO:</h2>
-
-    <p>{{usuario.nome}}</p>
-    <h2>id_usuario: {{usuario.id_usuario}}</h2>
-    <h2>email: {{usuario.email}}</h2>
-
-
-    <div>
-      <a href="https://docs.google.com/forms/d/17c-rcXRTEmVemJW48CfZruDKqLbESHJ3kgPuk89zBqk/edit">CADASTRAR INFORMAÇÃO</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style2.css" />
+    <title>OPERAÇÃO TAPA BURACOS</title>
+  </head>
+  <body>
+    <div class="container-usuarios">
+      <h2>INFORMAÇOES DO USUARIO:</h2>
+      <p>{{user.nome}}</p>
+      <h2>id_usuario: {{user.id_usuario}}</h2>
+      <h2>email: {{user.e-mail}}</h2>
+      <form action="/logout" method="post">
+    <button type="submit">Sair</button>
+  </form>
     </div>
+    <div class="container-formulario">
+      <h2>Formulário de Incidentes de Via</h2>
+      <form
+  action="/enviar-formulario"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <h2>gravidade da Ocorrência</h2>
+  <label><input
+      type="radio"
+      name="gravidade_da_ocorrencia"
+      value="Urgente"
+      required
+    />
+    Urgente</label>
+  <label><input
+      type="radio"
+      name="gravidade_da_ocorrencia"
+      value="Alta"
+      required
+    />
+    Alta</label>
+  <label><input
+      type="radio"
+      name="gravidade_da_ocorrencia"
+      value="Mediana"
+      required
+    />
+    Mediana</label>
+  <label><input
+      type="radio"
+      name="gravidade_da_ocorrencia"
+      value="Normal"
+      required
+    />
+    Normal</label>
+  <label><input
+      type="radio"
+      name="gravidade_da_ocorrencia"
+      value="Baixa"
+      required
+    />
+    Baixa</label>
 
-    <button onclick="window.location.replace('/')">sair</button>
+  <h2>Detalhes da Ocorrência:</h2>
+  <label for="endereco">Endereço:</label>
+  <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
 
-  </div>
+  <label for="bairro">Bairro:</label>
+  <input type="text" id="bairro" name="bairro" required />
 
-  <H2>(TALVES ATÉ UM MAPA GERAL COM MOSTRANDO TODOS OS PONTOS COM PROBLEMAS)</H2>
+  <label for="descricao">Descrição da Ocorrência:</label>
+  <textarea
+    id="descricao_da_ocorrencia"
+    name="descricao_da_ocorrencia"
+    required
+  ></textarea>
 
-  <div class="attribution">
-    Coded by <a href="https://github.com/Evandro1v/PROJETO.-PI"> Evandro1v</a>
-  </div>
+  <label for="foto-ocorrencia">Foto da Ocorrência:</label>
+  <input
+    type="file"
+    id="foto_da_ocorrencia"
+    name="foto_da_ocorrencia"
+    accept="image/*"
+    
+  />
 
-  <script src="/js/script.js"></script>
-</body>
+  <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
+  <input
+    type="file"
+    id="foto_mapa_da_localizacao"
+    name="foto_mapa_da_localizacao"
+    accept="image/*"
+  
+  />
+
+  <input type="submit" value="Enviar" />
+</form>
+    </div>
+    <div class="attribution">
+      Coded by
+      <a href="https://github.com/Evandro1v/PROJETO.-PI"> Evandro1v</a>
+    </div>
+{{!-- 
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('formulario').addEventListener('submit', function(event) {
+      const gravidade = document.querySelector('input[name="gravidade_da_ocorrencia"]:checked');
+      const endereco = document.getElementById('end_ocorrencia').value.trim();
+      const bairro = document.getElementById('bairro').value.trim();
+      const descricao = document.getElementById('descricao_da_ocorrencia').value.trim();
+      const fotoOcorrencia = document.getElementById('foto_da_ocorrencia').value.trim();
+      const fotoMapa = document.getElementById('foto_mapa_da_localizacao').value.trim();
+
+      if (!gravidade || !endereco || !bairro || !descricao) {
+        alert('Por favor, preencha todos os campos.');
+        event.preventDefault();
+      } else if (!fotoOcorrencia || !fotoMapa) {
+        document.getElementById('foto_da_ocorrencia').value = ''; // Define o valor da foto como vazio
+      }
+    });
+  });
+</script> --}}
+  </body>
 
 </html>
