@@ -99,18 +99,35 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
 });
 
 app.post('/cadastro', function (req, res) {
-  const { nome, telefone, email, senha } = req.body; // Obtém os dados do formulário de cadastro.
-  const sqlInsertUser = `INSERT INTO cad_usuario (nome, telefone, \`e-mail\`, senha) VALUES (?, ?, ?, ?)`; // Consulta SQL para inserir um novo usuário.
-  conexao.query(sqlInsertUser, [nome, telefone, email, senha], function (error, results) {
+  const { nome, telefone, email, senha } = req.body;
+
+  // Verifica se o email já está cadastrado
+  const sqlCheckEmail = `SELECT * FROM cad_usuario WHERE \`e-mail\` = ?`;
+  conexao.query(sqlCheckEmail, [email], function (error, results) {
     if (error) {
-      console.error('Erro ao cadastrar usuário:', error); // Se ocorrer um erro, loga o erro.
-      res.status(500).send('Erro ao cadastrar usuário'); // Retorna um status 500 e uma mensagem de erro.
-      return;
+      console.error('Erro ao verificar email:', error);
+      return res.status(500).send('Erro ao cadastrar usuário');
     }
-    console.log('Usuário cadastrado com sucesso:', results); // Loga uma mensagem informando que o usuário foi cadastrado com sucesso.
-    res.redirect('/'); // Redireciona para a página inicial.
+
+    if (results.length > 0) {
+      // Se o email já existe, retorna uma mensagem de erro
+      return res.render('paginadecadastro', { message: 'Email já cadastrado' });
+    }
+
+    // Se o email não existe, procede com o cadastro
+    const sqlInsertUser = `INSERT INTO cad_usuario (nome, telefone, \`e-mail\`, senha) VALUES (?, ?, ?, ?)`;
+    conexao.query(sqlInsertUser, [nome, telefone, email, senha], function (error, results) {
+      if (error) {
+        console.error('Erro ao cadastrar usuário:', error);
+        return res.status(500).send('Erro ao cadastrar usuário');
+      }
+      console.log('Usuário cadastrado com sucesso:', results);
+
+      // Após o cadastro bem-sucedido, redireciona para a página de login
+      res.redirect('/');
+    });
   });
-});
+})
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/paginalogada', // Redireciona para a página logada em caso de sucesso na autenticação.
