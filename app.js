@@ -1,12 +1,15 @@
 const express = require('express'); // Importa o módulo Express, que é um framework web para Node.js.
 const { engine } = require('express-handlebars'); // Importa o motor de visualização Handlebars para o Express.
 const mysql = require('mysql2'); // Importa o módulo mysql2 para interagir com o banco de dados MySQL.
-const passport = require('passport'); // Importa o módulo Passport, que é utilizado para autenticação de usuários.
-const LocalStrategy = require('passport-local').Strategy; // Importa a estratégia de autenticação local do Passport.
+const passport = require('passport'); // Importa  é utilizado para autenticação de usuários.
+const LocalStrategy = require('passport-local').Strategy; // Imporo módulo Passport, queta a estratégia de autenticação local do Passport.
 const session = require('express-session'); // Importa o middleware de sessão para o Express.
 const flash = require('connect-flash'); // Importa o módulo connect-flash para exibir mensagens flash.
 const multer = require('multer'); // Importa o módulo multer para processamento de formulários multipart.
 const upload = multer({ dest: 'uploads/' });// para inicializar o multer e atribuí-lo à variável upload
+const fs = require('fs'); // Importe o módulo fs para acessar o sistema de arquivos.
+const path = require('path');
+
 const app = express(); // Cria uma instância do aplicativo Express.
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
 app.set('view engine', 'handlebars'); // Configura o uso de arquivos Handlebars como visualizações.
@@ -90,13 +93,63 @@ app.get('/paginadecadastro', function (req, res) {
 });
 
 // Aplicando o middleware isLoggedIn para proteger a rota '/paginalogada'
+// app.get('/paginalogada', isLoggedIn, function (req, res) {
+//   res.header('Cache-Control', 'no-cache, no-store, must-revalidate'); // Define cabeçalhos de controle de cache.
+//   res.header('Pragma', 'no-cache');
+//   res.header('Expires', '0');
+//   console.log('Usuário autenticado:', req.user); // Loga o usuário autenticado.
+
+//   // Consulta SQL para recuperar os dados da tabela cad_problema relacionados ao usuário autenticado
+//   const sql = `SELECT c_p.*, c_u.nome AS nome_usuario FROM cad_problema c_p
+//   INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
+//   conexao.query(sql, function (error, results) {
+//     if (error) {
+//       console.error('Erro ao recuperar dados da tabela cad_problema:', error);
+//       return res.status(500).send('Erro ao recuperar dados da tabela cad_problema');
+//     }
+
+//     // Renderiza a página paginalogada e passa os dados da tabela cad_problema como variáveis
+//     res.render('paginalogada', { user: req.user, problemas: results });
+//   });
+// });
+// Aplicando o middleware isLoggedIn para proteger a rota '/paginalogada'
 app.get('/paginalogada', isLoggedIn, function (req, res) {
   res.header('Cache-Control', 'no-cache, no-store, must-revalidate'); // Define cabeçalhos de controle de cache.
   res.header('Pragma', 'no-cache');
   res.header('Expires', '0');
   console.log('Usuário autenticado:', req.user); // Loga o usuário autenticado.
-  res.render('paginalogada', { user: req.user }); // Rota para renderizar a página logada.
+  // Verifies if the user is an admin
+  if (req.user.id_usuario >= 0 && req.user.id_usuario <= 5) {
+    // Query to retrieve data from the cad_problema table
+    const sql = `SELECT c_p.*, c_u.nome AS nome_usuario FROM cad_problema c_p
+    INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
+    // Executing the query
+    conexao.query(sql, function (error, results) {
+      if (error) {
+        console.error('Error retrieving data from cad_problema table:', error);
+        return res.status(500).send('Error retrieving data from cad_problema table');
+      }
+      console.log(results); // Logging the retrieved results to check if it's retrieved successfully
+      // Rendering the 'paginaadm' page with user data and retrieved problems
+      res.render('paginaadm', { user: req.user, problemas: results });
+    });
+  } else {
+    // If the user is not an admin, render the 'paginalogada' page
+    const sql = `SELECT c_p.*, c_u.nome AS nome_usuario FROM cad_problema c_p
+    INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
+    // Executing the query
+    conexao.query(sql, function (error, results) {
+      if (error) {
+        console.error('Error retrieving data from cad_problema table:', error);
+        return res.status(500).send('Error retrieving data from cad_problema table');
+      }
+      console.log(results); // Logging the retrieved results to check if it's retrieved successfully
+      // Rendering the 'paginalogada' page with user data and retrieved problems
+      res.render('paginalogada', { user: req.user, problemas: results });
+    });
+  }
 });
+
 
 app.post('/cadastro', function (req, res) {
   const { nome, telefone, email, senha } = req.body;
@@ -156,6 +209,7 @@ app.post('/enviar-formulario', isLoggedIn, upload.fields([
   const gravidade = req.body.gravidade_da_ocorrencia; // Obtém a gravidade da ocorrência do formulário.
   const end_ocorrencia = req.body.end_ocorrencia; // Obtém o endereço da ocorrência do formulário.
   const bairro = req.body.bairro; // Obtém o bairro da ocorrência do formulário.
+  const cep = req.body.cep;// Obtém o cep da ocorrência do formulário.
   const descricao_da_ocorrencia = req.body.descricao_da_ocorrencia; // Obtém a descrição da ocorrência do formulário.
   let foto_da_ocorrencia = ''; // Inicializa a variável para armazenar a foto da ocorrência.
   let foto_mapa_da_localizacao = ''; // Inicializa a variável para armazenar a foto do mapa da localização.
@@ -177,19 +231,132 @@ app.post('/enviar-formulario', isLoggedIn, upload.fields([
   const status = 1; // Define o status da ocorrência como 1 (ativo).
   const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
 
-  const sqlInsertOcorrencia = `INSERT INTO cad_problema (id_usuario, end_ocorrencia, bairro, gravidade_da_ocorrencia, descricao_da_ocorrencia, foto_da_ocorrencia, foto_mapa_da_localizacao, status_da_ocorrencia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`; // Consulta SQL para inserir uma nova ocorrência.
-  const values = [id_usuario, end_ocorrencia, bairro, gravidade, descricao_da_ocorrencia, foto_da_ocorrencia, foto_mapa_da_localizacao, status]; // Valores a serem inseridos na consulta SQL.
+  const sqlInsertOcorrencia = `INSERT INTO cad_problema (id_usuario, end_ocorrencia, bairro,cep, gravidade_da_ocorrencia, descricao_da_ocorrencia, foto_da_ocorrencia, foto_mapa_da_localizacao, status_da_ocorrencia) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?)`; // Consulta SQL para inserir uma nova ocorrência.
+  const values = [id_usuario, end_ocorrencia, bairro, cep, gravidade, descricao_da_ocorrencia, foto_da_ocorrencia, foto_mapa_da_localizacao, status]; // Valores a serem inseridos na consulta SQL.
   conexao.query(sqlInsertOcorrencia, values, function (error, results) {
     if (error) {
       console.error('Erro ao inserir ocorrência:', error); // Se ocorrer um erro, loga o erro.
       return res.status(500).send('Erro ao enviar ocorrência'); // Retorna um status 500 e uma mensagem de erro.
     }
     console.log('Ocorrência inserida com sucesso:', results); // Loga uma mensagem informando que a ocorrência foi inserida com sucesso.
-    res.redirect('/'); // Redireciona para a página inicial.
+    res.redirect(req.get('referer'));
   });
 });
 
+app.get('/exibir-imagem', function (req, res) {
+  const caminhoRelativo = req.query.caminho;
 
+  // Convertendo o caminho relativo para absoluto
+  const caminhoAbsoluto = path.resolve(__dirname, caminhoRelativo);
+
+  // Lendo o conteúdo do arquivo
+  fs.readFile(caminhoAbsoluto, function (err, data) {
+    if (err) {
+      console.error('Erro ao ler o arquivo:', err);
+      return res.status(404).send('Arquivo não encontrado');
+    }
+
+    // Definindo o tipo de conteúdo da resposta como imagem
+    res.contentType('image/jpeg'); // Altere para o tipo de conteúdo correto se não for uma imagem JPEG
+
+    // Enviando o conteúdo do arquivo como resposta
+    res.end(data);
+  });
+});
+// Endpoint para enviar a solução
+app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), function (req, res) {
+  const { id_ocorrencia, descricao_solucao } = req.body;
+  let foto_da_solucao = ''; // Inicializa como uma string vazia
+
+  // Verifica se a foto_da_solucao foi enviada
+  if (req.file) {
+    foto_da_solucao = req.file.path;
+  }
+
+  // Verifica se todos os campos obrigatórios foram preenchidos
+  if (!id_ocorrencia || !descricao_solucao) {
+    return res.status(400).send('Por favor, preencha todos os campos obrigatórios.');
+  }
+
+  // Verifica se o ID da ocorrência existe na tabela cad_problema
+  const checkIdQuery = 'SELECT * FROM cad_problema WHERE id_ocorrencia = ?';
+  conexao.query(checkIdQuery, [id_ocorrencia], function (error, results) {
+    if (error) {
+      console.error('Erro ao verificar ID da ocorrência:', error);
+      return res.status(500).send('Erro ao verificar ID da ocorrência');
+    }
+
+    // Se o ID da ocorrência não existir na tabela cad_problema, exibe uma mensagem de erro
+    if (results.length === 0) {
+      return res.status(404).send('O ID da ocorrência não existe.');
+    }
+
+    // Verifica se já existe uma solução para essa ocorrência na tabela cad_solucao
+    const checkSolutionQuery = 'SELECT * FROM cad_solucao WHERE id_ocorrencia = ?';
+    conexao.query(checkSolutionQuery, [id_ocorrencia], function (error, results) {
+      if (error) {
+        console.error('Erro ao verificar solução existente:', error);
+        return res.status(500).send('Erro ao verificar solução existente');
+      }
+
+      // Se já existir uma solução para essa ocorrência, substitui a solução existente pela nova
+      if (results.length > 0) {
+        const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
+        const updateSolutionQuery = `UPDATE cad_solucao SET id_usuario = ?, descricao_solucao = ?, foto_da_solucao = ? WHERE id_ocorrencia = ?`;
+        const values = [id_usuario, descricao_solucao, foto_da_solucao, id_ocorrencia];
+
+        conexao.query(updateSolutionQuery, values, function (error, results) {
+          if (error) {
+            console.error('Erro ao atualizar solução:', error);
+            return res.status(500).send('Erro ao atualizar solução: ' + error.message); // Enviando mensagem de erro específica
+          }
+          console.log('Solução atualizada com sucesso:', results);
+          res.redirect('/'); // Redireciona para a página inicial após a atualização bem-sucedida
+        });
+      } else {
+        // Se não existir uma solução para essa ocorrência, insere uma nova solução
+        const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
+        const insertSolutionQuery = `INSERT INTO cad_solucao (id_ocorrencia,id_usuario, descricao_solucao, foto_da_solucao) VALUES (?, ?, ?, ?)`;
+        const values = [id_ocorrencia, id_usuario, descricao_solucao, foto_da_solucao];
+
+        conexao.query(insertSolutionQuery, values, function (error, results) {
+          if (error) {
+            console.error('Erro ao enviar solução:', error);
+            return res.status(500).send('Erro ao enviar solução: ' + error.message); // Enviando mensagem de erro específica
+          }
+          console.log('Solução enviada com sucesso:', results);
+          res.redirect('/'); // Redireciona para a página inicial após o envio bem-sucedido
+        });
+      }
+    });
+  });
+});
+
+app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
+  const idOcorrencia = req.body.id_ocorrencia;
+
+  // Excluir os registros relacionados na tabela cad_solucao
+  const deleteSolucaoQuery = 'DELETE FROM cad_solucao WHERE id_ocorrencia = ?';
+  conexao.query(deleteSolucaoQuery, [idOcorrencia], function (error, results) {
+    if (error) {
+      console.error('Erro ao remover as soluções relacionadas:', error);
+      return res.status(500).send('Erro ao remover as soluções relacionadas');
+    }
+
+    console.log('Soluções relacionadas removidas com sucesso:', results);
+
+    // Remover a ocorrência
+    const deleteQuery = 'DELETE FROM cad_problema WHERE id_ocorrencia = ?';
+    conexao.query(deleteQuery, [idOcorrencia], function (error, results) {
+      if (error) {
+        console.error('Erro ao remover ocorrência:', error);
+        return res.status(500).send('Erro ao remover ocorrência');
+      }
+      console.log('Ocorrência removida com sucesso:', results);
+      res.sendStatus(200);
+    });
+  });
+});
 app.listen(8082, function () {
   console.log('Servidor iniciado na porta 8082!'); // Inicia o servidor na porta 8082 e loga uma mensagem informando que o servidor foi iniciado com sucesso.
 });
