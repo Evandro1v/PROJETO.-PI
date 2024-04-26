@@ -158,10 +158,31 @@
                 href="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}"
                 target="_blank"
               >Ver Foto</a></td>
-              <td><button onclick="removerOcorrencia('{{this.id_ocorrencia}}')">Remover</button></td> 
           </tr>
         {{/each}}
+      </table>
 
+      <!-- Seção da tabela para exibir as informações da tabela cad_solucao -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID da Ocorrência</th>
+            <th>ID do Usuário</th>
+            <th>Descrição da Solução</th>
+            <th>Foto da Solução</th>
+          </tr>
+        </thead>
+        {{#each problemas}}
+          <tr>
+            <td>{{this.id_ocorrencia}}</td>
+            <td>{{this.id_usuario}}</td>
+            <td>{{this.descricao_solucao}}</td>
+            <td><a
+                href="/exibir-imagem?caminho={{this.foto_da_solucao}}"
+                target="_blank"
+              >Ver Foto</a></td>
+          </tr>
+        {{/each}}
       </table>
     </div>
     <div class="attribution">
@@ -170,29 +191,13 @@
     </div>
 
   </body>
-<script>
-    function removerOcorrencia(idOcorrencia) {
-      if (confirm("Tem certeza que deseja remover esta ocorrência?")) {
-        fetch('/remover-ocorrencia', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              id_ocorrencia: idOcorrencia
-            })
-          })
-          .then(response => {
-            if (response.ok) {
-              window.location.reload();
-            } else {
-              console.error('Erro ao remover ocorrência:', response.statusText);
-            }
-          })
-          .catch(error => {
-            console.error('Erro ao remover ocorrência:', error);
-          });
-      }
-    }
+  <script>
+    function removerOcorrencia(idOcorrencia) { if (confirm("Tem certeza que
+    deseja remover esta ocorrência?")) { fetch('/remover-ocorrencia', { method:
+    'POST', headers: { 'Content-Type': 'application/json' }, body:
+    JSON.stringify({ id_ocorrencia: idOcorrencia }) }) .then(response => { if
+    (response.ok) { window.location.reload(); } else { console.error('Erro ao
+    remover ocorrência:', response.statusText); } }) .catch(error => {
+    console.error('Erro ao remover ocorrência:', error); }); } }
   </script>
 </html>

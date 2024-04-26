@@ -121,8 +121,21 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
   // Verifies if the user is an admin
   if (req.user.id_usuario >= 0 && req.user.id_usuario <= 5) {
     // Query to retrieve data from the cad_problema table
-    const sql = `SELECT c_p.*, c_u.nome AS nome_usuario FROM cad_problema c_p
-    INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
+    const sql = `SELECT 
+                cp.id_ocorrencia,
+                cp.id_usuario,
+                cp.gravidade_da_ocorrencia,
+                cp.end_ocorrencia,
+                cp.bairro,
+                cp.descricao_da_ocorrencia,
+                cp.foto_da_ocorrencia,
+                cp.foto_mapa_da_localizacao,
+                cs.descricao_solucao,
+                cs.foto_da_solucao
+            FROM 
+                cad_problema cp
+            LEFT JOIN 
+                cad_solucao cs ON cp.id_ocorrencia = cs.id_ocorrencia`;
     // Executing the query
     conexao.query(sql, function (error, results) {
       if (error) {
@@ -357,6 +370,7 @@ app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
     });
   });
 });
+
 app.listen(8082, function () {
   console.log('Servidor iniciado na porta 8082!'); // Inicia o servidor na porta 8082 e loga uma mensagem informando que o servidor foi iniciado com sucesso.
 });
