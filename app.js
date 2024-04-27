@@ -102,9 +102,9 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
   res.header('Pragma', 'no-cache');
   res.header('Expires', '0');
   console.log('Usuário autenticado:', req.user); // Loga o usuário autenticado.
-  // Verifies if the user is an admin
+  // Verifica se o usario e admin
   if (req.user.id_usuario >= 0 && req.user.id_usuario <= 5) {
-    // Query to retrieve data from the cad_problema table
+    // Query para receber
     const sql = `SELECT 
                 cp.id_ocorrencia,
                 cp.id_usuario,
@@ -329,31 +329,31 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), functi
   });
 });
 
-app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
-  const idOcorrencia = req.body.id_ocorrencia;
+// app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
+//   const idOcorrencia = req.body.id_ocorrencia;
 
-  // Excluir os registros relacionados na tabela cad_solucao
-  const deleteSolucaoQuery = 'DELETE FROM cad_solucao WHERE id_ocorrencia = ?';
-  conexao.query(deleteSolucaoQuery, [idOcorrencia], function (error, results) {
-    if (error) {
-      console.error('Erro ao remover as soluções relacionadas:', error);
-      return res.status(500).send('Erro ao remover as soluções relacionadas');
-    }
+//   // Excluir os registros relacionados na tabela cad_solucao
+//   const deleteSolucaoQuery = 'DELETE FROM cad_solucao WHERE id_ocorrencia = ?';
+//   conexao.query(deleteSolucaoQuery, [idOcorrencia], function (error, results) {
+//     if (error) {
+//       console.error('Erro ao remover as soluções relacionadas:', error);
+//       return res.status(500).send('Erro ao remover as soluções relacionadas');
+//     }
 
-    console.log('Soluções relacionadas removidas com sucesso:', results);
+//     console.log('Soluções relacionadas removidas com sucesso:', results);
 
-    // Remover a ocorrência
-    const deleteQuery = 'DELETE FROM cad_problema WHERE id_ocorrencia = ?';
-    conexao.query(deleteQuery, [idOcorrencia], function (error, results) {
-      if (error) {
-        console.error('Erro ao remover ocorrência:', error);
-        return res.status(500).send('Erro ao remover ocorrência');
-      }
-      console.log('Ocorrência removida com sucesso:', results);
-      res.sendStatus(200);
-    });
-  });
-});
+//     // Remover a ocorrência
+//     const deleteQuery = 'DELETE FROM cad_problema WHERE id_ocorrencia = ?';
+//     conexao.query(deleteQuery, [idOcorrencia], function (error, results) {
+//       if (error) {
+//         console.error('Erro ao remover ocorrência:', error);
+//         return res.status(500).send('Erro ao remover ocorrência');
+//       }
+//       console.log('Ocorrência removida com sucesso:', results);
+//       res.sendStatus(200);
+//     });
+//   });
+// });
 
 app.post('/esqueceusenha', function (req, res) {
   const { email } = req.body; // Obtém o e-mail fornecido pelo usuário no formulário de recuperação de senha.
