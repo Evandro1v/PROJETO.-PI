@@ -9,13 +9,14 @@ const multer = require('multer'); // Importa o módulo multer para processamento
 const upload = multer({ dest: 'uploads/' });// para inicializar o multer e atribuí-lo à variável upload
 const fs = require('fs'); // Importe o módulo fs para acessar o sistema de arquivos.
 const path = require('path');
-
+const nodemailer = require('nodemailer');
 const app = express(); // Cria uma instância do aplicativo Express.
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
 app.set('view engine', 'handlebars'); // Configura o uso de arquivos Handlebars como visualizações.
 app.set('views', './views'); // Define o diretório onde estão armazenadas as visualizações Handlebars.
 app.use(express.json()); // Middleware para interpretar o corpo da requisição como JSON.
 app.use(express.urlencoded({ extended: false })); // Middleware para interpretar dados do formulário codificados na URL.
+
 
 const conexao = mysql.createConnection({
   host: 'localhost',
@@ -91,7 +92,10 @@ app.get('/', function (req, res) {
 app.get('/paginadecadastro', function (req, res) {
   res.render('paginadecadastro'); // Rota para renderizar a página de cadastro.
 });
-
+// Rota para exibir a página "Esqueceu a senha"
+app.get('/esqueceusenha', function (req, res) {
+  res.render('esqueceusenha'); // Renderiza a página "Esqueceu a senha"
+});
 // Aplicando o middleware isLoggedIn para proteger a rota '/paginalogada'
 // app.get('/paginalogada', isLoggedIn, function (req, res) {
 //   res.header('Cache-Control', 'no-cache, no-store, must-revalidate'); // Define cabeçalhos de controle de cache.
@@ -270,7 +274,7 @@ app.get('/exibir-imagem', function (req, res) {
     }
 
     // Definindo o tipo de conteúdo da resposta como imagem
-    res.contentType('image/jpeg'); // Altere para o tipo de conteúdo correto se não for uma imagem JPEG
+    res.contentType('image/jpg'); // Altere para o tipo de conteúdo correto se não for uma imagem JPEG
 
     // Enviando o conteúdo do arquivo como resposta
     res.end(data);
@@ -371,6 +375,53 @@ app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
   });
 });
 
+app.post('/esqueceusenha', function (req, res) {
+  const { email } = req.body; // Obtém o e-mail fornecido pelo usuário no formulário de recuperação de senha.
+
+  // Consulta SQL para buscar a senha correspondente ao e-mail no banco de dados
+  const sql = `SELECT senha FROM cad_usuario WHERE \`e-mail\` = ?`;
+  conexao.query(sql, [email], function (error, results) {
+    if (error) {
+      console.error('Erro ao buscar a senha:', error);
+      return res.status(500).send('Erro ao buscar a senha');
+    }
+
+    if (results.length === 0) {
+      // Se nenhum resultado for retornado, significa que o e-mail não está cadastrado
+      return res.status(404).send('E-mail não encontrado');
+    }
+
+    const senha = results[0].senha; // Obtém a senha do primeiro resultado
+
+    // Configuração do transporte para enviar o e-mail usando um serviço SMTP
+    let transporter = nodemailer.createTransport({
+      service: 'Outlook', // Substitua pelo seu provedor de e-mail, como 'Outlook', 'Yahoo', etc.
+      auth: {
+        user: 'tapaburacosite@outlook.com', // Seu endereço de e-mail
+        pass: 'senha@123' // Sua senha de e-mail
+      }
+    });
+
+    // Configuração do e-mail a ser enviado
+    let mailOptions = {
+      from: 'tapaburacosite@outlook.com', // Seu endereço de e-mail
+      to: email, // Endereço de e-mail do destinatário (o usuário que está solicitando a recuperação de senha)
+      subject: 'Recuperação de Senha', // Assunto do e-mail
+      html: `<p>Olá, você solicitou a recuperação de senha. Sua senha é: ${senha}</p>` // Corpo do e-mail (pode ser HTML)
+    };
+
+    // Envio do e-mail de recuperação de senha
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error); // Em caso de erro
+        res.status(500).send('Erro ao enviar e-mail de recuperação de senha'); // Retorna um status 500 em caso de erro no envio do e-mail
+      } else {
+        console.log('E-mail de recuperação de senha enviado com sucesso: ' + info.response); // Se o e-mail for enviado com sucesso
+        res.status(200).send('E-mail de recuperação de senha enviado com sucesso'); // Retorna um status 200 em caso de sucesso no envio do e-mail
+      }
+    });
+  });
+});
 app.listen(8082, function () {
   console.log('Servidor iniciado na porta 8082!'); // Inicia o servidor na porta 8082 e loga uma mensagem informando que o servidor foi iniciado com sucesso.
 });

@@ -119,43 +119,32 @@
             <td>{{this.end_ocorrencia}}</td>
             <td>{{this.bairro}}</td>
             <td>{{this.descricao_da_ocorrencia}}</td>
-            <td><a
-                href="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}"
-                target="_blank"
-              >Ver Foto</a></td>
-            <td><a
-                href="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}"
-                target="_blank"
-              >Ver Foto</a></td>
+            <td><img
+                src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}"
+                alt="Foto da Ocorrência"
+                style="max-width: 50px; max-height: 50px;"
+              />
+            </td>
+
+            <td>
+              <img
+                src="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}"
+                alt="Foto da Ocorrência"
+                style="max-width: 75px; max-height: 75px;"
+              />
+            </td>
           </tr>
         {{/each}}
 
       </table>
+
     </div>
+   
     <div class="attribution">
       Coded by
       <a href="https://github.com/Evandro1v/PROJETO.-PI"> Evandro1v</a>
     </div>
-    {{! 
-    <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('formulario').addEventListener('submit', function(event) {
-      const gravidade = document.querySelector('input[name="gravidade_da_ocorrencia"]:checked');
-      const endereco = document.getElementById('end_ocorrencia').value.trim();
-      const bairro = document.getElementById('bairro').value.trim();
-      const descricao = document.getElementById('descricao_da_ocorrencia').value.trim();
-      const fotoOcorrencia = document.getElementById('foto_da_ocorrencia').value.trim();
-      const fotoMapa = document.getElementById('foto_mapa_da_localizacao').value.trim();
 
-      if (!gravidade || !endereco || !bairro || !descricao) {
-        alert('Por favor, preencha todos os campos.');
-        event.preventDefault();
-      } else if (!fotoOcorrencia || !fotoMapa) {
-        document.getElementById('foto_da_ocorrencia').value = ''; // Define o valor da foto como vazio
-      }
-    });
-  });
-</script> }}
   </body>
 
 </html>

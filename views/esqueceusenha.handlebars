@@ -39,24 +39,19 @@
       <div class="container1">
         <p><b>LOGIN</b></p>
       </div>
-      <form  method="post" onsubmit="return validateLOGIN(this)" action="/login" class="container-inputs">
-        <label for="email-id">Email:</label>
-        <input type="email" name="email" id="email-id" placeholder="Email" required>
-        <span id="span6"></span>
-
-        <label for="password-id">Senha:</label>
-        <input type="password" name="password" id="password-id" placeholder="password" required>
-        <span id="span7"></span>
-
-        <input type="submit" class="button" value="LOGAR">
-        <div class="container-spans">
+     <form method="post" action="/esqueceusenha" class="container-inputs">
+  <label for="email">Email:</label>
+            <span class="span3">INSIRA SEU EMAIL PARA RECUPERAR SENHA</span>
+  <input type="email" id="email" name="email" required>
+  <input type="submit" value="Enviar" class="button">
+  <div class="container-spans">
           <span class="span2">NÃO TEM CADASTRO?</span>
           <span class="span3"><a href="/paginadecadastro">CADASTRAR</a></span>
         </div>
          <div class="container-spans">
-          <span class="span3"><a href="/esqueceusenha">ESQUECEU A SENHA</a></span>
+          <span class="span3"><a href="/">PAGINA DE LOGIN</a></span>
         </div>
-      </form>
+</form>
     </section>
   </main>
   <footer>
