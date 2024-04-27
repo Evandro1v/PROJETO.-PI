@@ -97,26 +97,6 @@ app.get('/esqueceusenha', function (req, res) {
   res.render('esqueceusenha'); // Renderiza a página "Esqueceu a senha"
 });
 // Aplicando o middleware isLoggedIn para proteger a rota '/paginalogada'
-// app.get('/paginalogada', isLoggedIn, function (req, res) {
-//   res.header('Cache-Control', 'no-cache, no-store, must-revalidate'); // Define cabeçalhos de controle de cache.
-//   res.header('Pragma', 'no-cache');
-//   res.header('Expires', '0');
-//   console.log('Usuário autenticado:', req.user); // Loga o usuário autenticado.
-
-//   // Consulta SQL para recuperar os dados da tabela cad_problema relacionados ao usuário autenticado
-//   const sql = `SELECT c_p.*, c_u.nome AS nome_usuario FROM cad_problema c_p
-//   INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
-//   conexao.query(sql, function (error, results) {
-//     if (error) {
-//       console.error('Erro ao recuperar dados da tabela cad_problema:', error);
-//       return res.status(500).send('Erro ao recuperar dados da tabela cad_problema');
-//     }
-
-//     // Renderiza a página paginalogada e passa os dados da tabela cad_problema como variáveis
-//     res.render('paginalogada', { user: req.user, problemas: results });
-//   });
-// });
-// Aplicando o middleware isLoggedIn para proteger a rota '/paginalogada'
 app.get('/paginalogada', isLoggedIn, function (req, res) {
   res.header('Cache-Control', 'no-cache, no-store, must-revalidate'); // Define cabeçalhos de controle de cache.
   res.header('Pragma', 'no-cache');
