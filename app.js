@@ -13,6 +13,7 @@ const nodemailer = require('nodemailer');
 const app = express(); // Cria uma instância do aplicativo Express.
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
 app.set('view engine', 'handlebars'); // Configura o uso de arquivos Handlebars como visualizações.
+app.set('images', './images');
 app.set('views', './views'); // Define o diretório onde estão armazenadas as visualizações Handlebars.
 app.use(express.json()); // Middleware para interpretar o corpo da requisição como JSON.
 app.use(express.urlencoded({ extended: false })); // Middleware para interpretar dados do formulário codificados na URL.
@@ -84,6 +85,7 @@ function isLoggedIn(req, res, next) {
 
 app.use('/css', express.static('./css')) // Middleware para servir arquivos estáticos CSS.
 app.use('/js', express.static('./js')); // Middleware para servir arquivos estáticos JavaScript.
+app.use('/images', express.static('./images'));
 
 app.get('/', function (req, res) {
   res.render('index'); // Rota para renderizar a página inicial.
@@ -114,6 +116,7 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
                 cp.descricao_da_ocorrencia,
                 cp.foto_da_ocorrencia,
                 cp.foto_mapa_da_localizacao,
+                cp.status_da_ocorrencia,
                 cs.descricao_solucao,
                 cs.foto_da_solucao
             FROM 
@@ -239,7 +242,7 @@ app.post('/enviar-formulario', isLoggedIn, upload.fields([
     res.redirect(req.get('referer'));
   });
 });
-
+//exibir imagens
 app.get('/exibir-imagem', function (req, res) {
   const caminhoRelativo = req.query.caminho;
 
