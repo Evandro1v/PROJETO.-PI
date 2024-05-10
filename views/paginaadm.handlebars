@@ -232,3 +232,236 @@
 </body>
 
 </html>
+
+
+{{!-- <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style2.css" />
+
+  <title>OPERAÇÃO TAPA BURACOS</title>
+</head>
+
+<body>
+  <div class="containerimgsidebar">
+    <img src="/images/navbar.png" onclick="toggleSidebar()" alt="" />
+  </div>
+  <div class="containerprincipal">
+    <aside class="sidebar" id="Sidebar">
+      <div class="container-usuarios">
+        <h2>INFORMAÇÕES DO ADM</h2>
+        <p>{{user.nome}}</p>
+        <h2>id_usuario: {{user.id_usuario}}</h2>
+        <h2>{{user.email}}</h2>
+        <form action="/logout" method="post">
+          <button type="submit">Sair</button>
+        </form>
+      </div>
+      <ul>
+        <li>CADASTRAR PROBLEMA</li>
+        <li>CADASTRAR SOLUÇÃO</li>
+        <li>VISUALIZAR PROBLEMAS</li>
+        <li>VISUALIZAR SOLUÇÃO</li>
+      </ul>
+    </aside>
+    <main>
+      <div class="cadsolucao">
+        <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
+          <h2>Detalhes da Ocorrência:</h2>
+          <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
+          <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
+
+          <label for="descricao_solucao">Descrição da Solução:</label>
+          <textarea id="descricao_solucao" name="descricao_solucao" required></textarea>
+
+          <label for="foto_da_solucao">Foto da Solução:</label>
+          <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+      {{!-- //////// --}}
+      <div class="container-formulario">
+        <h2>Formulário de Incidentes de Via</h2>
+        <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
+          <h2>Gravidade da Ocorrência</h2>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Urgente" required />
+            Urgente</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
+            Alta</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Mediana" required />
+            Mediana</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Normal" required />
+            Normal</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
+            Baixa</label>
+
+          <h2>Detalhes da Ocorrência:</h2>
+          <label for="endereco">Endereço:</label>
+          <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
+
+          <label for="bairro">Bairro:</label>
+          <input type="text" id="bairro" name="bairro" required />
+
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="cep" required />
+
+          <label for="descricao">Descrição da Ocorrência:</label>
+          <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required></textarea>
+
+          <label for="foto-ocorrencia">Foto da Ocorrência:</label>
+          <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
+
+          <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
+          <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
+
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </main>
+  </div>
+  <div class="tabelaproblema">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID-Ocorrência</th>
+          <th>Descrição</th>
+          <th>Status</th>
+          <th>Foto</th>
+          <th>Solução</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each problemas}}
+        <tr>
+          <td>{{this.id_ocorrencia}}</td>
+          <td>{{this.descricao_da_ocorrencia}}</td>
+          <td>{{this.status_da_ocorrencia}}</td>
+          <td>
+            <img src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
+          </td>
+          <td><button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button></td>
+          <td><button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Show Popup</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+    <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
+    <h2>Tabela de Soluções</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Descrição da Solução</th>
+          <th>Foto da Solução</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each solucoes}}
+        <tr>
+          <td>{{this.descricao_solucao}}</td>
+          <td>
+            <img src="/exibir-imagem?caminho={{this.foto_da_solucao}}" alt="Foto da Solução" style="width: 65px; height: 40px;" />
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- visu problemasssss --}}
+  <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
+    <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
+    <h2>Tabela de Problemas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID-Ocorrência</th>
+          <th>ID-Usuário</th>
+          <th>Gravidade</th>
+          <th>Endereço</th>
+          <th>Bairro</th>
+          <th>Descrição</th>
+          <th>Foto da Ocorrência</th>
+          <th>Foto do Mapa</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each problemas}}
+        <tr data-id="{{this.id_ocorrencia}}">
+          <td>{{this.id_ocorrencia}}</td>
+          <td>{{this.id_usuario}}</td>
+          <td>{{this.gravidade_da_ocorrencia}}</td>
+          <td>{{this.end_ocorrencia}}</td>
+          <td>{{this.bairro}}</td>
+          <td>{{this.descricao_da_ocorrencia}}</td>
+          <td><img src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></td>
+          <td><img src="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    function fecharSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.remove('active');
+    }
+
+    function showPopupsolucao(id_ocorrencia) {
+      var popup = document.getElementById("popupContainerSolucao");
+      popup.style.display = "block";
+
+      // Hide all table rows initially
+      var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
+      tableRows.forEach(row => {
+        row.style.display = "none";
+      });
+
+      // Show only the table rows with the specified id_ocorrencia
+      var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody tr[data-id="${id_ocorrencia}"]`);
+      targetRows.forEach(row => {
+        row.style.display = "";
+      });
+    }
+
+    function closePopupsolucao() {
+      var popup = document.getElementById("popupContainerSolucao");
+      popup.style.display = "none";
+    }
+
+    function showPopuproblemas(id_ocorrencia) {
+      var popup = document.getElementById("popupContainerproblemas");
+      popup.style.display = "block";
+
+      // Hide all table rows initially
+      var tableRows = document.querySelectorAll("#popupContainerproblemas tbody tr");
+      tableRows.forEach(row => {
+        row.style.display = "none";
+      });
+
+      // Show only the table row with the specified id_ocorrencia
+      var targetRow = document.querySelector(`#popupContainerproblemas tbody tr[data-id="${id_ocorrencia}"]`);
+      if (targetRow) {
+        targetRow.style.display = "";
+      }
+    }
+
+    function closePopuproblemas() {
+      var popup = document.getElementById("popupContainerproblemas");
+      popup.style.display = "none";
+    }
+  </script>
+</body>
+
+</html> --}}
