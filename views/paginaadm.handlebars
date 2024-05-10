@@ -1,226 +1,212 @@
 <html lang="pt-br">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style2.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style2.css" />
 
-    <title>OPERAÇÃO TAPA BURACOS</title>
-  </head>
+  <title>OPERAÇÃO TAPA BURACOS</title>
+</head>
 
-  <body>
-    <div class="containerimgsidebar">
-      <img src="/images/navbar.png" onclick="toggleSidebar()" alt="" />
-    </div>
-    <div class="containerprincipal">
-      <aside class="sidebar" id="Sidebar">
-        <div class="container-usuarios">
-          <h2>INFORMAÇOES DO ADM</h2>
-          <p>{{user.nome}}</p>
-          <h2>id_usuario: {{user.id_usuario}}</h2>
-          <h2>{{user.e-mail}}</h2>
-          <form action="/logout" method="post">
-            <button type="submit">Sair</button>
-          </form>
-        </div>
-        <ul>
-          <li>CADASTRAR PROBLEMA</li>
-          <li>CADASTRAR SOLUCAO</li>
-          <li>VISUALIZAR PROBLEMAS</li>
-          <li>VISUALIZAR SOLUCAO</li>
-        </ul>
-      </aside>
-      <main>
-        <div class="cadsolucao">
-        <form 
-          action="/enviar-solucao"
-          method="post"
-          enctype="multipart/form-data"
-        >
+<body>
+  <div class="containerimgsidebar">
+    <img src="/images/navbar.png" onclick="toggleSidebar()" alt="" />
+  </div>
+  <div class="containerprincipal">
+    <aside class="sidebar" id="Sidebar">
+      <div class="container-usuarios">
+        <h2>INFORMAÇOES DO ADM</h2>
+        <p>{{user.nome}}</p>
+        <h2>id_usuario: {{user.id_usuario}}</h2>
+        <h2>{{user.e-mail}}</h2>
+        <form action="/logout" method="post">
+          <button type="submit">Sair</button>
+        </form>
+      </div>
+      <ul>
+        <li>CADASTRAR PROBLEMA</li>
+        <li>CADASTRAR SOLUCAO</li>
+        <li>VISUALIZAR PROBLEMAS</li>
+        <li>VISUALIZAR SOLUCAO</li>
+      </ul>
+    </aside>
+    <main>
+      <div class="cadsolucao">
+        <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
           <h2>Detalhes da Ocorrência:</h2>
           <label for="id_ocorrencia">ID-OCORRENCIA:</label>
-          <input
-            type="number"
-            id="id_ocorrencia"
-            name="id_ocorrencia"
-            required
-          />
+          <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
 
           <label for="descricao_solucao">Descrição da Solucao:</label>
-          <textarea
-            id="descricao_solucao"
-            name="descricao_solucao"
-            required
-          ></textarea>
+          <textarea id="descricao_solucao" name="descricao_solucao" required></textarea>
 
           <label for="foto_da_solucao">Foto da Solução:</label>
-          <input
-            type="file"
-            id="foto_da_solucao"
-            name="foto_da_solucao"
-            accept="image/*"
-          />
+          <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" />
           <input type="submit" value="Enviar" />
         </form>
-        </div>
-{{!-- //////// --}}
-<div class="container-formulario">
-      <h2>Formulário de Incidentes de Via</h2>
-      <form
-        action="/enviar-formulario"
-        method="post"
-        enctype="multipart/form-data"
-      >
-        <h2>gravidade da Ocorrência</h2>
-        <label><input
-            type="radio"
-            name="gravidade_da_ocorrencia"
-            value="Urgente"
-            required
-          />
-          Urgente</label>
-        <label><input
-            type="radio"
-            name="gravidade_da_ocorrencia"
-            value="Alta"
-            required
-          />
-          Alta</label>
-        <label><input
-            type="radio"
-            name="gravidade_da_ocorrencia"
-            value="Mediana"
-            required
-          />
-          Mediana</label>
-        <label><input
-            type="radio"
-            name="gravidade_da_ocorrencia"
-            value="Normal"
-            required
-          />
-          Normal</label>
-        <label><input
-            type="radio"
-            name="gravidade_da_ocorrencia"
-            value="Baixa"
-            required
-          />
-          Baixa</label>
+      </div>
+      {{!-- //////// --}}
+      <div class="container-formulario">
+        <h2>Formulário de Incidentes de Via</h2>
+        <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
+          <h2>gravidade da Ocorrência</h2>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Urgente" required />
+            Urgente</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
+            Alta</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Mediana" required />
+            Mediana</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Normal" required />
+            Normal</label>
+          <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
+            Baixa</label>
 
-        <h2>Detalhes da Ocorrência:</h2>
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
+          <h2>Detalhes da Ocorrência:</h2>
+          <label for="endereco">Endereço:</label>
+          <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
 
-        <label for="bairro">Bairro:</label>
-        <input type="text" id="bairro" name="bairro" required />
+          <label for="bairro">Bairro:</label>
+          <input type="text" id="bairro" name="bairro" required />
 
-        <label for="cep">cep:</label>
-        <input type="text" id="cep" name="cep" required />
+          <label for="cep">cep:</label>
+          <input type="text" id="cep" name="cep" required />
 
-        <label for="descricao">Descrição da Ocorrência:</label>
-        <textarea
-          id="descricao_da_ocorrencia"
-          name="descricao_da_ocorrencia"
-          required
-        ></textarea>
+          <label for="descricao">Descrição da Ocorrência:</label>
+          <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required></textarea>
 
-        <label for="foto-ocorrencia">Foto da Ocorrência:</label>
-        <input
-          type="file"
-          id="foto_da_ocorrencia"
-          name="foto_da_ocorrencia"
-          accept="image/*"
-        />
+          <label for="foto-ocorrencia">Foto da Ocorrência:</label>
+          <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
 
-        <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
-        <input
-          type="file"
-          id="foto_mapa_da_localizacao"
-          name="foto_mapa_da_localizacao"
-          accept="image/*"
-        />
+          <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
+          <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
 
-        <input type="submit" value="Enviar" />
-      </form>
-      </main>
-    </div>
-    <div class="tabelaproblema">
-      <table class="table">
-        {{#each problemas}}
-          <tr>
-            <td>{{this.id_ocorrencia}}</td>
-            <td>{{this.descricao_da_ocorrencia}}</td>
-            <td>{{this.status_da_ocorrencia}}</td>
-             <td>
-              <img
-                src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}"
-                alt="Foto da Ocorrência"
-                style="width: 65px; height: 40px;"
-              />
-             </td>
-            {{!-- <td>
-              <img
-                src="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}"
-                alt="Foto da Ocorrência"
-                style="width: 65px; height: 40px;"
-              />
-            </td> --}}
-            <td><button>ver solucao</button></td>
-          </tr>
-        {{/each}}
-      </table>
-
-      <!-- Seção da tabela para exibir as informações da tabela cad_solucao -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID da Ocorrência</th>
-            <th>ID do Usuário</th>
-            <th>Descrição da Solução</th>
-            <th>Foto da Solução</th>
-          </tr>
-        </thead>
-        {{#each problemas}}
-          <tr>
-            <td>{{this.id_ocorrencia}}</td>
-            <td>{{this.id_usuario}}</td>
-            <td>{{this.descricao_solucao}}</td>
-            <td>
-              <img
-                src="/exibir-imagem?caminho={{this.foto_da_solucao}}"
-                alt="Foto da Ocorrência"
-                style="width: 65px; height: 40px;"
-              />
-            </td>
-          </tr>
-        {{/each}}
-      </table>
+          <input type="submit" value="Enviar" />
+        </form>
     </main>
-    </div> 
-    </div>
-    {{! <div class="attribution">
-      Coded by
-      <a href="https://github.com/Evandro1v/PROJETO.-PI"> Evandro1v</a>
-    </div> }}
-  </body>
-  <script>function toggleSidebar() { const sideBarAtiva =
-    document.querySelector('.sidebar'); sideBarAtiva.classList.toggle('active');
-    } function fecharSidebar() { const sideBarAtiva =
-    document.querySelector('.sidebar'); sideBarAtiva.classList.remove('active');
-    }</script>
+  </div>
+  <div class="tabelaproblema">
+
+
+    <table class="table">
+      {{#each problemas}}
+      <thead>
+        <tr>
+          <th>ID-Ocorrencia</th>
+          <th>Descrição</th>
+          <th>status</th>
+          <th>foto</th>
+          <th>solucao</th>
+          <th>detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{this.id_ocorrencia}}</td>
+          <td>{{this.descricao_da_ocorrencia}}</td>
+          <td>{{this.status_da_ocorrencia}}</td>
+          <td>
+            <img src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+              style="width: 65px; height: 40px;" />
+          </td>
+          <td><button onclick="showPopupsolucao(this)">Solução</button></td>
+          <td><button onclick="showPopuproblemas(this)">detalhes</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+    <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
+    <h2>Tabela de Soluções</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Descrição da Solução</th>
+          <th>Foto da Solução</th>
+        </tr>
+      </thead>
+      <div class="popupBody">
+        {{#each problemas}}
+        <tr>
+          <td>{{this.descricao_solucao}}</td>
+          <td>
+            <img src="/exibir-imagem?caminho={{this.foto_da_solucao}}" alt="Foto da Solução"
+              style="width: 65px; height: 40px;" />
+          </td>
+        </tr>
+        {{/each}}
+      </div>
+    </table>
+  </div>
+
+  {{!-- visu problemasssss --}}
+  <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
+    <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
+    <h2>Tabela de Soluções</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID-Ocorrencia</th>
+          <th>ID-usuario</th>
+          <th>Gravidade</th>
+          <th>Endereço</th>
+          <th>Bairro</th>
+          <th>Descrição</th>
+          <th>Foto da Ocorrência</th>
+          <th>Foto do Mapa</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each problemas}}
+        <tr>
+          <td data-label="ID-Ocorrencia">{{this.id_ocorrencia}}</td>
+          <td data-label="ID-usuario">{{this.id_usuario}}</td>
+          <td data-label="Gravidade">{{this.gravidade_da_ocorrencia}}</td>
+          <td data-label="Endereço">{{this.end_ocorrencia}}</td>
+          <td data-label="Bairro">{{this.bairro}}</td>
+          <td data-label="Descrição">{{this.descricao_da_ocorrencia}}</td>
+          <td data-label="Foto da Ocorrência"><img src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}"
+              alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></td>
+          <td data-label="Foto do Mapa"><img src="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}"
+              alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{! <div class="attribution">
+    Coded by
+    <a href="https://github.com/Evandro1v/PROJETO.-PI"> Evandro1v</a>
+  </div> }}
+</body>
+<script>function toggleSidebar() {
+    const sideBarAtiva =
+      document.querySelector('.sidebar'); sideBarAtiva.classList.toggle('active');
+  } function fecharSidebar() {
+    const sideBarAtiva =
+      document.querySelector('.sidebar'); sideBarAtiva.classList.remove('active');
+  }
+  function showPopupsolucao() {
+    var popup = document.getElementById("popupContainerSolucao");
+    popup.style.display = "block";
+  }
+
+  function closePopupsolucao() {
+    var popup = document.getElementById("popupContainerSolucao");
+    popup.style.display = "none";
+  }
+
+
+  function showPopuproblemas() {
+    var popup = document.getElementById("popupContainerproblemas");
+    popup.style.display = "block";
+  }
+
+  function closePopuproblemas() {
+    var popup = document.getElementById("popupContainerproblemas");
+    popup.style.display = "none";
+  }
+</script>
+
 </html>
-
-{{!-- 
-    </aside>
-    
-    <main>
-    <div class="confirmação_formulario" style="display: none;">
-      <h2>ja existe uma solução para esse problema deseja alterar mesmo assim?</h2>
-      <button onclick="confirmarModificacao('sim')">Sim</button>
-      <button onclick="confirmarModificacao('nao')">Não</button>
-    </div>
-    
-
-    </div>
-    --}}
