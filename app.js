@@ -20,10 +20,11 @@ app.use(express.urlencoded({ extended: false })); // Middleware para interpretar
 
 
 const conexao = mysql.createConnection({
-  host: 'localhost',
+  host: 'viaduct.proxy.rlwy.net',
   user: 'root',
-  password: '123456',
-  database: 'tapaburaco'
+  password: 'AFbeOCXwSRcGAYpjDLkIAUuAAflBiOWd',
+  database: 'railway',
+  port:'46402'
 }); // Cria uma conexão com o banco de dados MySQL.
 
 conexao.connect(function (erro) {
