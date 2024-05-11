@@ -17,7 +17,7 @@ var admin = require('firebase-admin');
 var serviceAccount = require("./sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json");
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
   storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
 });
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
