@@ -14,7 +14,7 @@ const app = express(); // Cria uma instância do aplicativo Express.
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
 app.set('view engine', 'handlebars'); // Configura o uso de arquivos Handlebars como visualizações.
 app.set('images', './images');
-app.set('views', './views'); // Define o diretório onde estão armazenadas as visualizações Handlebars.
+app.set('views', '/views'); // Define o diretório onde estão armazenadas as visualizações Handlebars.
 app.use(express.json()); // Middleware para interpretar o corpo da requisição como JSON.
 app.use(express.urlencoded({ extended: false })); // Middleware para interpretar dados do formulário codificados na URL.
 
