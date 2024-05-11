@@ -86,9 +86,9 @@ function isLoggedIn(req, res, next) {
   res.redirect('/'); // Redireciona para a página inicial.
 }
 
-app.use('/css', express.static('./css')) // Middleware para servir arquivos estáticos CSS.
-app.use('/js', express.static('./js')); // Middleware para servir arquivos estáticos JavaScript.
-app.use('/images', express.static('./images'));
+app.use('/css', express.static('css')) // Middleware para servir arquivos estáticos CSS.
+app.use('/js', express.static('js')); // Middleware para servir arquivos estáticos JavaScript.
+app.use('/images', express.static('images'));
 
 app.get('/', function (req, res) {
   res.render('index'); // Rota para renderizar a página inicial.
