@@ -5,8 +5,8 @@
   const LocalStrategy = require('passport-local').Strategy; // Imporo módulo Passport, queta a estratégia de autenticação local do Passport.
   const session = require('express-session'); // Importa o middleware de sessão para o Express.
   const flash = require('connect-flash'); // Importa o módulo connect-flash para exibir mensagens flash.
-  const multer = require('multer'); // Importa o módulo multer para processamento de formulários multipart.
-  const upload = multer({ dest: 'uploads/' });// para inicializar o multer e atribuí-lo à variável upload
+  // const multer = require('multer'); // Importa o módulo multer para processamento de formulários multipart.
+  // const upload = multer({ dest: 'uploads/' });// para inicializar o multer e atribuí-lo à variável upload
   const fs = require('fs'); // Importe o módulo fs para acessar o sistema de arquivos.
   const path = require('path');
   const nodemailer = require('nodemailer');
