@@ -405,8 +405,10 @@ app.post('/esqueceusenha', function (req, res) {
       }
     });
   });
+  
 });
 
 app.listen(8082, function () {
   console.log('Servidor iniciado na porta 8082!'); // Inicia o servidor na porta 8082 e loga uma mensagem informando que o servidor foi iniciado com sucesso.
 });
+module.exports = app;
