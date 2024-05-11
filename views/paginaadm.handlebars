@@ -106,7 +106,7 @@
           <td>{{this.descricao_da_ocorrencia}}</td>
           <td>{{this.status_da_ocorrencia}}</td>
           <td>
-            <img src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
+            <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
           </td>
           <td><button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button></td>
           <td><button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Show Popup</button></td>
@@ -130,7 +130,7 @@
         <tr data-id="{{this.id_ocorrencia}}">
           <td>{{this.descricao_solucao}}</td>
           <td>
-            <img src="/exibir-imagem?caminho={{this.foto_da_solucao}}" alt="Foto da Solução" style="width: 65px; height: 40px;" />
+            <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" style="width: 65px; height: 40px;" />
           </td>
         </tr>
         {{/each}}
@@ -164,8 +164,8 @@
           <td>{{this.end_ocorrencia}}</td>
           <td>{{this.bairro}}</td>
           <td>{{this.descricao_da_ocorrencia}}</td>
-          <td><img src="/exibir-imagem?caminho={{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></td>
-          <td><img src="/exibir-imagem?caminho={{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></td>
+          <td><img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></td>
+          <td><img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></td>
         </tr>
         {{/each}}
       </tbody>
