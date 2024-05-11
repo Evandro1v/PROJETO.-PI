@@ -14,10 +14,10 @@ const nodemailer = require('nodemailer');
 const app = express(); // Cria uma instância do aplicativo Express.
 
 var admin = require('firebase-admin');
-// var serviceAccount = require("./sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json");
+var serviceAccount = require("FIREBASE_ADMIN_SDK");
 
 admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
+  credential: admin.credential.cert(serviceAccount),
   storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
 });
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
