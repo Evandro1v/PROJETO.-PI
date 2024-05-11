@@ -5,8 +5,8 @@ const passport = require('passport'); // Importa  é utilizado para autenticaç�
 const LocalStrategy = require('passport-local').Strategy; // Imporo módulo Passport, queta a estratégia de autenticação local do Passport.
 const session = require('express-session'); // Importa o middleware de sessão para o Express.
 const flash = require('connect-flash'); // Importa o módulo connect-flash para exibir mensagens flash.
-const multer = require('multer'); // Importa o módulo multer para processamento de formulários multipart.
-const upload = multer({ dest: 'uploads/' });// para inicializar o multer e atribuí-lo à variável upload
+// const multer = require('multer'); // Importa o módulo multer para processamento de formulários multipart.
+// const upload = multer({ dest: 'uploads/' });// para inicializar o multer e atribuí-lo à variável upload
 const fs = require('fs'); // Importe o módulo fs para acessar o sistema de arquivos.
 const path = require('path');
 const nodemailer = require('nodemailer');
@@ -244,94 +244,94 @@ app.post('/enviar-formulario', isLoggedIn, upload.fields([
   });
 });
 //exibir imagens
-app.get('/exibir-imagem', function (req, res) {
-  const caminhoRelativo = req.query.caminho;
+// app.get('/exibir-imagem', function (req, res) {
+//   const caminhoRelativo = req.query.caminho;
 
-  // Convertendo o caminho relativo para absoluto
-  const caminhoAbsoluto = path.resolve(__dirname, caminhoRelativo);
+//   // Convertendo o caminho relativo para absoluto
+//   const caminhoAbsoluto = path.resolve(__dirname, caminhoRelativo);
 
-  // Lendo o conteúdo do arquivo
-  fs.readFile(caminhoAbsoluto, function (err, data) {
-    if (err) {
-      console.error('Erro ao ler o arquivo:', err);
-      return res.status(404).send('Arquivo não encontrado');
-    }
+//   // Lendo o conteúdo do arquivo
+//   fs.readFile(caminhoAbsoluto, function (err, data) {
+//     if (err) {
+//       console.error('Erro ao ler o arquivo:', err);
+//       return res.status(404).send('Arquivo não encontrado');
+//     }
 
-    // Definindo o tipo de conteúdo da resposta como imagem
-    res.contentType('image/jpg'); // Altere para o tipo de conteúdo correto se não for uma imagem JPEG
+//     // Definindo o tipo de conteúdo da resposta como imagem
+//     res.contentType('image/jpg'); // Altere para o tipo de conteúdo correto se não for uma imagem JPEG
 
-    // Enviando o conteúdo do arquivo como resposta
-    res.end(data);
-  });
-});
+//     // Enviando o conteúdo do arquivo como resposta
+//     res.end(data);
+//   });
+// });
 // Endpoint para enviar a solução
-app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), function (req, res) {
-  const { id_ocorrencia, descricao_solucao } = req.body;
-  let foto_da_solucao = ''; // Inicializa como uma string vazia
+// app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), function (req, res) {
+//   const { id_ocorrencia, descricao_solucao } = req.body;
+//   let foto_da_solucao = ''; // Inicializa como uma string vazia
 
-  // Verifica se a foto_da_solucao foi enviada
-  if (req.file) {
-    foto_da_solucao = req.file.path;
-  }
+//   // Verifica se a foto_da_solucao foi enviada
+//   if (req.file) {
+//     foto_da_solucao = req.file.path;
+//   }
 
-  // Verifica se todos os campos obrigatórios foram preenchidos
-  if (!id_ocorrencia || !descricao_solucao) {
-    return res.status(400).send('Por favor, preencha todos os campos obrigatórios.');
-  }
+//   // Verifica se todos os campos obrigatórios foram preenchidos
+//   if (!id_ocorrencia || !descricao_solucao) {
+//     return res.status(400).send('Por favor, preencha todos os campos obrigatórios.');
+//   }
 
-  // Verifica se o ID da ocorrência existe na tabela cad_problema
-  const checkIdQuery = 'SELECT * FROM cad_problema WHERE id_ocorrencia = ?';
-  conexao.query(checkIdQuery, [id_ocorrencia], function (error, results) {
-    if (error) {
-      console.error('Erro ao verificar ID da ocorrência:', error);
-      return res.status(500).send('Erro ao verificar ID da ocorrência');
-    }
+//   // Verifica se o ID da ocorrência existe na tabela cad_problema
+//   const checkIdQuery = 'SELECT * FROM cad_problema WHERE id_ocorrencia = ?';
+//   conexao.query(checkIdQuery, [id_ocorrencia], function (error, results) {
+//     if (error) {
+//       console.error('Erro ao verificar ID da ocorrência:', error);
+//       return res.status(500).send('Erro ao verificar ID da ocorrência');
+//     }
 
-    // Se o ID da ocorrência não existir na tabela cad_problema, exibe uma mensagem de erro
-    if (results.length === 0) {
-      return res.status(404).send('O ID da ocorrência não existe.');
-    }
+//     // Se o ID da ocorrência não existir na tabela cad_problema, exibe uma mensagem de erro
+//     if (results.length === 0) {
+//       return res.status(404).send('O ID da ocorrência não existe.');
+//     }
 
-    // Verifica se já existe uma solução para essa ocorrência na tabela cad_solucao
-    const checkSolutionQuery = 'SELECT * FROM cad_solucao WHERE id_ocorrencia = ?';
-    conexao.query(checkSolutionQuery, [id_ocorrencia], function (error, results) {
-      if (error) {
-        console.error('Erro ao verificar solução existente:', error);
-        return res.status(500).send('Erro ao verificar solução existente');
-      }
+//     // Verifica se já existe uma solução para essa ocorrência na tabela cad_solucao
+//     const checkSolutionQuery = 'SELECT * FROM cad_solucao WHERE id_ocorrencia = ?';
+//     conexao.query(checkSolutionQuery, [id_ocorrencia], function (error, results) {
+//       if (error) {
+//         console.error('Erro ao verificar solução existente:', error);
+//         return res.status(500).send('Erro ao verificar solução existente');
+//       }
 
-      // Se já existir uma solução para essa ocorrência, substitui a solução existente pela nova
-      if (results.length > 0) {
-        const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
-        const updateSolutionQuery = `UPDATE cad_solucao SET id_usuario = ?, descricao_solucao = ?, foto_da_solucao = ? WHERE id_ocorrencia = ?`;
-        const values = [id_usuario, descricao_solucao, foto_da_solucao, id_ocorrencia];
+//       // Se já existir uma solução para essa ocorrência, substitui a solução existente pela nova
+//       if (results.length > 0) {
+//         const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
+//         const updateSolutionQuery = `UPDATE cad_solucao SET id_usuario = ?, descricao_solucao = ?, foto_da_solucao = ? WHERE id_ocorrencia = ?`;
+//         const values = [id_usuario, descricao_solucao, foto_da_solucao, id_ocorrencia];
 
-        conexao.query(updateSolutionQuery, values, function (error, results) {
-          if (error) {
-            console.error('Erro ao atualizar solução:', error);
-            return res.status(500).send('Erro ao atualizar solução: ' + error.message); // Enviando mensagem de erro específica
-          }
-          console.log('Solução atualizada com sucesso:', results);
-          res.redirect('/'); // Redireciona para a página inicial após a atualização bem-sucedida
-        });
-      } else {
-        // Se não existir uma solução para essa ocorrência, insere uma nova solução
-        const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
-        const insertSolutionQuery = `INSERT INTO cad_solucao (id_ocorrencia,id_usuario, descricao_solucao, foto_da_solucao) VALUES (?, ?, ?, ?)`;
-        const values = [id_ocorrencia, id_usuario, descricao_solucao, foto_da_solucao];
+//         conexao.query(updateSolutionQuery, values, function (error, results) {
+//           if (error) {
+//             console.error('Erro ao atualizar solução:', error);
+//             return res.status(500).send('Erro ao atualizar solução: ' + error.message); // Enviando mensagem de erro específica
+//           }
+//           console.log('Solução atualizada com sucesso:', results);
+//           res.redirect('/'); // Redireciona para a página inicial após a atualização bem-sucedida
+//         });
+//       } else {
+//         // Se não existir uma solução para essa ocorrência, insere uma nova solução
+//         const id_usuario = req.user.id_usuario; // Obtém o ID do usuário autenticado.
+//         const insertSolutionQuery = `INSERT INTO cad_solucao (id_ocorrencia,id_usuario, descricao_solucao, foto_da_solucao) VALUES (?, ?, ?, ?)`;
+//         const values = [id_ocorrencia, id_usuario, descricao_solucao, foto_da_solucao];
 
-        conexao.query(insertSolutionQuery, values, function (error, results) {
-          if (error) {
-            console.error('Erro ao enviar solução:', error);
-            return res.status(500).send('Erro ao enviar solução: ' + error.message); // Enviando mensagem de erro específica
-          }
-          console.log('Solução enviada com sucesso:', results);
-          res.redirect('/'); // Redireciona para a página inicial após o envio bem-sucedido
-        });
-      }
-    });
-  });
-});
+//         conexao.query(insertSolutionQuery, values, function (error, results) {
+//           if (error) {
+//             console.error('Erro ao enviar solução:', error);
+//             return res.status(500).send('Erro ao enviar solução: ' + error.message); // Enviando mensagem de erro específica
+//           }
+//           console.log('Solução enviada com sucesso:', results);
+//           res.redirect('/'); // Redireciona para a página inicial após o envio bem-sucedido
+//         });
+//       }
+//     });
+//   });
+// });
 
 // app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
 //   const idOcorrencia = req.body.id_ocorrencia;
