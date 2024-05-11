@@ -18,7 +18,6 @@ app.set('images', './images');
 app.set('views', path.join(__dirname, 'views')); // Define o diretório onde estão armazenadas as visualizações Handlebars.
 app.use(express.json()); // Middleware para interpretar o corpo da requisição como JSON.
 app.use(express.urlencoded({ extended: false })); // Middleware para interpretar dados do formulário codificados na URL.
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 
