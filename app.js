@@ -14,7 +14,7 @@ const nodemailer = require('nodemailer');
 const app = express(); // Cria uma instância do aplicativo Express.
 
 var admin = require('firebase-admin');
-var serviceAccount = require("./sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json");
+// var serviceAccount = require("./sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
