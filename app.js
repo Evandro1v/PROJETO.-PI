@@ -89,7 +89,7 @@
   app.use('/css', express.static(path.join(__dirname, 'css')));
 // Middleware para servir arquivos estáticos CSS.
 app.use('/js', express.static(path.join(__dirname, 'js'))); // Middleware para servir arquivos estáticos JavaScript.
-app.use('/image', express.static(path.join(__dirname, 'image')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
   app.get('/', function (req, res) {
     res.render('index'); // Rota para renderizar a página inicial.
