@@ -126,21 +126,21 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
   if (req.user.id_usuario >= 0 && req.user.id_usuario <= 5) {
     // Query para receber
     const sql = `SELECT 
-                    cp.id_ocorrencia,
-                    cp.id_usuario,
-                    cp.gravidade_da_ocorrencia,
-                    cp.end_ocorrencia,
-                    cp.bairro,
-                    cp.descricao_da_ocorrencia,
-                    cp.foto_da_ocorrencia,
-                    cp.foto_mapa_da_localizacao,
-                    cp.status_da_ocorrencia,
-                    cs.descricao_solucao,
-                    cs.foto_da_solucao
-                FROM 
-                    cad_problema cp
-                LEFT JOIN 
-                    cad_solucao cs ON cp.id_ocorrencia = cs.id_ocorrencia`;
+                cp.id_ocorrencia,
+                cp.id_usuario,
+                cp.gravidade_da_ocorrencia,
+                cp.end_ocorrencia,
+                cp.bairro,
+                cp.descricao_da_ocorrencia,
+                cp.foto_da_ocorrencia,
+                cp.foto_mapa_da_localizacao,
+                cp.status_da_ocorrencia,
+                cs.descricao_solucao,
+                cs.foto_da_solucao
+            FROM 
+                cad_problema cp
+            LEFT JOIN 
+                cad_solucao cs ON cp.id_ocorrencia = cs.id_ocorrencia`;
     // Executing the query
     conexao.query(sql, function (error, results) {
       if (error) {
@@ -154,7 +154,7 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
   } else {
     // If the user is not an admin, render the 'paginalogada' page
     const sql = `SELECT c_p.*, c_u.nome AS nome_usuario FROM cad_problema c_p
-        INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
+    INNER JOIN cad_usuario c_u ON c_p.id_usuario = c_u.id_usuario`;
     // Executing the query
     conexao.query(sql, function (error, results) {
       if (error) {

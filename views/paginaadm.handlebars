@@ -1,263 +1,275 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style2.css" />
-
-  <title>OPERAÇÃO TAPA BURACOS</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style2.css" />
+    <title>OPERAÇÃO TAPA BURACOS</title>
 </head>
 
 <body>
-  <nav class="containerimgsidebar">
-    <img src="/images/navbar.png" onclick="toggleSidebar()" alt="" />
-  </nav>
-  <div class="containerprincipal">
-    <div class="sidebar" id="Sidebar">
-      <div class="container-usuarios">
-        <h2>INFORMAÇÕES DO ADM</h2>
-        <p>{{user.nome}}</p>
-        <h2>id_usuario: {{user.id_usuario}}</h2>
-        <h2>{{user.email}}</h2>
-        <form action="/logout" method="post">
-          <button type="submit">Sair</button>
-        </form>
-      </div>
-      <ul>
-         <li onclick="activateMenuItem(this)">CADASTRAR PROBLEMA</li>
-        <li onclick="activateMenuItem(this)">CADASTRAR SOLUÇÃO</li>
-        <li onclick="activateMenuItem(this)">VISUALIZAR PROBLEMAS</li>
-      </ul>
+
+    <div class="containerprincipal">
+        <div class="container-usuarios">
+            <form action="/logout" method="post">
+                <button type="submit">Sair</button>
+            </form>
+        </div>
+        <div class="botoes">
+            <button onclick="showForm('cadastroProblemaForm')">Cadastrar Problema</button>
+            <button onclick="showForm('cadastroSolucaoForm')">Cadastrar Solução</button>
+            <button onclick="showTable()">Visualizar Problemas</button>
+        </div>
     </div>
     <main>
-      <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">     
-     <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
-          <h2>Detalhes da Ocorrência:</h2>
-          <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
-          <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
+        <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
+            <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
+                <h2>Detalhes da Ocorrência:</h2>
+                <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
+                <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
 
-          <label for="descricao_solucao">Descrição da Solução:</label>
-          <textarea id="descricao_solucao" name="descricao_solucao" required></textarea>
+                <label for="descricao_solucao">Descrição da Solução:</label>
+                <textarea id="descricao_solucao" name="descricao_solucao" required></textarea>
 
-          <label for="foto_da_solucao">Foto da Solução:</label>
-          <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" />
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
-      {{!-- //////// --}}
-<div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
-          <h2>Formulário de Incidentes de Via</h2>
-        <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
-          <h2>Gravidade da Ocorrência</h2>
-          <label><input type="radio" name="gravidade_da_ocorrencia" value="Urgente" required />
-            Urgente</label>
-          <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
-            Alta</label>
-          <label><input type="radio" name="gravidade_da_ocorrencia" value="Mediana" required />
-            Mediana</label>
-          <label><input type="radio" name="gravidade_da_ocorrencia" value="Normal" required />
-            Normal</label>
-          <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
-            Baixa</label>
-
-          <h2>Detalhes da Ocorrência:</h2>
-          <label for="endereco">Endereço:</label>
-          <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
-
-          <label for="bairro">Bairro:</label>
-          <input type="text" id="bairro" name="bairro" required />
-
-          <label for="cep">CEP:</label>
-          <input type="text" id="cep" name="cep" required />
-
-          <label for="descricao">Descrição da Ocorrência:</label>
-          <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required></textarea>
-
-          <label for="foto-ocorrencia">Foto da Ocorrência:</label>
-          <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
-
-          <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
-          <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
-
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
-    </main>
-  </div>
-<div class="tabelaproblema" id="tabelaProblema">
-      <table class="table">
-      <thead>
-        <tr>
-          <th>ID-Ocorrência</th>
-          <th>Descrição</th>
-          <th>Status</th>
-          <th>Foto</th>
-          <th>detalhes/sloucao</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each problemas}}
-        <tr>
-          <td>{{this.id_ocorrencia}}</td>
-          <td>{{this.descricao_da_ocorrencia}}</td>
-          <td>{{this.status_da_ocorrencia}}</td>
-          <td>
-            <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
-          </td>
-          <td class="acoes"><button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
-          <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button></td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-  <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
-    <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
-    <h2>Tabela de Soluções</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Descrição da Solução</th>
-          <th>Foto da Solução</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each problemas}}
-        <tr data-id="{{this.id_ocorrencia}}">
-          <td>{{this.descricao_solucao}}</td>
-          <td>
-            <!-- Expanda a imagem da solução -->
-            <a href="#imagemSolucao{{this.id_ocorrencia}}"><img src="{{this.foto_da_solucao}}" alt="Foto da Solução" style="width: 65px; height: 40px;" /></a>
-          </td>
-        </tr>
-        <!-- Conteúdo da imagem expandida para a solução -->
-        <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
-          <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
-          <a href="#" class="fechar">&#x2716;</a>
+                <label for="foto_da_solucao">Foto da Solução:</label>
+                <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" />
+                <input type="submit" value="Enviar" />
+            </form>
         </div>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
 
-  {{!-- visu problemasssss --}}
-  <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
-    <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
-    <h2>Tabela de Problemas</h2>
-  <div class="vertical-list">
-  {{#each problemas}}
-  <div class="item" data-id="{{this.id_ocorrencia}}">
-    <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
-    <p><strong>ID-Usuário:</strong> {{this.id_usuario}}</p>
-    <p><strong>Gravidade:</strong> {{this.gravidade_da_ocorrencia}}</p>
-    <p><strong>Endereço:</strong> {{this.end_ocorrencia}}</p>
-    <p><strong>Bairro:</strong> {{this.bairro}}</p>
-    <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
-    <p><strong>Foto da Ocorrência:</strong> <a href="#imagem{{this.id_ocorrencia}}"><img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></a></p>
-    <p><strong>Foto do Mapa:</strong> <a href="#mapa{{this.id_ocorrencia}}"><img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></a></p>
-    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
-      <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
-      <a href="#" class="fechar">&#x2716;</a>
-    </div>
-    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
-      <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
-      <a href="#" class="fechar">&#x2716;</a>
-    </div>
-  </div>
-  {{/each}}
-</div>
-  </div>
+        <div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
+            <h2>Formulário de Incidentes de Via</h2>
+            <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
+                <h2>Gravidade da Ocorrência</h2>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Urgente" required />
+                    Urgente</label>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
+                    Alta</label>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Mediana" required />
+                    Mediana</label>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Normal" required />
+                    Normal</label>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
+                    Baixa</label>
 
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.classList.toggle('active');
-    }
+                <h2>Detalhes da Ocorrência:</h2>
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
 
-    function fecharSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.classList.remove('active');
-    }
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required />
 
-     function showPopupsolucao(id_ocorrencia) {
-       console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
-    var popup = document.getElementById("popupContainerSolucao");
-    popup.style.display = "block";
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" required />
 
-    // Hide all table rows initially
-    var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
-    tableRows.forEach(row => {
-      row.style.display = "none";
-    });
+                <label for="descricao">Descrição da Ocorrência:</label>
+                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required></textarea>
 
-    // Show only the table rows with the specified id_ocorrencia
-    var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody tr[data-id="${id_ocorrencia}"]`);
-    targetRows.forEach(row => {
-      row.style.display = "";
-    });
-  }
+                <label for="foto-ocorrencia">Foto da Ocorrência:</label>
+                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
 
-  function closePopupsolucao() {
-    var popup = document.getElementById("popupContainerSolucao");
-    popup.style.display = "none";
-  }
-    function showPopuproblemas(id_ocorrencia) {
-    var popup = document.getElementById("popupContainerproblemas");
-    popup.style.display = "block";
+                <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
+                <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
 
-    // Ocultar todas as tabelas inicialmente
-    var allTables = document.querySelectorAll("#popupContainerproblemas .item");
-    allTables.forEach(table => {
-        table.style.display = "none";
-    });
-    
-    // Exibir apenas a tabela relevante com base no id_ocorrencia
-    var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
-    if (targetTable) {
-        targetTable.style.display = "block";
-    }
-}
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
 
-    function closePopuproblemas() {
-      var popup = document.getElementById("popupContainerproblemas");
-      popup.style.display = "none";
-    }
+        <div class="tabelaproblema" id="tabelaProblema">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID-Ocorrência</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                        <th>Foto</th>
+                        <th>Detalhes/Solução</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each problemas}}
+                    <tr>
+                        <td>{{this.id_ocorrencia}}</td>
+                        <td>{{this.descricao_da_ocorrencia}}</td>
+                        <td>{{this.status_da_ocorrencia}}</td>
+                        <td>
+                            <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+                                style="width: 65px; height: 40px;" />
+                        </td>
+                        <td class="acoes">
+                            <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+                            <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
 
-   function activateMenuItem(item) {
-    const menuItems = document.querySelectorAll('.sidebar ul li');
-    menuItems.forEach(menuItem => {
-        if (menuItem === item) {
-            menuItem.classList.add('active');
-        } else {
-            menuItem.classList.remove('active');
+        <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+            <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
+            <h2>Tabela de Soluções</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descrição da Solução</th>
+                        <th>Foto da Solução</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop para cada solução -->
+                    {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
+                    <tr class="item" data-id="{{this.id_ocorrencia}}">
+                        <td>{{this.descricao_solucao}}</td>
+                        <td>
+                            <!-- Expanda a imagem da solução -->
+                            <a href="#imagemSolucao{{this.id_ocorrencia}}"><img
+                                    src="{{this.foto_da_solucao}}" alt="Foto da Solução"
+                                    style="width: 65px; height: 40px;" /></a>
+                        </td>
+                    </tr>
+                    <!-- Conteúdo da imagem expandida para a solução -->
+                    <tr>
+                        <td colspan="2">
+                            <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+                                <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+                                <a href="#" class="fechar">&#x2716;</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    <!-- Fim do loop -->
+                </tbody>
+            </table>
+        </div>
+
+
+        <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
+            <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
+            <h2>Tabela de Problemas</h2>
+            <div class="vertical-list">
+                {{#each problemas}}
+                <div class="item" data-id="{{this.id_ocorrencia}}">
+                    <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
+                    <p><strong>ID-Usuário:</strong> {{this.id_usuario}}</p>
+                    <p><strong>Gravidade:</strong> {{this.gravidade_da_ocorrencia}}</p>
+                    <p><strong>Endereço:</strong> {{this.end_ocorrencia}}</p>
+                    <p><strong>Bairro:</strong> {{this.bairro}}</p>
+                    <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
+                    <p><strong>Foto da Ocorrência:</strong> <a href="#imagem{{this.id_ocorrencia}}"><img
+                                src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+                                style="max-width: 50px; max-height: 50px;" /></a></p>
+                    <p><strong>Foto do Mapa:</strong> <a href="#mapa{{this.id_ocorrencia}}"><img
+                                src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa"
+                                style="max-width: 75px; max-height: 75px;" /></a></p>
+                    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
+                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
+                        <a href="#" class="fechar">&#x2716;</a>
+                    </div>
+                    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
+                        <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
+                        <a href="#" class="fechar">&#x2716;</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+ 
+    </main>
+
+    <script>
+        function showForm(formId) {
+            const forms = document.querySelectorAll('.container-formulario');
+            forms.forEach(form => {
+                if (form.id === formId) {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            });
+
+            const tabelaProblema = document.getElementById('tabelaProblema');
+            if (formId === 'cadastroProblemaForm') {
+                tabelaProblema.style.display = 'none';
+            } else {
+                tabelaProblema.style.display = 'block';
+            }
+
+            const formCadsolucao = document.getElementById('cadastroSolucaoForm');
+            if (formId === 'cadastroSolucaoForm') {
+                formCadsolucao.style.display = 'block';
+            } else {
+                formCadsolucao.style.display = 'none';
+            }
+
+            // Oculta a tabela de soluções quando mudar de formulário
+            const popupContainerSolucao = document.getElementById('popupContainerSolucao');
+            popupContainerSolucao.style.display = 'none';
         }
-    });
 
- fecharSidebar();
-    // Exibir ou ocultar os formulários e a tabela com base na opção selecionada
-    const cadastroProblemaForm = document.getElementById('cadastroProblemaForm');
-    const cadastroSolucaoForm = document.getElementById('cadastroSolucaoForm');
-    const tabelaProblema = document.getElementById('tabelaProblema');
+        function showTable() {
+            const forms = document.querySelectorAll('.container-formulario');
+            forms.forEach(form => {
+                form.style.display = 'none';
+            });
 
-    if (item.textContent === 'CADASTRAR PROBLEMA') {
-        cadastroProblemaForm.style.display = 'block';
-        cadastroSolucaoForm.style.display = 'none';
-        tabelaProblema.style.display = 'none';
-    } else if (item.textContent === 'CADASTRAR SOLUÇÃO') {
-        cadastroProblemaForm.style.display = 'none';
-        cadastroSolucaoForm.style.display = 'block';
-        tabelaProblema.style.display = 'none';
-    } else if (item.textContent === 'VISUALIZAR PROBLEMAS') {
-        cadastroProblemaForm.style.display = 'none';
-        cadastroSolucaoForm.style.display = 'none';
-        tabelaProblema.style.display = 'block';
-    }
-}
+            const tabelaProblema = document.getElementById('tabelaProblema');
+            tabelaProblema.style.display = 'block';
 
-  </script>
+            const formCadsolucao = document.getElementById('cadastroSolucaoForm');
+            formCadsolucao.style.display = 'none';
+
+            // Oculta a tabela de soluções quando clicar em visualizar problemas
+            const popupContainerSolucao = document.getElementById('popupContainerSolucao');
+            popupContainerSolucao.style.display = 'none';
+        }
+
+        function showPopuproblemas(id_ocorrencia) {
+            var popup = document.getElementById("popupContainerproblemas");
+            popup.style.display = "block";
+
+            // Ocultar todas as tabelas inicialmente
+            var allTables = document.querySelectorAll("#popupContainerproblemas .item");
+            allTables.forEach(table => {
+                table.style.display = "none";
+            });
+
+            // Exibir apenas a tabela relevante com base no id_ocorrencia
+            var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
+            if (targetTable) {
+                targetTable.style.display = "block";
+            }
+        }
+
+        function closePopuproblemas() {
+            var popup = document.getElementById("popupContainerproblemas");
+            popup.style.display = "none";
+        }
+
+        function showPopupsolucao(id_ocorrencia) {
+            console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+            var popup = document.getElementById("popupContainerSolucao");
+            popup.style.display = "block";
+
+            // Ocultar todas as linhas da tabela de soluções inicialmente
+            var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
+            tableRows.forEach(row => {
+                row.style.display = "none";
+            });
+
+            // Exibir apenas as linhas da tabela com o ID de ocorrência correspondente
+            var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody .item[data-id="${id_ocorrencia}"]`);
+            targetRows.forEach(row => {
+                row.style.display = "table-row"; // Mostrar a linha da tabela
+            });
+        }
+
+        function closePopupsolucao() {
+            var popup = document.getElementById("popupContainerSolucao");
+            popup.style.display = "none";
+        }
+    </script>
 </body>
 
 </html>

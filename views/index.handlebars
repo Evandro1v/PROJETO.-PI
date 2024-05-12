@@ -30,21 +30,14 @@
   {{#if messages.error}}
       <div class="error-message">{{messages.error}}</div>
     {{/if}}
-  <main>
-    <header>
-      <h1>DESCRIÇÃO DO SITE</h1>
-      <h2>DESCRIÇÃO.</h2>
-    </header>
+  
+   
     <section class="parte2">
-      <div class="container1">
-        <p><b>LOGIN</b></p>
-      </div>
+    
       <form  method="post" onsubmit="return validateLOGIN(this)" action="/login" class="container-inputs">
-        <label for="email-id">Email:</label>
         <input type="email" name="email" id="email-id" placeholder="Email" required>
         <span id="span6"></span>
 
-        <label for="password-id">Senha:</label>
         <input type="password" name="password" id="password-id" placeholder="password" required>
         <span id="span7"></span>
 
@@ -58,7 +51,7 @@
         </div>
       </form>
     </section>
-  </main>
+  
   <footer>
     <p class="attribution" id="attr">
       RODA PÉ</a>.
