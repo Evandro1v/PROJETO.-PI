@@ -12,11 +12,11 @@
 </head>
 
 <body>
-  <div class="containerimgsidebar">
+  <nav class="containerimgsidebar">
     <img src="/images/navbar.png" onclick="toggleSidebar()" alt="" />
-  </div>
+  </nav>
   <div class="containerprincipal">
-    <aside class="sidebar" id="Sidebar">
+    <div class="sidebar" id="Sidebar">
       <div class="container-usuarios">
         <h2>INFORMAÇÕES DO ADM</h2>
         <p>{{user.nome}}</p>
@@ -31,7 +31,7 @@
   <li onclick="activateMenuItem(this)">CADASTRAR SOLUÇÃO</li>
   <li onclick="activateMenuItem(this)">VISUALIZAR PROBLEMAS</li>
       </ul>
-    </aside>
+    </div>
     <main>
 <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">     
      <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
@@ -130,9 +130,15 @@
         <tr data-id="{{this.id_ocorrencia}}">
           <td>{{this.descricao_solucao}}</td>
           <td>
-            <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" style="width: 65px; height: 40px;" />
+            <!-- Expanda a imagem da solução -->
+            <a href="#imagemSolucao{{this.id_ocorrencia}}"><img src="{{this.foto_da_solucao}}" alt="Foto da Solução" style="width: 65px; height: 40px;" /></a>
           </td>
         </tr>
+        <!-- Conteúdo da imagem expandida para a solução -->
+        <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+          <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+          <a href="#" class="fechar">&#x2716;</a>
+        </div>
         {{/each}}
       </tbody>
     </table>
@@ -142,34 +148,28 @@
   <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
     <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
     <h2>Tabela de Problemas</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID-Ocorrência</th>
-          <th>ID-Usuário</th>
-          <th>Gravidade</th>
-          <th>Endereço</th>
-          <th>Bairro</th>
-          <th>Descrição</th>
-          <th>Foto da Ocorrência</th>
-          <th>Foto do Mapa</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each problemas}}
-        <tr data-id="{{this.id_ocorrencia}}">
-          <td>{{this.id_ocorrencia}}</td>
-          <td>{{this.id_usuario}}</td>
-          <td>{{this.gravidade_da_ocorrencia}}</td>
-          <td>{{this.end_ocorrencia}}</td>
-          <td>{{this.bairro}}</td>
-          <td>{{this.descricao_da_ocorrencia}}</td>
-          <td><img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></td>
-          <td><img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <div class="vertical-list">
+  {{#each problemas}}
+  <div class="item" data-id="{{this.id_ocorrencia}}">
+    <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
+    <p><strong>ID-Usuário:</strong> {{this.id_usuario}}</p>
+    <p><strong>Gravidade:</strong> {{this.gravidade_da_ocorrencia}}</p>
+    <p><strong>Endereço:</strong> {{this.end_ocorrencia}}</p>
+    <p><strong>Bairro:</strong> {{this.bairro}}</p>
+    <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
+    <p><strong>Foto da Ocorrência:</strong> <a href="#imagem{{this.id_ocorrencia}}"><img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="max-width: 50px; max-height: 50px;" /></a></p>
+    <p><strong>Foto do Mapa:</strong> <a href="#mapa{{this.id_ocorrencia}}"><img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" style="max-width: 75px; max-height: 75px;" /></a></p>
+    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
+      <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
+      <a href="#" class="fechar">&#x2716;</a>
+    </div>
+    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
+      <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
+      <a href="#" class="fechar">&#x2716;</a>
+    </div>
+  </div>
+  {{/each}}
+</div>
   </div>
 
   <script>
@@ -206,21 +206,21 @@
     popup.style.display = "none";
   }
     function showPopuproblemas(id_ocorrencia) {
-      var popup = document.getElementById("popupContainerproblemas");
-      popup.style.display = "block";
+    var popup = document.getElementById("popupContainerproblemas");
+    popup.style.display = "block";
 
-      // Hide all table rows initially
-      var tableRows = document.querySelectorAll("#popupContainerproblemas tbody tr");
-      tableRows.forEach(row => {
-        row.style.display = "none";
-      });
-
-      // Show only the table row with the specified id_ocorrencia
-      var targetRow = document.querySelector(`#popupContainerproblemas tbody tr[data-id="${id_ocorrencia}"]`);
-      if (targetRow) {
-        targetRow.style.display = "";
-      }
+    // Ocultar todas as tabelas inicialmente
+    var allTables = document.querySelectorAll("#popupContainerproblemas .item");
+    allTables.forEach(table => {
+        table.style.display = "none";
+    });
+    
+    // Exibir apenas a tabela relevante com base no id_ocorrencia
+    var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
+    if (targetTable) {
+        targetTable.style.display = "block";
     }
+}
 
     function closePopuproblemas() {
       var popup = document.getElementById("popupContainerproblemas");
@@ -257,6 +257,7 @@
         tabelaProblema.style.display = 'block';
     }
 }
+
   </script>
 </body>
 

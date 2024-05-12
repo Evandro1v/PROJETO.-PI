@@ -29,10 +29,10 @@ body {
 .containerimgsidebar {
   width: 100%;
   height: 40px;
-  margin-bottom: 50px;
+  background: #333;
   display: flex;
 }
-
+.containerimgsidebar img{cursor: pointer;}
 .sidebar {
   height: 100%;
   width: 100%;
@@ -208,47 +208,70 @@ form {
   background-color: rgb(0 0 0 / 75%);
 }
 
-.popupContainerproblemas table {
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.vertical-list .item {
+  display: flex;
+  flex-direction: column;
+  /* padding: 13px 0px; */
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.vertical-list .item:last-child {
+  border-bottom: none;
+}
+
+.vertical-list .item p {
+  /* border-collapse: collapse; */
+  /* margin: 5px 0; */
+  display: flex;
+  padding: 12px;
+  border: 1px solid green;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vertical-list .item img {
+
+  margin-top: 5px;
+}
+
+
+.imagem-expandida {
+  display: none;
+  position: fixed;
+  top: 0;
+  /* margin: auto 0; */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem-expandida img {
   width: 80%;
-  margin: 0 auto;
-  background-color: #fff;
-  border-collapse: collapse;
-  font: status-bar;
+  height: 70%;
 }
 
-.popupContainerproblemas th,
-.popupContainerproblemas td {
-
-  border: 1px solid #ddd;
-
+.imagem-expandida .fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
 }
 
-@media screen and (max-width: 600px) {
-  .popupContainerproblemas .table thead {
-    display: none;
-  }
-
-  .popupContainerproblemas .table tr {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .popupContainerproblemas .table td {
-    display: flex;
-    text-align: center;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .popupContainerproblemas .table td::before {
-    content: attr(data-label);
-    display: flex;
-    font-weight: bold;
-  }
-
-  .popupContainerproblemas .table img {
-    display: block;
-    margin: 0;
-  }
+.imagem-expandida:target {
+  display: flex;
 }
