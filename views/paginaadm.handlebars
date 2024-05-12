@@ -28,12 +28,12 @@
       </div>
       <ul>
          <li onclick="activateMenuItem(this)">CADASTRAR PROBLEMA</li>
-  <li onclick="activateMenuItem(this)">CADASTRAR SOLUÇÃO</li>
-  <li onclick="activateMenuItem(this)">VISUALIZAR PROBLEMAS</li>
+        <li onclick="activateMenuItem(this)">CADASTRAR SOLUÇÃO</li>
+        <li onclick="activateMenuItem(this)">VISUALIZAR PROBLEMAS</li>
       </ul>
     </div>
     <main>
-<div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">     
+      <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">     
      <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
           <h2>Detalhes da Ocorrência:</h2>
           <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
@@ -95,8 +95,7 @@
           <th>Descrição</th>
           <th>Status</th>
           <th>Foto</th>
-          <th>Solução</th>
-          <th>Detalhes</th>
+          <th>detalhes/sloucao</th>
         </tr>
       </thead>
       <tbody>
@@ -108,8 +107,8 @@
           <td>
             <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
           </td>
-          <td><button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button></td>
-          <td><button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Show Popup</button></td>
+          <td class="acoes"><button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+          <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button></td>
         </tr>
         {{/each}}
       </tbody>

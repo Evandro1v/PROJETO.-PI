@@ -31,8 +31,13 @@ body {
   height: 40px;
   background: #333;
   display: flex;
+  
 }
-.containerimgsidebar img{cursor: pointer;}
+
+.containerimgsidebar img {
+  cursor: pointer;
+}
+
 .sidebar {
   height: 100%;
   width: 100%;
@@ -148,6 +153,21 @@ form {
 .table th {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+.acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.acoes button {
+  background-color: rgb(49, 110, 180);
+  width: 145px;
+  color: #ccc;
+  border-radius: 5px;
 }
 
 .confirmação_formulario {
