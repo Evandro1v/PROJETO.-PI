@@ -94,7 +94,7 @@
             </table>
         </div>
 
-        <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+      <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
             <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
             <h2>Tabela de Soluções</h2>
             <table class="table">
@@ -105,8 +105,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each problemas}}
-                    <tr data-id="{{this.id_ocorrencia}}">
+                    <!-- Loop para cada solução -->
+                    {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
+                    <tr class="item" data-id="{{this.id_ocorrencia}}">
                         <td>{{this.descricao_solucao}}</td>
                         <td>
                             <!-- Expanda a imagem da solução -->
@@ -116,45 +117,21 @@
                         </td>
                     </tr>
                     <!-- Conteúdo da imagem expandida para a solução -->
-                    <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
-                        <a href="#" class="fechar">&#x2716;</a>
-                    </div>
+                    <tr>
+                        <td colspan="2">
+                            <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+                                <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+                                <a href="#" class="fechar">&#x2716;</a>
+                            </div>
+                        </td>
+                    </tr>
                     {{/each}}
+                    <!-- Fim do loop -->
                 </tbody>
             </table>
         </div>
 
-        <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
-            <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
-            <h2>Tabela de Problemas</h2>
-            <div class="vertical-list">
-                {{#each problemas}}
-                <div class="item" data-id="{{this.id_ocorrencia}}">
-                    <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
-                    <p><strong>ID-Usuário:</strong> {{this.id_usuario}}</p>
-                    <p><strong>Gravidade:</strong> {{this.gravidade_da_ocorrencia}}</p>
-                    <p><strong>Endereço:</strong> {{this.end_ocorrencia}}</p>
-                    <p><strong>Bairro:</strong> {{this.bairro}}</p>
-                    <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
-                    <p><strong>Foto da Ocorrência:</strong> <a href="#imagem{{this.id_ocorrencia}}"><img
-                                src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
-                                style="max-width: 50px; max-height: 50px;" /></a></p>
-                    <p><strong>Foto do Mapa:</strong> <a href="#mapa{{this.id_ocorrencia}}"><img
-                                src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa"
-                                style="max-width: 75px; max-height: 75px;" /></a></p>
-                    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
-                        <a href="#" class="fechar">&#x2716;</a>
-                    </div>
-                    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
-                        <a href="#" class="fechar">&#x2716;</a>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-        </div>
+
 
     </main>
 
@@ -204,28 +181,24 @@
         popup.style.display = "none";
     }
 
-    function showPopupsolucao(id_ocorrencia) {
-        console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
-        var popup = document.getElementById("popupContainerSolucao");
-        popup.style.display = "block";
+  function showPopupsolucao(id_ocorrencia) {
+    console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+    var popup = document.getElementById("popupContainerSolucao");
+    popup.style.display = "block";
 
-        // Hide all table rows initially
-        var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
-        tableRows.forEach(row => {
-            row.style.display = "none";
-        });
+    // Ocultar todas as linhas da tabela de soluções inicialmente
+    var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
+    tableRows.forEach(row => {
+        row.style.display = "none";
+    });
 
-        // Show only the table rows with the specified id_ocorrencia
-        var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody tr[data-id="${id_ocorrencia}"]`);
-        targetRows.forEach(row => {
-            row.style.display = "";
-        });
-    }
+    // Exibir apenas as linhas da tabela com o ID de ocorrência correspondente
+    var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody .item[data-id="${id_ocorrencia}"]`);
+    targetRows.forEach(row => {
+        row.style.display = "table-row"; // Mostrar a linha da tabela
+    });
+}
 
-    function closePopupsolucao() {
-        var popup = document.getElementById("popupContainerSolucao");
-        popup.style.display = "none";
-    }
 
     
     </script>
