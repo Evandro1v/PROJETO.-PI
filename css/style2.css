@@ -6,56 +6,37 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-html {
-  width: 100%;
-  height: 100%;
-}
+html {}
 
 body {
-  color: rgba(0, 255, 242, 0.884);
-  background-image: url("/images/bg-intro-desktop.png");
-  background-color: rgb(64 0 99);
+  color: rgba(0, 0, 0, 0.884);
+  width: 100%;
+  height: 100%;
+  background: #6fa750;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.containerprincipal {
-  display: flex;
+.botoes {
   width: 100%;
-  height: 100%;
-}
-
-.containerimgsidebar {
-  width: 100%;
-  height: 40px;
-  background: #333;
   display: flex;
-  position: absolutey;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-
-
-.sidebar {
-  height: 100%;
-  width: 100%;
-  background-color: #333;
-  flex-direction: column;
-  position: absolute;
-  align-items: center;
-  display: flex;
-  align-items: flex-start;
-  /* Inicialmente oculta */
+.botoes button {
+  gap: 5px;
+  margin: 10px 0;
+  width: 175px;
+  border-radius: 6px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
 }
 
-.sidebar h2 {
-  font-size: 19px;
-}
-
-.sidebar.active {
-  display: flex;
-  /* Define a largura desejada */
-
+.botoes form {
+  box-shadow: none;
 }
 
 main {
@@ -66,49 +47,113 @@ main {
   justify-content: center;
 }
 
-main.active {
-  width: 100%;
-  height: 100%;
-}
 
-.container-usuarios {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  white-space: normal;
-  word-break: break-all;
-  align-items: start;
-  color: red;
-  padding: 5px;
-  margin-bottom: 10px;
-}
 
 .cadsolucao {
   height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadsolucao form {
+  width: 70%;
+}
+.cadsolucao input {
+  border: 1px solid #a7a7a7;
+  background-color: #ffffff;
+  border-radius: 14px;
 }
 
 .container-formulario {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-  height: 100%;
-
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 5px;
+  box-shadow: 1px 1px 1px black;
+}
+
+.container-formulario form,.cadsolucao form  {
+  display: flex;
+  width: 50%;
+  margin-top: 20px;
+  flex-direction: column;
+  color: #636267;
+  gap: 5px;
+  background-color: white;
+  padding: 29px;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 7px;
+}
+
+.container-formulario h3, .cadsolucao h3 {
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #9b999996;
+  color: #000000;
+  align-self: center;
+  word-wrap: break-word;
+}
+
+
+.container-formulario input,.cadsolucao input {
+  border: 1px solid #a7a7a7;
+  background-color: #ffffff;
+  border-radius: 14px;
+}
+
+.container-formulario textarea,.cadsolucao textarea  {
+  border-radius: 14px;
+  height: 170px;
+}
+
+.container-label {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container-formulario label {
+  color: #000000;
+}
+
+
+.container-formulario input[type="file"],.cadsolucao input[type="file"] {
+  border: none;
+  
+}
+
+.container-formulario input[type="submit"], .cadsolucao input[type="submit"] {
+  background-color: #6fa750;
+  width: 175px;
+  height: 50px;
+  margin-top: 15px;
+  align-self: center;
+  cursor: pointer;
 }
 
 .tabelaproblema {
+  display: flex;
+  overflow-x: scroll;
   width: 100%;
   font: status-bar;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.table {
+table {
+  overflow-x: scroll;
   width: 100%;
+  display: table;
   font: status-bar;
   border-collapse: collapse;
   margin-top: 20px;
@@ -117,23 +162,24 @@ form {
 
 .table th,
 .table td {
-  padding: 10px;
+  padding: 5px;
   text-align: left;
-  border: 1px solid green;
-  white-space: nowrap;
-  border-spacing: 0;
-  /* overflow: hidden; */
-
-
+  border-right: 1px solid #333;
+  word-wrap: break-word;
 }
 
 .table th {
-  background-color: #838383;
+  background-color: #c3c3c3;
   font-weight: bold;
+  border: 1px solid black;
 }
 
 .table tr:nth-child(even) {
-  background-color: #5e5e5e;
+  background-color: #828D9C;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #485460;
 }
 
 .table img {
@@ -141,10 +187,6 @@ form {
   margin: 0 auto;
 }
 
-/* .table td:first-child,
-.table th:first-child {
-  padding-left: 20px;
-} */
 
 
 .table td,
@@ -166,6 +208,7 @@ form {
   width: 145px;
   color: #ccc;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .confirmação_formulario {

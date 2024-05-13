@@ -10,22 +10,19 @@
 
 <body>
 
-    <div class="containerprincipal">
-        <div class="container-usuarios">
-            <form action="/logout" method="post">
-                <button type="submit">Sair</button>
-            </form>
-        </div>
-        <div class="botoes">
+    <div class="botoes">
             <button onclick="showForm('cadastroProblemaForm')">Cadastrar Problema</button>
             <button onclick="showForm('cadastroSolucaoForm')">Cadastrar Solução</button>
             <button onclick="showTable()">Visualizar Problemas</button>
-        </div>
+            <form action="/logout" method="post">
+                <button type="submit">Sair</button>
+            </form>
+    
     </div>
     <main>
         <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
             <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
-                <h2>Detalhes da Ocorrência:</h2>
+                <h3>Detalhes da Solução:</h3>
                 <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
                 <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
 
@@ -41,19 +38,16 @@
         <div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
             <h2>Formulário de Incidentes de Via</h2>
             <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
-                <h2>Gravidade da Ocorrência</h2>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Urgente" required />
-                    Urgente</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
-                    Alta</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Mediana" required />
-                    Mediana</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Normal" required />
-                    Normal</label>
+                <h3>Gravidade da Ocorrência:</h3>
+                <div class="container-label">
                 <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
                     Baixa</label>
-
-                <h2>Detalhes da Ocorrência:</h2>
+                     <label><input type="radio" name="gravidade_da_ocorrencia" value="Media" required />
+                    Media</label>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
+                    Alta</label>
+    </div>
+                <h3>Detalhes da Ocorrência:</h3>
                 <label for="endereco">Endereço:</label>
                 <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
 
@@ -77,6 +71,7 @@
         </div>
 
         <div class="tabelaproblema" id="tabelaProblema">
+            <h2>PROBLEMAS NAS VIAS</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -107,43 +102,42 @@
             </table>
         </div>
 
-        <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
-            <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
-            <h2>Tabela de Soluções</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Descrição da Solução</th>
-                        <th>Foto da Solução</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Loop para cada solução -->
-                    {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
-                    <tr class="item" data-id="{{this.id_ocorrencia}}">
-                        <td>{{this.descricao_solucao}}</td>
-                        <td>
-                            <!-- Expanda a imagem da solução -->
-                            <a href="#imagemSolucao{{this.id_ocorrencia}}"><img
-                                    src="{{this.foto_da_solucao}}" alt="Foto da Solução"
-                                    style="width: 65px; height: 40px;" /></a>
-                        </td>
-                    </tr>
-                    <!-- Conteúdo da imagem expandida para a solução -->
-                    <tr>
-                        <td colspan="2">
-                            <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
-                                <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
-                                <a href="#" class="fechar">&#x2716;</a>
-                            </div>
-                        </td>
-                    </tr>
-                    {{/each}}
-                    <!-- Fim do loop -->
-                </tbody>
-            </table>
-        </div>
-
+      <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+    <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
+    <h2>Tabela de Soluções</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descrição da Solução</th>
+                <th>Foto da Solução</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop para cada solução -->
+            {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
+            <tr class="item" data-id="{{this.id_ocorrencia}}">
+                <td>{{this.descricao_solucao}}</td>
+                <td>
+                    <!-- Expanda a imagem da solução -->
+                    <a href="#imagemSolucao{{this.id_ocorrencia}}"><img
+                            src="{{this.foto_da_solucao}}" alt="Foto da Solução"
+                            style="width: 65px; height: 40px;" /></a>
+                </td>
+            </tr>
+            <!-- Conteúdo da imagem expandida para a solução -->
+            
+                
+                    <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+                        <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+                        <a href="#" class="fechar">&#x2716;</a>
+                    </div>
+                
+        
+            {{/each}}
+            <!-- Fim do loop -->
+        </tbody>
+    </table>
+</div>
 
         <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
             <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
@@ -183,7 +177,7 @@
             const forms = document.querySelectorAll('.container-formulario');
             forms.forEach(form => {
                 if (form.id === formId) {
-                    form.style.display = 'block';
+                    form.style.display = 'flex';
                 } else {
                     form.style.display = 'none';
                 }
@@ -193,12 +187,12 @@
             if (formId === 'cadastroProblemaForm') {
                 tabelaProblema.style.display = 'none';
             } else {
-                tabelaProblema.style.display = 'block';
+                tabelaProblema.style.display = 'flex';
             }
 
             const formCadsolucao = document.getElementById('cadastroSolucaoForm');
             if (formId === 'cadastroSolucaoForm') {
-                formCadsolucao.style.display = 'block';
+                formCadsolucao.style.display ='flex';
             } else {
                 formCadsolucao.style.display = 'none';
             }
@@ -215,7 +209,7 @@
             });
 
             const tabelaProblema = document.getElementById('tabelaProblema');
-            tabelaProblema.style.display = 'block';
+            tabelaProblema.style.display = 'flex';
 
             const formCadsolucao = document.getElementById('cadastroSolucaoForm');
             formCadsolucao.style.display = 'none';
@@ -253,7 +247,7 @@
             popup.style.display = "block";
 
             // Ocultar todas as linhas da tabela de soluções inicialmente
-            var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
+            var tableRows = document.querySelectorAll("#popupContainerSolucao tbody .item");
             tableRows.forEach(row => {
                 row.style.display = "none";
             });
