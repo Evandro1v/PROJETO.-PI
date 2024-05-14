@@ -106,9 +106,8 @@ app.use('/js', express.static(path.join(__dirname, 'js'))); // Middleware para s
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/', function (req, res) {
-  res.render('index'); // Rota para renderizar a página inicial.
+  res.render('index', { messages: req.flash('error') });
 });
-
 app.get('/paginadecadastro', function (req, res) {
   res.render('paginadecadastro'); // Rota para renderizar a página de cadastro.
 });
@@ -214,13 +213,23 @@ app.post('/cadastro', function (req, res) {
     });
   });
 })
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/paginalogada', // Redireciona para a página logada em caso de sucesso na autenticação.
-  failureRedirect: '/', // Redireciona para a página inicial em caso de falha na autenticação.
-  failureFlash: true // Permite exibir mensagens flash em caso de falha na autenticação.
-}));
-
+app.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) { 
+      return next(err); 
+    }
+    if (!user) { 
+      // Se o usuário não for encontrado, renderize a mesma página com a mensagem de erro
+      return res.status(401).render('index', { error: 'E-mail ou senha incorretos' });
+    }
+    req.logIn(user, function (err) {
+      if (err) { 
+        return next(err); 
+      }
+      return res.redirect('/paginalogada'); // Redireciona para a página logada se a autenticação for bem-sucedida
+    });
+  })(req, res, next);
+});
 app.post('/logout', function (req, res) {
   req.logout(function (err) { // Efetua o logout do usuário.
     if (err) {
@@ -356,7 +365,7 @@ app.get('/exibir-imagem', async (req, res) => {
 /// Endpoint para enviar a solução
 app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async function (req, res) {
   const { id_ocorrencia, descricao_solucao } = req.body;
-  let foto_da_solucao = ''; // Inicializa como uma string vazia
+  let foto_da_solucao = 'sem foto'; // Inicializa como uma string vazia
 
   // Verifica se a foto_da_solucao foi enviada
   if (req.file) {
@@ -388,6 +397,16 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
       return res.status(404).send('O ID da ocorrência não existe.');
     }
 
+    // Query para atualizar o status para 2 (resolvido) na tabela cad_problema
+    const updateStatusQuery = 'UPDATE cad_problema SET status_da_ocorrencia = 2 WHERE id_ocorrencia = ?';
+    conexao.query(updateStatusQuery, [id_ocorrencia], function (error, results) {
+      if (error) {
+        console.error('Erro ao atualizar o status da ocorrência:', error);
+        return res.status(500).send('Erro ao atualizar o status da ocorrência');
+      }
+      console.log('Status da ocorrência atualizado com sucesso:', results);
+    });
+
     // Verifica se já existe uma solução para essa ocorrência na tabela cad_solucao
     const checkSolutionQuery = 'SELECT * FROM cad_solucao WHERE id_ocorrencia = ?';
     conexao.query(checkSolutionQuery, [id_ocorrencia], function (error, results) {
@@ -408,7 +427,7 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
             return res.status(500).send('Erro ao atualizar solução: ' + error.message); // Enviando mensagem de erro específica
           }
           console.log('Solução atualizada com sucesso:', results);
-          res.redirect('/'); // Redireciona para a página inicial após a atualização bem-sucedida
+          res.redirect(req.get('referer'));  //Redireciona para a página inicial após a atualização bem-sucedida
         });
       } else {
         // Se não existir uma solução para essa ocorrência, insere uma nova solução
@@ -422,12 +441,12 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
             return res.status(500).send('Erro ao enviar solução: ' + error.message); // Enviando mensagem de erro específica
           }
           console.log('Solução enviada com sucesso:', results);
-          res.redirect('/'); // Redireciona para a página inicial após o envio bem-sucedido
-        });
+          res.redirect(req.get('referer'));        });
       }
     });
   });
 });
+
 
 // app.post('/remover-ocorrencia', isLoggedIn, function (req, res) {
 //   const idOcorrencia = req.body.id_ocorrencia;

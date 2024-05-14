@@ -22,6 +22,9 @@
     <main>
         <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
             <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
+             {{#if error}}
+<div class="error-message">{{error}}</div>
+{{/if}}
                 <h3>Detalhes da Solução:</h3>
                 <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
                 <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
@@ -70,41 +73,41 @@
             </form>
         </div>
 
-        <div class="tabelaproblema" id="tabelaProblema">
-            <h2>PROBLEMAS NAS VIAS</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID-Ocorrência</th>
-                        <th>Descrição</th>
-                        <th>Status</th>
-                        <th>Foto</th>
-                        <th>Detalhes/Solução</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each problemas}}
-                    <tr>
-                        <td>{{this.id_ocorrencia}}</td>
-                        <td>{{this.descricao_da_ocorrencia}}</td>
-                        <td>{{this.status_da_ocorrencia}}</td>
-                        <td>
-                            <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
-                                style="width: 65px; height: 40px;" />
-                        </td>
-                        <td class="acoes">
-                            <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
-                            <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
+       <div class="tabelaproblema" id="tabelaProblema">
+    <h2>PROBLEMAS NAS VIAS</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID-Ocorrência</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Foto</th>
+                <th>Detalhes/Solução</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each problemas}}
+            <tr>
+                <td>{{this.id_ocorrencia}}</td>
+                <td>{{this.descricao_da_ocorrencia}}</td>
+                <td id="status{{@index}}">{{this.status_da_ocorrencia}}</td>
+                <td>
+                    <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
+                </td>
+                <td class="acoes">
+                    <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+                    <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 
       <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
     <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
     <h2>Tabela de Soluções</h2>
+    {{#if problemas.length}}
     <table class="table">
         <thead>
             <tr>
@@ -137,6 +140,9 @@
             <!-- Fim do loop -->
         </tbody>
     </table>
+    {{else}}
+    <p>Não há soluções disponíveis no momento.</p>
+    {{/if}}
 </div>
 
         <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
@@ -263,6 +269,17 @@
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "none";
         }
+    document.addEventListener('DOMContentLoaded', function () {
+    var statusCells = document.querySelectorAll('.tabelaproblema tbody td:nth-child(3)');
+    statusCells.forEach(function (cell) {
+        if (cell.textContent.trim() === '1') {
+            cell.innerHTML = '<span class="em-andamento">Em andamento</span>';
+        } else {
+            cell.innerHTML = '<span class="concluido">Concluído</span>';
+        }
+    });
+});
+
     </script>
 </body>
 

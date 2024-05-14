@@ -10,36 +10,29 @@
 
 <body>
 
-    <div class="containerprincipal">
-        <div class="container-usuarios">
+    <div class="botoes">
+            <button onclick="showForm('cadastroProblemaForm')">Cadastrar Problema</button>
+            <button onclick="showTable()">Visualizar Problemas</button>
             <form action="/logout" method="post">
                 <button type="submit">Sair</button>
             </form>
-        </div>
-        <div class="botoes">
-            <button onclick="showForm('cadastroProblemaForm')">Cadastrar Problema</button>
-            <button onclick="showTable()">Visualizar Problemas</button>
-        </div>
+    
     </div>
     <main>
-        
-
+    
         <div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
             <h2>Formulário de Incidentes de Via</h2>
             <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
-                <h2>Gravidade da Ocorrência</h2>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Urgente" required />
-                    Urgente</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
-                    Alta</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Mediana" required />
-                    Mediana</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Normal" required />
-                    Normal</label>
+                <h3>Gravidade da Ocorrência:</h3>
+                <div class="container-label">
                 <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
                     Baixa</label>
-
-                <h2>Detalhes da Ocorrência:</h2>
+                     <label><input type="radio" name="gravidade_da_ocorrencia" value="Media" required />
+                    Media</label>
+                <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
+                    Alta</label>
+    </div>
+                <h3>Detalhes da Ocorrência:</h3>
                 <label for="endereco">Endereço:</label>
                 <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
 
@@ -63,6 +56,7 @@
         </div>
 
         <div class="tabelaproblema" id="tabelaProblema">
+            <h2>PROBLEMAS NAS VIAS</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -73,81 +67,124 @@
                         <th>Detalhes/Solução</th>
                     </tr>
                 </thead>
-      <tbody>
-    {{#each problemas}}
-        {{#if id_usuario}}
-            <tr>
-                <td>{{this.id_ocorrencia}}</td>
-                <td>{{this.descricao_da_ocorrencia}}</td>
-                <td>{{this.status_da_ocorrencia}}</td>
-                <td>
-                    <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
-                </td>
-                <td class="acoes">
-                    <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
-                    <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
-                </td>
-            </tr>
-        {{/if}}
-    {{/each}}
-</tbody>
-            </table>
-        </div>
-
-      <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
-            <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
-            <h2>Tabela de Soluções</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Descrição da Solução</th>
-                        <th>Foto da Solução</th>
-                    </tr>
-                </thead>
                 <tbody>
-                    <!-- Loop para cada solução -->
-                    {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
-                    <tr class="item" data-id="{{this.id_ocorrencia}}">
-                        <td>{{this.descricao_solucao}}</td>
-                        <td>
-                            <!-- Expanda a imagem da solução -->
-                            <a href="#imagemSolucao{{this.id_ocorrencia}}"><img
-                                    src="{{this.foto_da_solucao}}" alt="Foto da Solução"
-                                    style="width: 65px; height: 40px;" /></a>
-                        </td>
-                    </tr>
-                    <!-- Conteúdo da imagem expandida para a solução -->
+                    {{#each problemas}}
                     <tr>
-                        <td colspan="2">
-                            <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
-                                <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
-                                <a href="#" class="fechar">&#x2716;</a>
-                            </div>
+                        <td>{{this.id_ocorrencia}}</td>
+                        <td>{{this.descricao_da_ocorrencia}}</td>
+                        <td>{{this.status_da_ocorrencia}}</td>
+                        <td>
+                            <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+                                style="width: 65px; height: 40px;" />
+                        </td>
+                        <td class="acoes">
+                            <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+                            <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
                         </td>
                     </tr>
                     {{/each}}
-                    <!-- Fim do loop -->
                 </tbody>
             </table>
         </div>
 
+      <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+    <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
+    <h2>Tabela de Soluções</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descrição da Solução</th>
+                <th>Foto da Solução</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop para cada solução -->
+            {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
+            <tr class="item" data-id="{{this.id_ocorrencia}}">
+                <td>{{this.descricao_solucao}}</td>
+                <td>
+                    <!-- Expanda a imagem da solução -->
+                    <a href="#imagemSolucao{{this.id_ocorrencia}}"><img
+                            src="{{this.foto_da_solucao}}" alt="Foto da Solução"
+                            style="width: 65px; height: 40px;" /></a>
+                </td>
+            </tr>
+            <!-- Conteúdo da imagem expandida para a solução -->
+            
+                
+                    <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+                        <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+                        <a href="#" class="fechar">&#x2716;</a>
+                    </div>
+                
+        
+            {{/each}}
+            <!-- Fim do loop -->
+        </tbody>
+    </table>
+</div>
 
-
+        <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
+            <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
+            <h2>Tabela de Problemas</h2>
+            <div class="vertical-list">
+                {{#each problemas}}
+                <div class="item" data-id="{{this.id_ocorrencia}}">
+                    <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
+                    <p><strong>ID-Usuário:</strong> {{this.id_usuario}}</p>
+                    <p><strong>Gravidade:</strong> {{this.gravidade_da_ocorrencia}}</p>
+                    <p><strong>Endereço:</strong> {{this.end_ocorrencia}}</p>
+                    <p><strong>Bairro:</strong> {{this.bairro}}</p>
+                    <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
+                    <p><strong>Foto da Ocorrência:</strong> <a href="#imagem{{this.id_ocorrencia}}"><img
+                                src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+                                style="max-width: 50px; max-height: 50px;" /></a></p>
+                    <p><strong>Foto do Mapa:</strong> <a href="#mapa{{this.id_ocorrencia}}"><img
+                                src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa"
+                                style="max-width: 75px; max-height: 75px;" /></a></p>
+                    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
+                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
+                        <a href="#" class="fechar">&#x2716;</a>
+                    </div>
+                    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
+                        <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
+                        <a href="#" class="fechar">&#x2716;</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+ 
     </main>
 
     <script>
-         function showForm(formId) {
+           function showForm(formId) {
             const forms = document.querySelectorAll('.container-formulario');
             forms.forEach(form => {
                 if (form.id === formId) {
-                    form.style.display = 'block';
+                    form.style.display = 'flex';
                 } else {
                     form.style.display = 'none';
                 }
             });
 
             const tabelaProblema = document.getElementById('tabelaProblema');
-            tabelaProblema.style.display = 'none';
+            if (formId === 'cadastroProblemaForm') {
+                tabelaProblema.style.display = 'none';
+            } else {
+                tabelaProblema.style.display = 'flex';
+            }
+
+            const formCadsolucao = document.getElementById('cadastroSolucaoForm');
+            if (formId === 'cadastroSolucaoForm') {
+                formCadsolucao.style.display ='flex';
+            } else {
+                formCadsolucao.style.display = 'none';
+            }
+
+            // Oculta a tabela de soluções quando mudar de formulário
+            const popupContainerSolucao = document.getElementById('popupContainerSolucao');
+            popupContainerSolucao.style.display = 'none';
         }
 
         function showTable() {
@@ -157,50 +194,70 @@
             });
 
             const tabelaProblema = document.getElementById('tabelaProblema');
-            tabelaProblema.style.display = 'block';
+            tabelaProblema.style.display = 'flex';
+
+            const formCadsolucao = document.getElementById('cadastroSolucaoForm');
+            formCadsolucao.style.display = 'none';
+
+            // Oculta a tabela de soluções quando clicar em visualizar problemas
+            const popupContainerSolucao = document.getElementById('popupContainerSolucao');
+            popupContainerSolucao.style.display = 'none';
         }
-    function showPopuproblemas(id_ocorrencia) {
-        var popup = document.getElementById("popupContainerproblemas");
-        popup.style.display = "block";
 
-        // Ocultar todas as tabelas inicialmente
-        var allTables = document.querySelectorAll("#popupContainerproblemas .item");
-        allTables.forEach(table => {
-            table.style.display = "none";
-        });
+        function showPopuproblemas(id_ocorrencia) {
+            var popup = document.getElementById("popupContainerproblemas");
+            popup.style.display = "block";
 
-        // Exibir apenas a tabela relevante com base no id_ocorrencia
-        var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
-        if (targetTable) {
-            targetTable.style.display = "block";
+            // Ocultar todas as tabelas inicialmente
+            var allTables = document.querySelectorAll("#popupContainerproblemas .item");
+            allTables.forEach(table => {
+                table.style.display = "none";
+            });
+
+            // Exibir apenas a tabela relevante com base no id_ocorrencia
+            var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
+            if (targetTable) {
+                targetTable.style.display = "block";
+            }
         }
-    }
 
-    function closePopuproblemas() {
-        var popup = document.getElementById("popupContainerproblemas");
-        popup.style.display = "none";
-    }
+        function closePopuproblemas() {
+            var popup = document.getElementById("popupContainerproblemas");
+            popup.style.display = "none";
+        }
 
-  function showPopupsolucao(id_ocorrencia) {
-    console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
-    var popup = document.getElementById("popupContainerSolucao");
-    popup.style.display = "block";
+        function showPopupsolucao(id_ocorrencia) {
+            console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+            var popup = document.getElementById("popupContainerSolucao");
+            popup.style.display = "block";
 
-    // Ocultar todas as linhas da tabela de soluções inicialmente
-    var tableRows = document.querySelectorAll("#popupContainerSolucao tbody tr");
-    tableRows.forEach(row => {
-        row.style.display = "none";
+            // Ocultar todas as linhas da tabela de soluções inicialmente
+            var tableRows = document.querySelectorAll("#popupContainerSolucao tbody .item");
+            tableRows.forEach(row => {
+                row.style.display = "none";
+            });
+
+            // Exibir apenas as linhas da tabela com o ID de ocorrência correspondente
+            var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody .item[data-id="${id_ocorrencia}"]`);
+            targetRows.forEach(row => {
+                row.style.display = "table-row"; // Mostrar a linha da tabela
+            });
+        }
+
+        function closePopupsolucao() {
+            var popup = document.getElementById("popupContainerSolucao");
+            popup.style.display = "none";
+        }
+    document.addEventListener('DOMContentLoaded', function () {
+    var statusCells = document.querySelectorAll('.tabelaproblema tbody td:nth-child(3)');
+    statusCells.forEach(function (cell) {
+        if (cell.textContent.trim() === '1') {
+            cell.innerHTML = '<span class="em-andamento">Em andamento</span>';
+        } else {
+            cell.innerHTML = '<span class="concluido">Concluído</span>';
+        }
     });
-
-    // Exibir apenas as linhas da tabela com o ID de ocorrência correspondente
-    var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody .item[data-id="${id_ocorrencia}"]`);
-    targetRows.forEach(row => {
-        row.style.display = "table-row"; // Mostrar a linha da tabela
-    });
-}
-
-
-    
+});
     </script>
 </body>
 

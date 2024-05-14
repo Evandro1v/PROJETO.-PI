@@ -27,14 +27,14 @@
 </head>
 
 <body>
-  {{#if messages.error}}
-      <div class="error-message">{{messages.error}}</div>
-    {{/if}}
-  
-   
+
     <section class="parte2">
     
       <form  method="post" onsubmit="return validateLOGIN(this)" action="/login" class="container-inputs">
+       {{#if error}}
+<div class="error-message">{{error}}</div>
+{{/if}}
+   
         <input type="email" name="email" id="email-id" placeholder="Email" required>
         <span id="span6"></span>
 
@@ -58,3 +58,11 @@
     </p>
   </footer>
 </body>
+<script>
+  // Esta função será chamada para mostrar a mensagem de erro no frontend
+  function displayErrorMessage(message) {
+    var errorMessageElement = document.getElementById("error-message");
+    errorMessageElement.textContent = message;
+    errorMessageElement.style.display = "block";
+  }
+</script>
