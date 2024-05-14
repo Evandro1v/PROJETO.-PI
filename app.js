@@ -365,7 +365,7 @@ app.get('/exibir-imagem', async (req, res) => {
 /// Endpoint para enviar a solução
 app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async function (req, res) {
   const { id_ocorrencia, descricao_solucao } = req.body;
-  let foto_da_solucao = 'sem foto'; // Inicializa como uma string vazia
+  let foto_da_solucao = ' '; // Inicializa como uma string vazia
 
   // Verifica se a foto_da_solucao foi enviada
   if (req.file) {
