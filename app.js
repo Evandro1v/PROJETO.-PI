@@ -367,7 +367,7 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
   const { id_ocorrencia, descricao_solucao } = req.body;
   let foto_da_solucao = ' '; // Inicializa como uma string vazia
 
-  // Verifica se a foto_da_solucao foi enviada
+  // Verifica se a foto_da_solucao foi enviadat
   if (req.file) {
     try {
       foto_da_solucao = await uploadImage(req.file); // Faz o upload da foto da solução para o Firebase Storage
