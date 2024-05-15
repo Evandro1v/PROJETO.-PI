@@ -20,16 +20,16 @@ body {
   background: #76b852;
   /* fallback for old browsers */
   background: rgb(141, 194, 111);
-  background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
+  background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgb(99, 155, 71) 50%);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   flex-direction: column;
 }
-
 
 
 header {
@@ -41,7 +41,7 @@ header {
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 25px;
 }
@@ -156,13 +156,7 @@ button,
     width: 50%;
   }
 
-  h1 {
-    font-size: 50px;
-    font-weight: 700;
-    padding-right: 80px;
-    line-height: 55px;
-    margin-bottom: 20px;
-  }
+ 
 
   h2 {
     padding: 0;

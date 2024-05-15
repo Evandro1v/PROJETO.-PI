@@ -27,10 +27,10 @@
 {{/if}}
                 <h3>Detalhes da Solução:</h3>
                 <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
-                <input type="number" id="id_ocorrencia" name="id_ocorrencia" required />
+                <input type="number" id="id_ocorrencia" name="id_ocorrencia" required placeholder="Digite o id da ocorrencia que deseja cadastrar solucao"  />
 
                 <label for="descricao_solucao">Descrição da Solução:</label>
-                <textarea id="descricao_solucao" name="descricao_solucao" required></textarea>
+                <textarea id="descricao_solucao" name="descricao_solucao" required placeholder="Exemplo: solucao resolvida no dia tal " ></textarea>
 
                 <label for="foto_da_solucao">Foto da Solução:</label>
                 <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" />
@@ -52,16 +52,16 @@
     </div>
                 <h3>Detalhes da Ocorrência:</h3>
                 <label for="endereco">Endereço:</label>
-                <input type="text" id="end_ocorrencia" name="end_ocorrencia" required />
+                <input type="text" id="end_ocorrencia" name="end_ocorrencia" required placeholder="Digite o endereco"  />
 
                 <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="bairro" required />
+                <input type="text" id="bairro" name="bairro" required placeholder="Digite o bairro" />
 
                 <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep" required />
+                <input type="text" id="cep" name="cep"  maxlength="8" required placeholder="Digite apenas os 8 dígitos do CEP" />
 
                 <label for="descricao">Descrição da Ocorrência:</label>
-                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required></textarea>
+                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal" ></textarea>
 
                 <label for="foto-ocorrencia">Foto da Ocorrência:</label>
                 <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
@@ -227,7 +227,7 @@
 
         function showPopuproblemas(id_ocorrencia) {
             var popup = document.getElementById("popupContainerproblemas");
-            popup.style.display = "block";
+            popup.style.display = "flex";
 
             // Ocultar todas as tabelas inicialmente
             var allTables = document.querySelectorAll("#popupContainerproblemas .item");
@@ -238,7 +238,7 @@
             // Exibir apenas a tabela relevante com base no id_ocorrencia
             var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
             if (targetTable) {
-                targetTable.style.display = "block";
+                targetTable.style.display = "flex";
             }
         }
 

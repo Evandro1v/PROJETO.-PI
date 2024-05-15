@@ -15,11 +15,11 @@ const app = express(); // Cria uma instância do aplicativo Express.
 
 const admin = require('firebase-admin');
 
-// Configure Firebase Admin SDK com as credenciais da variável de ambiente
-admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
-  storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
-});
+  // Configure Firebase Admin SDK com as credenciais da variável de ambiente
+  admin.initializeApp({
+    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
+    storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
+  });
 // admin.initializeApp({
 //   credential: admin.credential.cert('sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json'),
 //   storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
