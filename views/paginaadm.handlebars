@@ -11,7 +11,6 @@
 <body>
 
     <div class="botoes">
-            <button onclick="showForm('cadastroProblemaForm')">Cadastrar Problema</button>
             <button onclick="showForm('cadastroSolucaoForm')">Cadastrar Solução</button>
             <button onclick="showTable()">Visualizar Problemas</button>
             <form action="/logout" method="post">
@@ -27,52 +26,18 @@
 {{/if}}
                 <h3>Detalhes da Solução:</h3>
                 <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
-                <input type="number" id="id_ocorrencia" name="id_ocorrencia" required placeholder="Digite o id da ocorrencia que deseja cadastrar solucao"  />
+                <input type="number" id="id_ocorrencia" name="id_ocorrencia" maxlength="4"  required placeholder="Digite o id da ocorrencia que deseja cadastrar solucao"  />
 
                 <label for="descricao_solucao">Descrição da Solução:</label>
-                <textarea id="descricao_solucao" name="descricao_solucao" required placeholder="Exemplo: solucao resolvida no dia tal " ></textarea>
+                <textarea id="descricao_solucao" name="descricao_solucao" maxlength="255" required placeholder="Exemplo: solucao resolvida no dia tal " ></textarea>
 
                 <label for="foto_da_solucao">Foto da Solução:</label>
-                <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" />
+                <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" required />
                 <input type="submit" value="Enviar" />
             </form>
         </div>
 
-        <div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
-            <h2>Formulário de Incidentes de Via</h2>
-            <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
-                <h3>Gravidade da Ocorrência:</h3>
-                <div class="container-label">
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
-                    Baixa</label>
-                     <label><input type="radio" name="gravidade_da_ocorrencia" value="Media" required />
-                    Media</label>
-                <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
-                    Alta</label>
-    </div>
-                <h3>Detalhes da Ocorrência:</h3>
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="end_ocorrencia" name="end_ocorrencia" required placeholder="Digite o endereco"  />
-
-                <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="bairro" required placeholder="Digite o bairro" />
-
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep"  maxlength="8" required placeholder="Digite apenas os 8 dígitos do CEP" />
-
-                <label for="descricao">Descrição da Ocorrência:</label>
-                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal" ></textarea>
-
-                <label for="foto-ocorrencia">Foto da Ocorrência:</label>
-                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
-
-                <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
-                <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
-
-                <input type="submit" value="Enviar" />
-            </form>
-        </div>
-
+        
        <div class="tabelaproblema" id="tabelaProblema">
     <h2>PROBLEMAS NAS VIAS</h2>
     <table class="table">
@@ -180,14 +145,6 @@
 
     <script>
         function showForm(formId) {
-            const forms = document.querySelectorAll('.container-formulario');
-            forms.forEach(form => {
-                if (form.id === formId) {
-                    form.style.display = 'flex';
-                } else {
-                    form.style.display = 'none';
-                }
-            });
 
             const tabelaProblema = document.getElementById('tabelaProblema');
             if (formId === 'cadastroProblemaForm') {

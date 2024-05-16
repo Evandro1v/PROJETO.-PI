@@ -98,30 +98,31 @@ input {
   margin-top: 16px;
 
 }
+input.button {
+  padding: 0;
+}
 
 input::placeholder {
   font-weight: 600;
   color: #636267;
 }
 
-button,
-.button {
+button, .button {
   color: white;
   border: #37cc8a;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 50px;
-  border-radius: 27px;
+  border-radius: 10px;
   width: 85%;
   align-items: center;
   justify-content: center;
   text-align: center;
   background-color: #37cc8a;
   margin-top: 16px;
+  text-align:center ;
 }
-
-
 
 .span2 {
   color: #bdbcc2;

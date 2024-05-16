@@ -46,6 +46,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
   }
 
 
@@ -74,6 +75,9 @@
     justify-content: center;
     align-items: center;
   }
+  h2,h1{
+    text-align: center;
+  }
 
   form {
     display: flex;
@@ -84,7 +88,7 @@
 
   .container-formulario form,.cadsolucao form  {
     display: flex;
-    width: 50%;
+    width: 70%;
     margin-top: 20px;
     flex-direction: column;
     color: #636267;
@@ -99,6 +103,7 @@
     border-radius: 20px;
     padding: 10px;
     margin-top: 10px;
+    
     background-color: #9b999996;
     color: #000000;
     align-self: center;
@@ -356,3 +361,23 @@
     border-radius: 5px;
     background-color: rgba(233, 81, 81, 0.87);
   }
+  @media (max-width: 500px) {
+    
+   /* Ajuste este valor conforme necessário */
+    .tabelaproblema {
+      overflow-x: auto; /* Aplicar rolagem apenas quando a largura da tela for menor */
+      width: min-content; /* Largura mínima da tabela */
+    }
+     /* Esconde a coluna de fotos quando a largura da tela for menor que 500px */
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    display: none;
+  }
+    
+  }
+  @media (max-width:700px) {
+    
+  .container-formulario form,.cadsolucao form {
+       width: 90%;
+     }
+   }

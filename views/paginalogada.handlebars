@@ -34,10 +34,10 @@
                 </div>
                 <h3>Detalhes da Ocorrência:</h3>
                 <label for="endereco">Endereço:</label>
-                <input type="text" id="end_ocorrencia" name="end_ocorrencia" required placeholder="Digite o endereco" />
+                <input type="text" id="end_ocorrencia" name="end_ocorrencia" maxlength="100" required placeholder="Digite o endereco" />
 
                 <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="bairro" required placeholder="Digite o bairro" />
+                <input type="text" id="bairro" name="bairro"  maxlength="50" required placeholder="Digite o bairro" />
 
                 <label for="cep">CEP:</label>
                 <input type="text" id="cep" name="cep" maxlength="8" required
@@ -45,10 +45,10 @@
 
                 <label for="descricao">Descrição da Ocorrência:</label>
                 <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required
-                    placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal"></textarea>
+                   maxlength="255"  placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal"></textarea>
 
                 <label for="foto-ocorrencia">Foto da Ocorrência:</label>
-                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" />
+                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" required/>
 
                 <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
                 <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
