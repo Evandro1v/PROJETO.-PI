@@ -18,7 +18,7 @@ body {
 
 body {
 
-  background-image: url('https://blog.vittaresidencial.com.br/wp-content/uploads/2022/04/212cd555766074b980974659ccf6ba55.jpeg') ;
+  background-image: url(/images/backgroundbody.jpeg);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
