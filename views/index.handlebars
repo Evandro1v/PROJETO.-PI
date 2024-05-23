@@ -2,67 +2,70 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Overpass:wght@500&family=Poppins:wght@400;500;600;700;800&family=Rubik:wght@500&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="/js/script.js"></script>
-
-  <title>OPERAÇÃO TAPA BURACOS</title>
-  <style>
-    .attribution {
-      font-size: 11px;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .attribution a {
-      color: hsl(228, 45%, 44%);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Operação tapa buraco</title>
+    <link rel="stylesheet" href="/css/style3.css" />
 </head>
 
-<body>
-<h1>Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer reclamações referentes a infraestrutura asfáltica da cidade.</h1>
-    <section class="parte2">
-    
+<body class="bgSizeCover">
+
+    <section>
+        <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
+      
+        <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+
+            <main>
+                <header>
+                    <div class="titulos borda_arredond-8">
+                        <h5 class="disposicao_titulos">
+                            Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
+                            reclamações
+                            referentes
+                            a infraestrutura asfáltica da cidade.
+                        </h5>
+                    </div>
+                </header>
+                <!-- <section class="parte2"> -->
+                <div class="centralizar disposicao_conteudo">
+                    <span class="info">
+                        <p>
+                            Informe seu E-mail e Senha para fazer uma reclamação.
+                        </p>
+                    </span>
+                    
       <form  method="post" onsubmit="return validateLOGIN(this)" action="/login" class="container-inputs">
        {{#if error}}
 <div class="error-message">{{error}}</div>
 {{/if}}
-   
-        <input type="email" name="email" id="email-id" placeholder="Email" required>
-        <span id="span6"></span>
 
-        <input type="password" name="password" id="password-id" placeholder="password" required>
-        <span id="span7"></span>
+                        <input type="email" name="email" id="email-id" placeholder="E-mail" required />
+                        <span id="span6"></span>
 
-        <input type="submit" class="button" value="LOGAR">
-        <div class="container-spans">
-          <span class="span2">NÃO TEM CADASTRO?</span>
-          <span class="span3"><a href="/paginadecadastro">CADASTRAR</a></span>
+                        <input type="password" name="password" id="password-id" placeholder="Senha" required />
+                        <span id="span7"></span>
+
+                        <input type="submit" class="button botao_blue-50" value="Entrar" />
+
+                        <div class="container-spans">
+                            <span class="span2 mensagem">Não é cadastrado?</span>
+                            <span class="span3"><a href="/paginadecadastro">Fazer cadastro</a></span>
+                        </div>
+                        <div class="container-spans">
+                            <span class="span2 mensagem">Esqueceu a senha?</span>
+                            <span class="span3"><a href="/esqueceusenha">Recuperar senha</a></span>
+                        </div>
+
+                </div>
+
+                </form>
         </div>
-         <div class="container-spans">
-          <span class="span3"><a href="/esqueceusenha">ESQUECEU A SENHA</a></span>
+        <!--      </section> -->
+        </main>
         </div>
-      </form>
+        <footer>
+            <div class="centralizar rodape">
+                PI1 GRUPO-005 Sertãozinho-SP - UNIVESP
+            </div>
+        </footer>
     </section>
-  
-  <footer>
-    <p class="attribution" id="attr">
-      Evandro1v
-    </p>
-  </footer>
 </body>
-<script>
-  // Esta função será chamada para mostrar a mensagem de erro no frontend
-  function displayErrorMessage(message) {
-    var errorMessageElement = document.getElementById("error-message");
-    errorMessageElement.textContent = message;
-    errorMessageElement.style.display = "block";
-  }
-</script>

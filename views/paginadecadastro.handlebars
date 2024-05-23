@@ -2,59 +2,79 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Overpass:wght@500&family=Poppins:wght@400;500;600;700;800&family=Rubik:wght@500&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  <title>OPERAÇÃO TAPA BURACOS</title>
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution {
-      font-size: 11px;
-      margin-top: 20px;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <title>Operação tapa buraco - Cadastro</title>
+    <link rel="stylesheet" href="/css/style3.css" />
 
-    .attribution a {
-      color: hsl(228, 45%, 44%);
-    }
-  </style>
 </head>
 
-<body>
-   
-  
-    
-    <section class="parte2">
-      <form  method="post" onsubmit="return validateForm(this)" action="/cadastro" class="container-inputs">
-        {{#if message}}
-      <div  class="error-message">{{message}}</div>
-    {{/if}}
-        <input type="text" name="nome" placeholder="Nome Completo" id="firstname-id">
-        <span id="span4"> </span>
-        <input type="text" name="telefone" placeholder="Telefone" id="lastname-id">
-        <span id="span5"> </span>
-        <input type="address" name="email" placeholder="Email" id="email-id">
-        <span id="span6"> </span>
-        <input type="password" name="senha" placeholder="Senha" id="password-id">
-        <span id="span7"></span>
-        <input type="submit"class="button" value="CADASTRAR">
-        <div class="container-spans"><span class="span2">JA É CADASTRADO?</span><span class="span3"> <a
-              href="/">LOGIN</a></span>
+<body class="bgSizeCover ">
+    <section>
+        <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
+        {{#if messages.error}}
+        <div class="error-message">{{messages.error}}</div>
+        {{/if}}
+
+        <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+            <main>
+                <header>
+                    <div class="titulos borda_arredond-8">
+                        <h5 class="disposicao_titulos">
+                            Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
+                            reclamações
+                            referentes
+                            a infraestrutura asfáltica da cidade.
+                        </h5>
+                    </div>
+                </header>
+                <!--      <section class="parte2"> -->
+                <div class="centralizar disposicao_conteudo">
+                    <span class="info">
+                        <p>
+                            Cadastro.
+                            <hr>
+                        </p>
+                        <p>
+                            Informe seu Nome, Telefone, E-mail e Senha para fazer o cadastro.
+                        </p>
+                    </span>
+                    <!-- Form Usado para cadastrar usuários -->
+                    <form method="post" onsubmit="return validateForm(this)" action="/cadastro"
+                        class="container-inputs">
+                        {{#if message}}
+                        <div class="error-message">{{message}}</div>
+                        {{/if}}
+                        <br />
+                        <input type="text" name="nome" placeholder="Nome Completo" id="firstname-id" />
+                        <span id="span4"> </span>
+                        <input type="tel" name="telefone" placeholder="Telefone" id="lastname-id" />
+                        <!-- type="text" trocado por type="tel"-->
+                        <span id="span5"> </span>
+                        <input type="address" name="email" placeholder="E-mail" id="email-id" />
+                        <span id="span6"> </span>
+                        <input type="password" name="senha" placeholder="Senha" id="password-id" />
+                        <span id="span7"></span>
+                        <input type="submit" class="button botao_blue-50" value="Cadastrar" />
+                        <div class="container-spans">
+                            <span class="span2 mensagem">
+                                Já está cadastrado?
+                            </span><span class="span3"> <a href="/">Entrar</a>
+                            </span>
+                        </div>
+                    </form>
+
+
+                </div>
+                <!--      </section> -->
+
+            </main>
         </div>
-      </form>
+        <footer>
+            <div class="centralizar rodape">
+                <p class="attribution" id="attr">
+                    PI1 GRUPO-005 Sertãozinho-SP - UNIVESP
+                </p>
+            </div>
+        </footer>
     </section>
-
-  <footer>
-    <p class="attribution" id="attr">
-      RODA PÉ</a>.
-    </p>
-  </footer>
 </body>
-
-</html>

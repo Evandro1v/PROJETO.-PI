@@ -3,53 +3,71 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Overpass:wght@500&family=Poppins:wght@400;500;600;700;800&family=Rubik:wght@500&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="/js/script.js"></script>
+  <title>Operação tapa buraco - Recupar senha</title>
+  <link rel="stylesheet" href="/css/style3.css" />
 
-  <title>OPERAÇÃO TAPA BURACOS</title>
-  <style>
-    .attribution {
-      font-size: 11px;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .attribution a {
-      color: hsl(228, 45%, 44%);
-    }
-  </style>
 </head>
 
-<body>
-  {{#if messages.error}}
-      <div class="error-message">{{messages.error}}</div>
+<body class="bgSizeCover ">
+  <section>
+    <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
+    {{#if messages.error}}
+    <div class="error-message">{{messages.error}}</div>
     {{/if}}
-    <section class="parte2">
-      
-     <form method="post" action="/esqueceusenha" class="container-inputs">
-  <label for="email">Email:</label>
-            <span class="span3">INSIRA SEU EMAIL PARA RECUPERAR SENHA</span>
-  <input type="email" id="email" name="email" required>
-  <input type="submit" value="Enviar" class="button">
-  <div class="container-spans">
-          <span class="span2">NÃO TEM CADASTRO?</span>
-          <span class="span3"><a href="/paginadecadastro">CADASTRAR</a></span>
+
+    <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+      <main>
+        <header>
+          <div class="titulos borda_arredond-8">
+            <h5 class="disposicao_titulos">
+              Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
+              reclamações
+              referentes
+              a infraestrutura asfáltica da cidade.
+            </h5>
+          </div>
+        </header>
+        <!--      <section class="parte2"> -->
+        <div class="centralizar disposicao_conteudo">
+          <span class="info">
+            <p>
+              Recuparaçao de senha.
+              <hr>
+            </p>
+            <p>
+              Informe seu e-mail para receber a sua senha.
+            </p>
+          </span>
+          <!-- Form Usado para recuparação de senha pelos usuários cadastrados-->
+
+          <form method="post" action="/esqueceusenha" class="container-inputs">
+            <!-- <label for="email">Email:</label> -->
+            <span class="span3">
+
+            </span>
+            <input type="email" id="email" name="email" placeholder="E-mail" required />
+            <input type="submit" value="Enviar" class="button botao_blue-50" />
+            <div class="container-spans">
+              <span class="span2 mensagem">Não é cadastrado?</span>
+              <span class="span3"><a href="/paginadecadastro">Fazer cadastro</a></span>
+            </div>
+            <div class="container-spans">
+              <span class="span3"><a href="/">Voltar para página de login e entrar</a></span>
+            </div>
+          </form>
+
+
         </div>
-         <div class="container-spans">
-          <span class="span3"><a href="/">PAGINA DE LOGIN</a></span>
-        </div>
-</form>
-    </section>
-  </main>
-  <footer>
-    <p class="attribution" id="attr">
-      RODA PÉ</a>.
-    </p>
-  </footer>
+        <!--      </section> -->
+
+      </main>
+    </div>
+    <footer>
+      <div class="centralizar rodape">
+        <p class="attribution" id="attr">
+          PI1 GRUPO-005 Sertãozinho-SP - UNIVESP
+        </p>
+      </div>
+    </footer>
+  </section>
 </body>
