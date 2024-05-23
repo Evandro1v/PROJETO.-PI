@@ -12,19 +12,23 @@
     color: rgba(0, 0, 0, 0.884);
     width: 100%;
     height: 100%;
-    background: rgb(55,131,55);
-    background: linear-gradient(180deg, rgba(55,131,55,1) 16%, rgba(73,179,22,1) 47%);
+    background-image: url('https://blog.vittaresidencial.com.br/wp-content/uploads/2022/04/212cd555766074b980974659ccf6ba55.jpeg') ;
     display: flex;
+    background-size: cover;
     flex-direction: column;
+    background-repeat: no-repeat;
     align-items: center;
   }
+  
 
   .botoes {
     width: 100%;
+    background-color: #000000db;
     display: flex;
+    position: fixed;
     justify-content: space-around;
     flex-wrap: wrap;
-  }
+}
 
   .botoes button {
     gap: 5px;
@@ -43,10 +47,11 @@
   main {
     width: 100%;
     height: 100%;
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
   }
 
 
@@ -62,6 +67,7 @@
   .cadsolucao form {
     width: 70%;
   }
+
   .cadsolucao input {
     border: 1px solid #a7a7a7;
     background-color: #ffffff;
@@ -75,9 +81,13 @@
     justify-content: center;
     align-items: center;
   }
-  h2,h1{
+
+  h2, h1 {
     text-align: center;
-  }
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
 
   form {
     display: flex;
@@ -86,7 +96,8 @@
     box-shadow: 1px 1px 1px black;
   }
 
-  .container-formulario form,.cadsolucao form  {
+  .container-formulario form,
+  .cadsolucao form {
     display: flex;
     width: 70%;
     margin-top: 20px;
@@ -99,11 +110,12 @@
     border-radius: 7px;
   }
 
-  .container-formulario h3, .cadsolucao h3 {
+  .container-formulario h3,
+  .cadsolucao h3 {
     border-radius: 20px;
     padding: 10px;
     margin-top: 10px;
-    
+
     background-color: #9b999996;
     color: #000000;
     align-self: center;
@@ -111,13 +123,15 @@
   }
 
 
-  .container-formulario input,.cadsolucao input {
+  .container-formulario input,
+  .cadsolucao input {
     border: 1px solid #a7a7a7;
     background-color: #ffffff;
     border-radius: 14px;
   }
 
-  .container-formulario textarea,.cadsolucao textarea  {
+  .container-formulario textarea,
+  .cadsolucao textarea {
     border-radius: 14px;
     height: 170px;
   }
@@ -132,12 +146,14 @@
   }
 
 
-  .container-formulario input[type="file"],.cadsolucao input[type="file"] {
+  .container-formulario input[type="file"],
+  .cadsolucao input[type="file"] {
     border: none;
-    
+
   }
 
-  .container-formulario input[type="submit"], .cadsolucao input[type="submit"] {
+  .container-formulario input[type="submit"],
+  .cadsolucao input[type="submit"] {
     background-color: #6fa750;
     width: 175px;
     height: 50px;
@@ -147,14 +163,15 @@
   }
 
   .tabelaproblema {
-    display: flex;
+    margin-top: 15px;
+    display: none;
     overflow-x: scroll;
     width: 100%;
     font: status-bar;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
 
   table {
     overflow-x: scroll;
@@ -164,7 +181,9 @@
     border-collapse: collapse;
     margin-top: 20px;
     color: black;
-    border-radius: 10px !important;  }
+    border-radius: 10px !important;
+  }
+
   .table th,
   .table td {
     padding: 15px 5px;
@@ -195,7 +214,7 @@
 
 
 
-  
+
 
   .acoes {
     display: flex;
@@ -251,7 +270,8 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
+  }
+
   .closeBtn:hover,
   .closeBtn:focus {
     color: black;
@@ -272,15 +292,16 @@
     overflow: auto;
     background-color: rgb(0, 0, 0);
     align-items: center;
-}
-.vertical-list {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  width: 90%;
-  border-radius: 5px;
-  overflow: hidden;
-}
+  }
+
+  .vertical-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    width: 90%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
 
   .vertical-list .item {
     display: flex;
@@ -294,7 +315,7 @@
   }
 
   .vertical-list .item p:nth-child(even) {
-  background-color:#485460;
+    background-color: #485460;
     display: flex;
     padding: 12px;
     border: 1px solid #ddd;
@@ -302,6 +323,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   .vertical-list .item p:nth-child(odd) {
     background-color: #828D9C;
     display: flex;
@@ -311,6 +333,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   .vertical-list .item img {
 
     margin-top: 5px;
@@ -348,9 +371,11 @@
   .imagem-expandida:target {
     display: flex;
   }
-  .erro-message{
+
+  .erro-message {
     display: flex;
   }
+
   .concluido {
     background-color: rgba(103, 247, 103, 0.692);
     border-radius: 5px;
@@ -361,23 +386,29 @@
     border-radius: 5px;
     background-color: rgba(233, 81, 81, 0.87);
   }
+
   @media (max-width: 500px) {
-    
-   /* Ajuste este valor conforme necessário */
+
+    /* Ajuste este valor conforme necessário */
     .tabelaproblema {
-      overflow-x: auto; /* Aplicar rolagem apenas quando a largura da tela for menor */
-      width: min-content; /* Largura mínima da tabela */
+      overflow-x: auto;
+      /* Aplicar rolagem apenas quando a largura da tela for menor */
+      width: min-content;
+      /* Largura mínima da tabela */
     }
-     /* Esconde a coluna de fotos quando a largura da tela for menor que 500px */
-  .table th:nth-child(4),
-  .table td:nth-child(4) {
-    display: none;
+
+    /* Esconde a coluna de fotos quando a largura da tela for menor que 500px */
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+      display: none;
+    }
+
   }
-    
-  }
+
   @media (max-width:700px) {
-    
-  .container-formulario form,.cadsolucao form {
-       width: 90%;
-     }
-   }
+
+    .container-formulario form,
+    .cadsolucao form {
+      width: 90%;
+    }
+  }

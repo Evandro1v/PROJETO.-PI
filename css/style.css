@@ -19,8 +19,7 @@ body {
 body {
   background: #76b852;
   /* fallback for old browsers */
-  background: rgb(141, 194, 111);
-  background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgb(99, 155, 71) 50%);
+  background-image: url('https://blog.vittaresidencial.com.br/wp-content/uploads/2022/04/212cd555766074b980974659ccf6ba55.jpeg') ;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,11 +40,11 @@ header {
 }
 
 h1 {
+  background-color: #00ff00d4;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 25px;
 }
-
 h2 {
   color: #fff1ed;
   padding-left: 25px;
