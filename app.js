@@ -34,19 +34,20 @@ app.use(express.json()); // Middleware para interpretar o corpo da requisição 
 app.use(express.urlencoded({ extended: false })); // Middleware para interpretar dados do formulário codificados na URL.
 
 
-
 const conexao = mysql.createConnection({
-  host: 'viaduct.proxy.rlwy.net',
+  host: 'junction.proxy.rlwy.net',
   user: 'root',
-  password: 'AFbeOCXwSRcGAYpjDLkIAUuAAflBiOWd',
+  password: 'WaPYAXZitnmQGzutZVWjvtETyMvECrAl',
   database: 'railway',
-  port: '46402'
+  port: '41162'
 }); // Cria uma conexão com o banco de dados MySQL.
 
 conexao.connect(function (erro) {
   if (erro) throw erro; // Se ocorrer um erro na conexão, lança uma exceção.
   console.log('Conexão efetuada com sucesso'); // Loga uma mensagem informando que a conexão foi estabelecida com sucesso.
 });
+
+
 
 app.use(session({
   secret: 'mysecret', // Chave secreta utilizada para assinar o cookie da sessão.
