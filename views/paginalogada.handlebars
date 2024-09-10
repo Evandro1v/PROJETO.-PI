@@ -34,21 +34,22 @@
                 </div>
                 <h3>Detalhes da Ocorrência:</h3>
                 <label for="endereco">Endereço:</label>
-                <input type="text" id="end_ocorrencia" name="end_ocorrencia" maxlength="100" required placeholder="Digite o endereco" />
+                <input type="text" id="end_ocorrencia" name="end_ocorrencia" maxlength="100" required
+                    placeholder="Digite o endereco" />
 
                 <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="bairro"  maxlength="50" required placeholder="Digite o bairro" />
+                <input type="text" id="bairro" name="bairro" maxlength="50" required placeholder="Digite o bairro" />
 
                 <label for="cep">CEP:</label>
                 <input type="text" id="cep" name="cep" maxlength="8" required
                     placeholder="Digite apenas os 8 dígitos do CEP" />
 
                 <label for="descricao">Descrição da Ocorrência:</label>
-                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required
-                   maxlength="255"  placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal"></textarea>
+                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required maxlength="255"
+                    placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal"></textarea>
 
                 <label for="foto-ocorrencia">Foto da Ocorrência:</label>
-                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" required/>
+                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" required />
 
                 <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
                 <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
@@ -57,7 +58,7 @@
             </form>
         </div>
 
-        <div class="tabelaproblema" id="tabelaProblema">
+        {{!-- <div class="tabelaproblema" id="tabelaProblema">
             <h2>PROBLEMAS NAS VIAS</h2>
             <table class="table">
                 <thead>
@@ -87,42 +88,55 @@
                     {{/each}}
                 </tbody>
             </table>
+        </div> --}}
+        <div class="tabelaproblema" id="tabelaProblema">
+            <h2>PROBLEMAS NAS VIAS</h2>
+            <div class="problema-container">
+                {{#each problemas}}
+                <div class="problema-item">
+                    <div class="problema-info">
+                        <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
+                        <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
+                        <p class="status"><strong>Status:</strong> {{this.status_da_ocorrencia}}</p>
+                    </div>
+                    <div class="problema-foto">
+                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" class="img-problema" />
+                    </div>
+                    <div class="problema-acoes">
+                        <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+                        <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
-
         <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
             <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
             <h2>Tabela de Soluções</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Descrição da Solução</th>
-                        <th>Foto da Solução</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Loop para cada solução -->
-                    {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
-                    <tr class="item" data-id="{{this.id_ocorrencia}}">
-                        <td>{{this.descricao_solucao}}</td>
-                        <td>
-                            <!-- Expanda a imagem da solução -->
-                            <a href="#imagemSolucao{{this.id_ocorrencia}}"><img src="{{this.foto_da_solucao}}"
-                                    alt="Foto da Solução" style="width: 65px; height: 40px;" /></a>
-                        </td>
-                    </tr>
-                    <!-- Conteúdo da imagem expandida para a solução -->
-
-
-                    <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
-                        <a href="#" class="fechar">&#x2716;</a>
+            <div class="solucoes-container">
+                <!-- Loop para cada solução -->
+                {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
+                <div class="solucao-item" data-id="{{this.id_ocorrencia}}">
+                    <div class="descricao-solucao">
+                        <p><strong>Descrição da Solução:</strong> {{this.descricao_solucao}}</p>
                     </div>
+                    <div class="foto-solucao">
+                        <!-- Expanda a imagem da solução -->
+                        <a href="#imagemSolucao{{this.id_ocorrencia}}">
+                            <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" class="img-solucao" />
+                        </a>
+                    </div>
+                </div>
 
+                <!-- Conteúdo da imagem expandida para a solução -->
+                <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+                    <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+                    <a href="#" class="fechar">&#x2716;</a>
+                </div>
 
-                    {{/each}}
-                    <!-- Fim do loop -->
-                </tbody>
-            </table>
+                {{/each}}
+                <!-- Fim do loop -->
+            </div>
         </div>
 
         <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
@@ -227,35 +241,38 @@
             popup.style.display = "none";
         }
 
+
         function showPopupsolucao(id_ocorrencia) {
-            console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+            // console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "block";
 
-            // Ocultar todas as linhas da tabela de soluções inicialmente
-            var tableRows = document.querySelectorAll("#popupContainerSolucao tbody .item");
-            tableRows.forEach(row => {
-                row.style.display = "none";
+            // Ocultar todos os itens de solução inicialmente
+            var solucoes = document.querySelectorAll("#popupContainerSolucao .solucao-item");
+            solucoes.forEach(function (solucao) {
+                solucao.style.display = "none";
             });
 
-            // Exibir apenas as linhas da tabela com o ID de ocorrência correspondente
-            var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody .item[data-id="${id_ocorrencia}"]`);
-            targetRows.forEach(row => {
-                row.style.display = "table-row"; // Mostrar a linha da tabela
-            });
+            // Exibir apenas o item de solução correspondente ao ID da ocorrência
+            var solucaoEspecifica = document.querySelector(`#popupContainerSolucao .solucao-item[data-id="${id_ocorrencia}"]`);
+            if (solucaoEspecifica) {
+                solucaoEspecifica.style.display = "flex"; //
+            } else {
+                // console.warn(`Nenhuma solução encontrada para a ocorrência com ID ${id_ocorrencia}`);
+            }
         }
-
         function closePopupsolucao() {
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "none";
         }
         document.addEventListener('DOMContentLoaded', function () {
-            var statusCells = document.querySelectorAll('.tabelaproblema tbody td:nth-child(3)');
-            statusCells.forEach(function (cell) {
-                if (cell.textContent.trim() === '1') {
-                    cell.innerHTML = '<span class="em-andamento">Em andamento</span>';
+            var statusElements = document.querySelectorAll('.problema-info .status');
+            statusElements.forEach(function (statusElement) {
+                if (statusElement.textContent.includes('1')) {
+                    statusElement.innerHTML = '<strong>Status:</strong> <span class="em-andamento">Em andamento</span>';
                 } else {
-                    cell.innerHTML = '<span class="concluido">Concluído</span>';
+                    statusElement.innerHTML = '<strong>Status:</strong> <span class="concluido">Concluído</span>';
                 }
             });
         });

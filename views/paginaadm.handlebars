@@ -11,25 +11,27 @@
 <body>
 
     <div class="botoes">
-            <button onclick="showForm('cadastroSolucaoForm')">Cadastrar Solução</button>
-            <button onclick="showTable()">Visualizar Problemas</button>
-            <form action="/logout" method="post">
-                <button type="submit">Sair</button>
-            </form>
-    
+        <button onclick="showForm('cadastroSolucaoForm')">Cadastrar Solução</button>
+        <button onclick="showTable()">Visualizar Problemas</button>
+        <form action="/logout" method="post">
+            <button type="submit">Sair</button>
+        </form>
+
     </div>
     <main>
         <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
             <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
-             {{#if error}}
-<div class="error-message">{{error}}</div>
-{{/if}}
+                {{#if error}}
+                <div class="error-message">{{error}}</div>
+                {{/if}}
                 <h3>Detalhes da Solução:</h3>
                 <label for="id_ocorrencia">ID-OCORRÊNCIA:</label>
-                <input type="number" id="id_ocorrencia" name="id_ocorrencia" maxlength="4"  required placeholder="Digite o id da ocorrencia que deseja cadastrar solucao"  />
+                <input type="number" id="id_ocorrencia" name="id_ocorrencia" maxlength="4" required
+                    placeholder="Digite o id da ocorrencia que deseja cadastrar solucao" />
 
                 <label for="descricao_solucao">Descrição da Solução:</label>
-                <textarea id="descricao_solucao" name="descricao_solucao" maxlength="255" required placeholder="Exemplo: solucao resolvida no dia tal " ></textarea>
+                <textarea id="descricao_solucao" name="descricao_solucao" maxlength="255" required
+                    placeholder="Exemplo: solucao resolvida no dia tal "></textarea>
 
                 <label for="foto_da_solucao">Foto da Solução:</label>
                 <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" required />
@@ -37,78 +39,57 @@
             </form>
         </div>
 
-        
-       <div class="tabelaproblema" id="tabelaProblema">
-    <h2>PROBLEMAS NAS VIAS</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID-Ocorrência</th>
-                <th>Descrição</th>
-                <th>Status</th>
-                <th>Foto</th>
-                <th>Detalhes/Solução</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each problemas}}
-            <tr>
-                <td>{{this.id_ocorrencia}}</td>
-                <td>{{this.descricao_da_ocorrencia}}</td>
-                <td id="status{{@index}}">{{this.status_da_ocorrencia}}</td>
-                <td>
-                    <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" style="width: 65px; height: 40px;" />
-                </td>
-                <td class="acoes">
-                    <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
-                    <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
 
-      <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
-    <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
-    <h2>Tabela de Soluções</h2>
-    {{#if problemas.length}}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Descrição da Solução</th>
-                <th>Foto da Solução</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Loop para cada solução -->
-            {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
-            <tr class="item" data-id="{{this.id_ocorrencia}}">
-                <td>{{this.descricao_solucao}}</td>
-                <td>
-                    <!-- Expanda a imagem da solução -->
-                    <a href="#imagemSolucao{{this.id_ocorrencia}}"><img
-                            src="{{this.foto_da_solucao}}" alt="Foto da Solução"
-                            style="width: 65px; height: 40px;" /></a>
-                </td>
-            </tr>
-            <!-- Conteúdo da imagem expandida para a solução -->
-            
-                
-                    <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
-                        <a href="#" class="fechar">&#x2716;</a>
+        <div class="tabelaproblema" id="tabelaProblema">
+            <h2>PROBLEMAS NAS VIAS</h2>
+            <div class="problema-container">
+                {{#each problemas}}
+                <div class="problema-item">
+                    <div class="problema-info">
+                        <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
+                        <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
+                        <p class="status"><strong>Status:</strong> {{this.status_da_ocorrencia}}</p>
+
                     </div>
-                
-        
-            {{/each}}
-            <!-- Fim do loop -->
-        </tbody>
-    </table>
-    {{else}}
-    <p>Não há soluções disponíveis no momento.</p>
-    {{/if}}
-</div>
+                    <div class="problema-foto">
+                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" class="img-problema" />
+                    </div>
+                    <div class="problema-acoes">
+                        <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+                        <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
+            <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
+            <h2>Tabela de Soluções</h2>
+            <div class="solucoes-container">
+                <!-- Loop para cada solução -->
+                {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
+                <div class="solucao-item" data-id="{{this.id_ocorrencia}}">
+                    <div class="descricao-solucao">
+                        <p><strong>Descrição da Solução:</strong> {{this.descricao_solucao}}</p>
+                    </div>
+                    <div class="foto-solucao">
+                        <!-- Expanda a imagem da solução -->
+                        <a href="#imagemSolucao{{this.id_ocorrencia}}">
+                            <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" class="img-solucao" />
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Conteúdo da imagem expandida para a solução -->
+                <div class="imagem-expandida" id="imagemSolucao{{this.id_ocorrencia}}">
+                    <img src="{{this.foto_da_solucao}}" alt="Foto da Solução" />
+                    <a href="#" class="fechar">&#x2716;</a>
+                </div>
+
+                {{/each}}
+                <!-- Fim do loop -->
+            </div>
+        </div>
 
         <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
             <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
@@ -140,7 +121,7 @@
                 {{/each}}
             </div>
         </div>
- 
+
     </main>
 
     <script>
@@ -155,7 +136,7 @@
 
             const formCadsolucao = document.getElementById('cadastroSolucaoForm');
             if (formId === 'cadastroSolucaoForm') {
-                formCadsolucao.style.display ='flex';
+                formCadsolucao.style.display = 'flex';
             } else {
                 formCadsolucao.style.display = 'none';
             }
@@ -205,38 +186,41 @@
         }
 
         function showPopupsolucao(id_ocorrencia) {
-            console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+            // console.log("Chamada da função showPopupsolucao com ID de ocorrência:", id_ocorrencia);
+
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "block";
 
-            // Ocultar todas as linhas da tabela de soluções inicialmente
-            var tableRows = document.querySelectorAll("#popupContainerSolucao tbody .item");
-            tableRows.forEach(row => {
-                row.style.display = "none";
+            // Ocultar todos os itens de solução inicialmente
+            var solucoes = document.querySelectorAll("#popupContainerSolucao .solucao-item");
+            solucoes.forEach(function (solucao) {
+                solucao.style.display = "none";
             });
 
-            // Exibir apenas as linhas da tabela com o ID de ocorrência correspondente
-            var targetRows = document.querySelectorAll(`#popupContainerSolucao tbody .item[data-id="${id_ocorrencia}"]`);
-            targetRows.forEach(row => {
-                row.style.display = "table-row"; // Mostrar a linha da tabela
-            });
+            // Exibir apenas o item de solução correspondente ao ID da ocorrência
+            var solucaoEspecifica = document.querySelector(`#popupContainerSolucao .solucao-item[data-id="${id_ocorrencia}"]`);
+            if (solucaoEspecifica) {
+                solucaoEspecifica.style.display = "flex";
+            } else {
+                // console.warn(`Nenhuma solução encontrada para a ocorrência com ID ${id_ocorrencia}`);
+            }
         }
 
         function closePopupsolucao() {
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "none";
         }
-    document.addEventListener('DOMContentLoaded', function () {
-    var statusCells = document.querySelectorAll('.tabelaproblema tbody td:nth-child(3)');
-    statusCells.forEach(function (cell) {
-        if (cell.textContent.trim() === '1') {
-            cell.innerHTML = '<span class="em-andamento">Em andamento</span>';
-        } else {
-            cell.innerHTML = '<span class="concluido">Concluído</span>';
-        }
-    });
-});
 
+        document.addEventListener('DOMContentLoaded', function () {
+            var statusElements = document.querySelectorAll('.problema-info .status');
+            statusElements.forEach(function (statusElement) {
+                if (statusElement.textContent.includes('1')) {
+                    statusElement.innerHTML = '<strong>Status:</strong> <span class="em-andamento">Em andamento</span>';
+                } else {
+                    statusElement.innerHTML = '<strong>Status:</strong> <span class="concluido">Concluído</span>';
+                }
+            });
+        });
     </script>
 </body>
 
