@@ -19,7 +19,7 @@
     background-repeat: no-repeat;
     align-items: center;
   }
-  
+
 
   .botoes {
     width: 100%;
@@ -28,7 +28,7 @@
     position: fixed;
     justify-content: space-around;
     flex-wrap: wrap;
-}
+  }
 
   .botoes button {
     gap: 5px;
@@ -82,12 +82,13 @@
     align-items: center;
   }
 
-  h2, h1 {
+  h2,
+  h1 {
     text-align: center;
     background-color: white;
     border-radius: 10px;
     padding: 10px;
-}
+  }
 
   form {
     display: flex;
@@ -165,13 +166,13 @@
   .tabelaproblema {
     margin-top: 15px;
     display: none;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     width: 100%;
     font: status-bar;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+  }
 
   table {
     overflow-x: scroll;
@@ -211,7 +212,6 @@
     display: block;
     margin: 0 auto;
   }
-
 
 
 
@@ -300,7 +300,6 @@
     border: 1px solid #ccc;
     width: 90%;
     border-radius: 5px;
-    overflow: hidden;
   }
 
   .vertical-list .item {
@@ -387,61 +386,43 @@
     background-color: rgba(233, 81, 81, 0.87);
   }
 
-  @media (max-width: 500px) {
 
-    /* Ajuste este valor conforme necessário */
-    .tabelaproblema {
-      overflow-x: auto;
-      /* Aplicar rolagem apenas quando a largura da tela for menor */
-      width: min-content;
-      /* Largura mínima da tabela */
-    }
 
-    /* Esconde a coluna de fotos quando a largura da tela for menor que 500px */
-    .table th:nth-child(4),
-    .table td:nth-child(4) {
-      display: none;
-    }
 
-  }
 
-  @media (max-width:700px) {
-
-    .container-formulario form,
-    .cadsolucao form {
-      width: 90%;
-    }
-  }.solucoes-container {
+  .solucoes-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espaço entre os itens */
+    gap: 20px;
+    /* Espaço entre os itens */
     padding: 10px;
-}
+  }
 
-.solucao-item {
+  .solucao-item {
     display: flex;
     flex-direction: column;
     border: 1px solid #ddd;
     padding: 10px;
-    width: 300px; /* Ajuste conforme necessário */
+    width: 300px;
+    /* Ajuste conforme necessário */
     background-color: #f9f9f9;
-}
+  }
 
-.descricao-solucao {
+  .descricao-solucao {
     margin-bottom: 10px;
-}
+  }
 
-.foto-solucao {
+  .foto-solucao {
     display: flex;
     justify-content: center;
-}
+  }
 
-.img-solucao {
+  .img-solucao {
     max-width: 100%;
     height: auto;
-}
+  }
 
-.imagem-expandida {
+  .imagem-expandida {
     display: none;
     position: fixed;
     top: 50%;
@@ -451,70 +432,87 @@
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  }
 
-.imagem-expandida img {
+  .imagem-expandida img {
     max-width: 100%;
     height: auto;
-}
+  }
 
-.imagem-expandida .fechar {
+  .imagem-expandida .fechar {
     position: absolute;
     top: 10px;
     right: 10px;
     text-decoration: none;
     color: #333;
     font-size: 18px;
-}
-.problema-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Espaço entre os itens */
-  padding: 10px;
+  }
+
+  @media only screen and (min-width:600px) {
+    .problema-container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+
+    }
+  }
+
+  .problema-item {
+    gap: 5px;
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
-.problema-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-}
+  .img-problema {
+    width: 65px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
 
-.problema-info {
-  flex-grow: 1;
-}
+  .problema-acoes {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+  }
 
-.problema-foto {
-  flex-shrink: 0;
-  margin-left: 20px;
-}
+  .problema-acoes button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 
-.img-problema {
-  width: 65px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 5px;
-}
+  .problema-acoes button:hover {
+    background-color: #0056b3;
+  }
 
-.problema-acoes {
-  display: flex;
-  gap: 10px;
-  margin-left: 20px;
-}
+  @media only screen and (max-width: 768px) {
+    .problema-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 10px;
+    }
 
-.problema-acoes button {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.problema-acoes button:hover {
-  background-color: #0056b3;
-}
+  }
+  @media only screen and (min-width:769px) {
+    .problema-container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      padding: 10px;
+    }
+  }
