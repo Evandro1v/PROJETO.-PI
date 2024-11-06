@@ -19,6 +19,7 @@
 
     </div>
     <main>
+        <button onclick="home()"id="home" style="display: none;" >home</button>
         <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
             <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
                 {{#if error}}
@@ -144,6 +145,7 @@
             // Oculta a tabela de soluções quando mudar de formulário
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
+            document.getElementById('home').style.display = 'flex';
         }
 
         function showTable() {
@@ -161,6 +163,13 @@
             // Oculta a tabela de soluções quando clicar em visualizar problemas
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
+            document.getElementById('home').style.display = 'flex';
+        }function home() {
+            // Esconde todos os elementos conforme pedido
+            
+            document.getElementById('cadastroSolucaoForm').style.display = 'none';
+            document.getElementById('tabelaProblema').style.display = 'none';
+            document.getElementById('home').style.display = 'none ';
         }
 
         function showPopuproblemas(id_ocorrencia) {

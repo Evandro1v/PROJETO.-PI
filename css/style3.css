@@ -77,7 +77,7 @@
     --icon-gray-40: #c3d1dd;
      */
 }
-.error-message {
+.error-message,.span1 {
     color: red;
     background-color: #f0c0c0;
   } 

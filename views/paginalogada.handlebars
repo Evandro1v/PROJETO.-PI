@@ -16,10 +16,11 @@
         <form action="/logout" method="post">
             <button type="submit">Sair</button>
         </form>
+        
 
     </div>
     <main>
-
+<button onclick="home()"id="home" style="display: none;" >home</button>
         <div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
             <h2>Formulário de Incidentes de Via</h2>
             <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
@@ -174,6 +175,9 @@
 
     <script>
         function showForm(formId) {
+             //mostra botao home
+                             document.getElementById('home').style.display = 'flex ';
+
             const forms = document.querySelectorAll('.container-formulario');
             forms.forEach(form => {
                 if (form.id === formId) {
@@ -200,9 +204,13 @@
             // Oculta a tabela de soluções quando mudar de formulário
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
+            //esconde botao home
+             document.getElementById('home').style.display = 'flex ';
         }
 
         function showTable() {
+            //mostra botao home
+             document.getElementById('home').style.display = 'flex ';
             const forms = document.querySelectorAll('.container-formulario');
             forms.forEach(form => {
                 form.style.display = 'none';
@@ -217,8 +225,18 @@
             // Oculta a tabela de soluções quando clicar em visualizar problemas
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
+            
+            
         }
-
+ function home() {
+            // Esconde todos os elementos conforme 
+            
+            document.getElementById('cadastroProblemaForm').style.display = 'none';
+            document.getElementById('tabelaProblema').style.display = 'none';
+            //esconde botao home
+            document.getElementById('home').style.display = 'none ';
+            }
+            
         function showPopuproblemas(id_ocorrencia) {
             var popup = document.getElementById("popupContainerproblemas");
             popup.style.display = "flex";

@@ -7,7 +7,22 @@
   <link rel="stylesheet" href="/css/style3.css" />
 
 </head>
+<script>
+  function validateEsqueceu(form) {
+    const email = form.email.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const errorSpan = document.querySelector('.span1');
 
+    // Limpa mensagens de erro anteriores
+    errorSpan.textContent = '';
+
+    if (!emailRegex.test(email)) {
+      errorSpan.textContent = "Por favor, insira um e-mail válido.";
+      return false; // impede o envio do formulário
+    }
+    return true; // permite o envio do formulário se o e-mail for válido
+  }
+</script>
 <body class="bgSizeCover ">
   <section>
     <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
@@ -31,7 +46,7 @@
         <div class="centralizar disposicao_conteudo">
           <span class="info">
             <p>
-              Recuparaçao de senha.
+              Recuperaçao de senha.
               <hr>
             </p>
             <p>
@@ -39,13 +54,11 @@
             </p>
           </span>
           <!-- Form Usado para recuparação de senha pelos usuários cadastrados-->
-
-          <form method="post" action="/esqueceusenha" class="container-inputs">
+{{!-- novalidate tira a validacao padrao do html no navegador(as mensagens de erro) --}}
+          <form method="post" onsubmit="return validateEsqueceu(this)" action="/esqueceusenha" class="container-inputs" novalidate> 
             <!-- <label for="email">Email:</label> -->
-            <span class="span3">
-
-            </span>
-            <input type="email" id="email" name="email" placeholder="E-mail" required />
+            <span class="span1" style="color: red;"></span>
+            <input type="email" id="email" name="email" placeholder="E-mail" required/>
             <input type="submit" value="Enviar" class="button botao_blue-50" />
             <div class="container-spans">
               <span class="span2 mensagem">Não é cadastrado?</span>

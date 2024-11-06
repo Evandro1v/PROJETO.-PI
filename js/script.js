@@ -45,40 +45,46 @@ function validateForm(event) {
     // Se todas as validações passarem, o formulário é enviado
     return false;
 }
+
+
+
+
+
+
 //
-function validateLOGIN(event) {
-    event.preventDefault(); // Evita que o formulário seja enviado antes da validação
+// function validateLOGIN(event) {
+//     event.preventDefault(); // Evita que o formulário seja enviado antes da validação
   
-    // Resetando mensagens de erro
-    document.getElementById("span6").innerHTML = "";
-    document.getElementById("span7").innerHTML = "";
+//     // Resetando mensagens de erro
+//     document.getElementById("span6").innerHTML = "";
+//     document.getElementById("span7").innerHTML = "";
   
-    // Pegando os valores dos campos do formulário
-    const email = document.getElementById("email-id").value.trim(); // Remove espaços em branco no início e no final
-    const password = document.getElementById("password-id").value.trim();
+//     // Pegando os valores dos campos do formulário
+//     const email = document.getElementById("email-id").value.trim(); // Remove espaços em branco no início e no final
+//     const password = document.getElementById("password-id").value.trim();
   
-    let isFieldsValidated = true;
+//     let isFieldsValidated = true;
   
-    // Validar formato do email
-    const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!regexEmail.test(email)) {
-      document.getElementById("span6").innerHTML = "Formato de email inválido.";
-      isFieldsValidated = false;
-    }
+//     // Validar formato do email
+//     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+//     if (!regexEmail.test(email)) {
+//       document.getElementById("span6").innerHTML = "Formato de email inválido.";
+//       isFieldsValidated = false;
+//     }
   
-    // Validar se os campos não estão vazios
-    if (email === "") {
-      document.getElementById("span6").innerHTML = "Por favor, preencha o campo de email.";
-      isFieldsValidated = false;
-    }
+//     // Validar se os campos não estão vazios
+//     if (email === "") {
+//       document.getElementById("span6").innerHTML = "Por favor, preencha o campo de email.";
+//       isFieldsValidated = false;
+//     }
   
-    if (password === "") {
-      document.getElementById("span7").innerHTML = "Por favor, preencha o campo de senha.";
-      isFieldsValidated = false;
-    }
+//     if (password === "") {
+//       document.getElementById("span7").innerHTML = "Por favor, preencha o campo de senha.";
+//       isFieldsValidated = false;
+//     }
   
    
   
-  }
+//   }
 
   
