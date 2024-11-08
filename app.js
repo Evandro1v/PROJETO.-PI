@@ -503,16 +503,15 @@ app.post('/esqueceusenha', function (req, res) {
 
     // Configuração do transporte para enviar o e-mail usando um serviço SMTP
     let transporter = nodemailer.createTransport({
-      service: 'Outlook', // Substitua pelo seu provedor de e-mail, como 'Outlook', 'Yahoo', etc.
+      service: 'gmail',
       auth: {
-        user: 'tapaburacosite@outlook.com', // Seu endereço de e-mail
-        pass: 'senha@123' // Sua senha de e-mail
+        user: 'tapaburacosite@gmail.com', // Substitua pelo seu e-mail
+        pass: 'fexg pizo edyt zpqe	' // Substitua pela senha de aplicativo gerada
       }
     });
-
     // Configuração do e-mail a ser enviado
     let mailOptions = {
-      from: 'tapaburacosite@outlook.com', // Seu endereço de e-mail
+      from: 'tapaburacosite@gmail.com', // Seu endereço de e-mail
       to: email, // Endereço de e-mail do destinatário (o usuário que está solicitando a recuperação de senha)
       subject: 'Recuperação de Senha', // Assunto do e-mail
       html: `<p>Olá, você solicitou a recuperação de senha. Sua senha é: ${senha}</p>` // Corpo do e-mail (pode ser HTML)
