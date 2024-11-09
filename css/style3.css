@@ -77,10 +77,28 @@
     --icon-gray-40: #c3d1dd;
      */
 }
-.error-message,.span1 {
+
+.success-message {
+    display: flex;
+    color: green;
+    border-radius: 5px;
+    height: 40px;
+    background-color: rgb(145 253 145);
+    justify-content: center;
+    align-items: center;
+}
+
+.error-message,
+.span1 {
     color: red;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    height: 40px;
     background-color: #f0c0c0;
-  } 
+    align-items: center;
+}
+
 body {
     height: 100%;
     margin: 0px;
@@ -105,18 +123,20 @@ body.bgSizeCover {
     font-size: 12px;
 }
 
-a  {
+a {
     color: #4CAF50;
     text-decoration: none;
     font-family: "Roboto", sans-serif;
     font-size: 12px;
 }
 
-  a:hover, a:active, a:focus {
+a:hover,
+a:active,
+a:focus {
     color: #4fb3f6;
-    border:none;
+    border: none;
     outline: none;
-   
+
 }
 
 
@@ -126,6 +146,7 @@ a  {
 .borda_green-40 {
     border: 2px solid #60d399;
 }
+
 .borda_blue-40 {
     border: 2px solid #4fb3f6;
 }
@@ -134,24 +155,24 @@ a  {
     border-radius: 8px;
 }
 
-.espacamento_externo{
+.espacamento_externo {
     padding: 10px 30% 20px;
     /*  10px acima          */
     /*  3% esquerda e direita */
     /*  20px abaixo       */
-    
+
 }
 
-.area_conteudo{
+.area_conteudo {
     background-color: #fff;
 }
 
-.tam_min-max{
-min-height:350px;
-min-width: 350px;
-max-height: 650px;
-max-width: 450px;
-margin-bottom: 10px;
+.tam_min-max {
+    min-height: 350px;
+    min-width: 350px;
+    max-height: 650px;
+    max-width: 450px;
+    margin-bottom: 10px;
 }
 
 
@@ -160,18 +181,19 @@ margin-bottom: 10px;
     text-align: justify;
     font-weight: bold;
     line-height: 1.2;
-    border-radius: 8px 8px 0px 0px; /* superior-esquerda | superior-direita | inferior-direita | inferior-esquerda */
+    border-radius: 8px 8px 0px 0px;
+    /* superior-esquerda | superior-direita | inferior-direita | inferior-esquerda */
     background-color: #f0faf5;
     border-bottom: 2px solid #f0faf5;
     padding: 1px;
-   
+
 }
 
-.info{
+.info {
     font-style: italic;
     text-align: left;
-    }
-    
+}
+
 /* linha horizontal */
 hr {
     border: 0;
@@ -179,16 +201,17 @@ hr {
     border-top-style: none;
     border-top-width: 0px;
     border-top: 2px solid #c3d1dd;
-    margin: -14px 0px 9px 0px; /* valores para margens: superior direita abaixo esquerda */
+    margin: -14px 0px 9px 0px;
+    /* valores para margens: superior direita abaixo esquerda */
 }
 
 
-.rodape{
-        font-family: "Roboto", sans-serif;
-        font-size: 10px;
-        padding: 5px;
-        color: #000000;
-     }
+.rodape {
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    padding: 5px;
+    color: #000000;
+}
 
 /*Disposição, espaçamento de conteúdo dentro de elementos, como divs com títulos*/
 .disposicao_titulos {
@@ -243,20 +266,21 @@ hr {
 }
 
 /* Define estilos para campos do tipo "input" e "select" */
-input, select {
+input,
+select {
     width: 90%;
     padding: 10px 20px 9px 20px;
     margin: 9px 0;
     box-sizing: border-box;
     border: 2px solid #DDDDDC;
     border-radius: 11px;
-    background-color : #f9f9fa; 
+    background-color: #f9f9fa;
     -webkit-transition: all 0.3 ease;
     transition: 0.3s;
     outline: none;
 }
-  
-  input:focus {
+
+input:focus {
     border: 2px solid #4fb3f6;
 }
 
@@ -275,12 +299,15 @@ input, select {
     transition: all 0.3 ease;
     cursor: pointer;
     border-radius: 11px;
-    margin: 10px; /* todos os lados: margem de 10px */
+    margin: 10px;
+    /* todos os lados: margem de 10px */
     transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
 }
-  
-.botao_blue-50:hover, .botao_blue-50:active, .botao_blue-50:focus {
-    background: #014a82;    
+
+.botao_blue-50:hover,
+.botao_blue-50:active,
+.botao_blue-50:focus {
+    background: #014a82;
 }
 
 bt_sair {
@@ -305,80 +332,87 @@ bt_sair {
     margin-right: -8px;
     margin-bottom: 10px;
     margin-left: auto;
-    display: block   
+    display: block
 }
 
-bt_sair:hover, bt_sair:active, bt_sair:focus {
+bt_sair:hover,
+bt_sair:active,
+bt_sair:focus {
     background-color: rgb(65, 75, 75);
     transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
 }
 
-.bt_estado-conclu { 
-        font-family: sans-serif;
-        font-weight: bold;
-        text-transform: uppercase;
-        outline: 0;
-        background: #9BEBC0;
-        width: 100px;
-        border: 2px solid;
-        border-color: #60d399;
-        padding: 3px;
-        color: #000000;
-        font-size: 12px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
-        cursor: pointer;
-        border-radius: 7px;
-        margin: 2px; /* todos os lados: margem de 2 */
-        transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
-    }
-      
-    .bt_estado-conclu:hover, .bt_estado-conclu:active, .bt_estado-conclu:focus {
-        background: #1db78e;  
-    }
+.bt_estado-conclu {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #9BEBC0;
+    width: 100px;
+    border: 2px solid;
+    border-color: #60d399;
+    padding: 3px;
+    color: #000000;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-radius: 7px;
+    margin: 2px;
+    /* todos os lados: margem de 2 */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
 
-    .bt_estado-pend { 
-        font-family: sans-serif;
-        font-weight: bold;
-        text-transform: uppercase;
-        outline: 0;
-        background: #FCC78C;
-        width: 100px;
-        border: 2px solid;
-        border-color: #FEA69A;
-        padding: 3px;
-        color: #000000;
-        font-size: 12px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
-        cursor: not-allowed;
-        border-radius: 7px;
-        margin: 2px; /* todos os lados: margem de 2 */
-        transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
-    }
-      
+.bt_estado-conclu:hover,
+.bt_estado-conclu:active,
+.bt_estado-conclu:focus {
+    background: #1db78e;
+}
 
-    .bt_estado-des { 
-        font-family: sans-serif;
-        font-weight: bold;
-        text-transform: uppercase;
-        outline: 0;
-        background: #e1eaf1;
-        width: 100px;
-        border: 2px solid;
-        border-color: #DDDDDC;
-        padding: 3px;
-        color: #b8b8b8;
-        font-size: 12px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
-        cursor: not-allowed;
-        border-radius: 7px;
-        margin: 2px; /* todos os lados: margem de 2 */
-        transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
-    }
+.bt_estado-pend {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #FCC78C;
+    width: 100px;
+    border: 2px solid;
+    border-color: #FEA69A;
+    padding: 3px;
+    color: #000000;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: not-allowed;
+    border-radius: 7px;
+    margin: 2px;
+    /* todos os lados: margem de 2 */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
 
-.centralizar{
+
+.bt_estado-des {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #e1eaf1;
+    width: 100px;
+    border: 2px solid;
+    border-color: #DDDDDC;
+    padding: 3px;
+    color: #b8b8b8;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: not-allowed;
+    border-radius: 7px;
+    margin: 2px;
+    /* todos os lados: margem de 2 */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+
+.centralizar {
     text-align: center;
 
 }
@@ -393,10 +427,19 @@ section {
 }
 
 /* Mantem a translação no lado */
-#translations {position: absolute; top: 0; right: 0; padding: 0.5em;margin: 0 1em}
-#translations ul {padding-left: 1em}
+#translations {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5em;
+    margin: 0 1em
+}
 
-.sombra{
+#translations ul {
+    padding-left: 1em
+}
+
+.sombra {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 

@@ -22,13 +22,12 @@
     }
     return true; // permite o envio do formulário se o e-mail for válido
   }
+ 
 </script>
 <body class="bgSizeCover ">
   <section>
     <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
-    {{#if messages.error}}
-    <div class="error-message">{{messages.error}}</div>
-    {{/if}}
+ 
 
     <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
       <main>
@@ -49,15 +48,21 @@
               Recuperaçao de senha.
               <hr>
             </p>
+    
             <p>
               Informe seu e-mail para receber a sua senha.
             </p>
+     
           </span>
+                           {{#if error}}
+    <div id="message-container" class="{{#if success}}success-message{{else}}error-message{{/if}}">
+      {{error}}
+    </div>
+  {{/if}}
           <!-- Form Usado para recuparação de senha pelos usuários cadastrados-->
 {{!-- novalidate tira a validacao padrao do html no navegador(as mensagens de erro) --}}
           <form method="post" onsubmit="return validateEsqueceu(this)" action="/esqueceusenha" class="container-inputs" novalidate> 
             <!-- <label for="email">Email:</label> -->
-            <span class="span1" style="color: red;"></span>
             <input type="email" id="email" name="email" placeholder="E-mail" required/>
             <input type="submit" value="Enviar" class="button botao_blue-50" />
             <div class="container-spans">

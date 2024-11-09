@@ -482,21 +482,15 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
 //     });
 //   });
 // });
-
 app.post('/esqueceusenha', function (req, res) {
   const { email } = req.body; // Obtém o e-mail fornecido pelo usuário no formulário de recuperação de senha.
 
   // Consulta SQL para buscar a senha correspondente ao e-mail no banco de dados
   const sql = `SELECT senha FROM cad_usuario WHERE \`e-mail\` = ?`;
   conexao.query(sql, [email], function (error, results) {
-    if (error) {
-      console.error('Erro ao buscar a senha:', error);
-      return res.status(500).send('Erro ao buscar a senha');
-    }
-
     if (results.length === 0) {
-      // Se nenhum resultado for retornado, significa que o e-mail não está cadastrado
-      return res.status(404).send('E-mail não encontrado');
+      // Caso o e-mail não seja encontrado, renderiza a página com a mensagem de erro
+      return res.status(401).render('esqueceusenha', { error: 'Erro ao enviar o e-mail de recuperação de senha ', success: false });
     }
 
     const senha = results[0].senha; // Obtém a senha do primeiro resultado
@@ -506,9 +500,10 @@ app.post('/esqueceusenha', function (req, res) {
       service: 'gmail',
       auth: {
         user: 'tapaburacosite@gmail.com', // Substitua pelo seu e-mail
-        pass: 'fexg pizo edyt zpqe	' // Substitua pela senha de aplicativo gerada
+        pass: 'fexg pizo edyt zpqe' // Substitua pela senha de aplicativo gerada
       }
     });
+
     // Configuração do e-mail a ser enviado
     let mailOptions = {
       from: 'tapaburacosite@gmail.com', // Seu endereço de e-mail
@@ -520,17 +515,13 @@ app.post('/esqueceusenha', function (req, res) {
     // Envio do e-mail de recuperação de senha
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        console.log(error); // Em caso de erro
-        res.status(500).send('Erro ao enviar e-mail de recuperação de senha'); // Retorna um status 500 em caso de erro no envio do e-mail
+        return res.status(401).render('esqueceusenha', { error: 'Erro ao enviar e-mail', success: false });
       } else {
-        console.log('E-mail de recuperação de senha enviado com sucesso: ' + info.response); // Se o e-mail for enviado com sucesso
-        res.status(200).send('E-mail de recuperação de senha enviado com sucesso'); // Retorna um status 200 em caso de sucesso no envio do e-mail
+        return res.status(200).render('esqueceusenha', { error: 'E-mail de recuperação de senha enviado com sucesso!', success: true });
       }
     });
   });
-
 });
-
 app.listen(8082, function () {
   console.log('Servidor iniciado na porta 8082!'); // Inicia o servidor na porta 8082 e loga uma mensagem informando que o servidor foi iniciado com sucesso.
 });
