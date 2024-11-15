@@ -1,91 +1,117 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+  <!DOCTYPE html>
+  <html lang="pt-br">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Operação tapa buraco - Recupar senha</title>
-  <link rel="stylesheet" href="/css/style3.css" />
+  <head>
+    <meta charset="UTF-8">
+    <title>Operação tapa buraco - Recupar senha</title>
+    <link rel="stylesheet" href="/css/style3.css" />
 
-</head>
-<script>
-  function validateEsqueceu(form) {
-    const email = form.email.value;
+  </head>
+  <script>
+ function validateEsqueceu(form) {
+    const email = form.email.value.trim(); // Remove espaços em branco
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const errorSpan = document.querySelector('.span1');
+    const errorSpan = document.querySelector('.span11'); // Span para mensagens de erro
+    const infoSpan = document.querySelector('.info'); // Span que será ocultado
+    infoSpan.style.display='none';//oculta o span info
 
-    // Limpa mensagens de erro anteriores
-    errorSpan.textContent = '';
+    // Limpa mensagens de erro anteriores e remove qualquer classe de erro anterior
+         errorSpan.textContent = ''; 
+          errorSpan.style.display = 'none'; // Garante que está oculto inicialmente
 
-    if (!emailRegex.test(email)) {
-      errorSpan.textContent = "Por favor, insira um e-mail válido.";
-      return false; // impede o envio do formulário
+    // Verifica se o campo de e-mail está vazio
+    if (!email) {
+        if (errorSpan) {
+          
+            errorSpan.textContent = "O campo de e-mail não pode estar vazio.";
+            errorSpan.classList.add('error-message'); // Adiciona a classe de erro
+            errorSpan.style.display = 'block'; // Mostra o erro
+                        infoSpan.style.display='none';//oculta o span info
+                         document.getElementById('message-container').style.display = 'none';//oculta as mensagens vinda do back end para exibir somente essas
+
+        }
+        return false; // Impede o envio do formulário
     }
-    return true; // permite o envio do formulário se o e-mail for válido
-  }
- 
-</script>
-<body class="bgSizeCover ">
-  <section>
-    <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
- 
 
-    <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
-      <main>
-        <header>
-          <div class="titulos borda_arredond-8">
-            <h5 class="disposicao_titulos">
-              Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
-              reclamações
-              referentes
-              a infraestrutura asfáltica da cidade.
-            </h5>
-          </div>
-        </header>
-        <!--      <section class="parte2"> -->
-        <div class="centralizar disposicao_conteudo">
-          <span class="info">
-            <p>
-              Recuperaçao de senha.
-              <hr>
-            </p>
+    // Verifica se o e-mail é válido
+    if (!emailRegex.test(email)) {
+        if (errorSpan) {
+            errorSpan.textContent = "Por favor, insira um e-mail válido.";
+            errorSpan.classList.add('error-message'); // Adiciona a classe de erro
+            errorSpan.style.display = 'block'; // Mostra o erro
+            infoSpan.style.display='none';//oculta o span info
+                document.getElementById('message-container').style.display = 'none';//oculta as mensagens vinda do back end para exibir somente essas
+        }
+        return false; // Impede o envio do formulário
+    }
+
     
-            <p>
-              Informe seu e-mail para receber a sua senha.
-            </p>
-     
-          </span>
-                           {{#if error}}
-    <div id="message-container" class="{{#if success}}success-message{{else}}error-message{{/if}}">
-      {{error}}
-    </div>
-  {{/if}}
-          <!-- Form Usado para recuparação de senha pelos usuários cadastrados-->
-{{!-- novalidate tira a validacao padrao do html no navegador(as mensagens de erro) --}}
-          <form method="post" onsubmit="return validateEsqueceu(this)" action="/esqueceusenha" class="container-inputs" novalidate> 
-            <!-- <label for="email">Email:</label> -->
-            <input type="email" id="email" name="email" placeholder="E-mail" required/>
-            <input type="submit" value="Enviar" class="button botao_blue-50" />
-            <div class="container-spans">
-              <span class="span2 mensagem">Não é cadastrado?</span>
-              <span class="span3"><a href="/paginadecadastro">Fazer cadastro</a></span>
+    return true; // Permite o envio do formulário
+}
+  </script>
+  <body class="bgSizeCover ">
+    <section>
+      <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
+  
+
+      <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+        <main>
+          <header>
+            <div class="titulos borda_arredond-8">
+              <h5 class="disposicao_titulos">
+                Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
+                reclamações
+                referentes
+                a infraestrutura asfáltica da cidade.
+              </h5>
             </div>
-            <div class="container-spans">
-              <span class="span3"><a href="/">Voltar para página de login e entrar</a></span>
-            </div>
-          </form>
-
-
-        </div>
-        <!--      </section> -->
-
-      </main>
-    </div>
-    <footer>
-      <div class="centralizar rodape">
-        <p class="attribution" id="attr">
-          PI1 GRUPO-005 Sertãozinho-SP - UNIVESP
-        </p>
+          </header>
+          <!--      <section class="parte2"> -->
+          <div class="centralizar disposicao_conteudo">
+            <span class="info">
+              <p>
+                Recuperaçao de senha.
+                <hr>
+              </p>
+      
+              <p>
+                Informe seu e-mail para receber a sua senha.
+              </p>
+      
+            </span>
+            <span class="span11"></span>
+                            {{#if error}}
+      <div id="message-container" class="{{#if success}}success-message{{else}}error-message{{/if}}">
+        {{error}}
       </div>
-    </footer>
-  </section>
-</body>
+    {{/if}}
+            <!-- Form Usado para recuparação de senha pelos usuários cadastrados-->
+  {{!-- novalidate tira a validacao padrao do html no navegador(as mensagens de erro) --}}
+            <form method="post" onsubmit="return validateEsqueceu(this)" action="/esqueceusenha" class="container-inputs" novalidate> 
+              <!-- <label for="email">Email:</label> -->
+              <input type="email" id="email" name="email" placeholder="E-mail" required/>
+              <input type="submit" value="Enviar" class="button botao_blue-50" />
+              <div class="container-spans">
+                <span class="span2 mensagem">Não é cadastrado?</span>
+                <span class="span3"><a href="/paginadecadastro">Fazer cadastro</a></span>
+              </div>
+              <div class="container-spans">
+                <span class="span3"><a href="/">Voltar para página de login e entrar</a></span>
+              </div>
+            </form>
+
+
+          </div>
+          <!--      </section> -->
+
+        </main>
+      </div>
+      <footer>
+        <div class="centralizar rodape">
+          <p class="attribution" id="attr">
+            PI1 GRUPO-005 Sertãozinho-SP - UNIVESP
+          </p>
+        </div>
+      </footer>
+    </section>
+  </body>

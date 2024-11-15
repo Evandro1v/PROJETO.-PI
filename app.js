@@ -34,21 +34,21 @@ app.use(express.json()); // Middleware para interpretar o corpo da requisição 
 app.use(express.urlencoded({ extended: false })); // Middleware para interpretar dados do formulário codificados na URL.
 
 
-// const conexao = mysql.createConnection({
-//   host: 'junction.proxy.rlwy.net',
-//   user: 'root',
-//   password: 'WaPYAXZitnmQGzutZVWjvtETyMvECrAl',
-//   database: 'railway',
-//   port: '41162'
-// }); // Cria uma conexão com o banco de dados MySQL.
-
 const conexao = mysql.createConnection({
-  host: '127.0.0.1',
+  host: 'autorack.proxy.rlwy.net',
   user: 'root',
-  password: '123456',
-  database: 'tapaburaco',
-  port: '3306'
-}); // Cria uma conexão com o banco de dados MySQL local.
+  password: 'WVNcJaxojBHZwkNhEJbzzglIVMFwrLuW',
+  database: 'railway',
+  port: '52215'
+}); // Cria uma conexão com o banco de dados MySQL.
+
+// const conexao = mysql.createConnection({
+//   host: '127.0.0.1',
+//   user: 'root',
+//   password: '123456',
+//   database: 'tapaburaco',
+//   port: '3306'
+// }); // Cria uma conexão com o banco de dados MySQL local.
 
 conexao.connect(function (erro) {
   if (erro) throw erro; // Se ocorrer um erro na conexão, lança uma exceção.
@@ -205,7 +205,8 @@ app.post('/cadastro', function (req, res) {
 
     if (results.length > 0) {
       // Se o email já existe, retorna uma mensagem de erro
-      return res.render('paginadecadastro', { message: 'Email já cadastrado' });
+      return res.render('paginadecadastro', { error: 'Email já cadastrado' });
+      
     }
 
     // Se o email não existe, procede com o cadastro
@@ -218,7 +219,7 @@ app.post('/cadastro', function (req, res) {
       console.log('Usuário cadastrado com sucesso:', results);
 
       // Após o cadastro bem-sucedido, redireciona para a página de login
-      res.redirect('/');
+      res.render('paginadecadastro', { message: 'Email cadastrado com sucesso!' });
     });
   });
 })

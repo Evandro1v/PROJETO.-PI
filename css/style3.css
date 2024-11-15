@@ -97,6 +97,16 @@
     height: 40px;
     background-color: #f0c0c0;
     align-items: center;
+    align-content: center
+}
+.spanvalidaemail {
+    color: red;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    height: 40px;
+    background-color: #f0c0c0;
+    align-items: center;
 }
 
 body {
@@ -420,7 +430,7 @@ bt_sair:focus {
 section {
     padding: 1em;
     position: absolute;
-    top: 50%;
+    top: 63%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)

@@ -11,9 +11,7 @@
 <body class="bgSizeCover ">
     <section>
         <!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
-        {{#if messages.error}}
-        <div class="error-message">{{messages.error}}</div>
-        {{/if}}
+        
 
         <div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
             <main>
@@ -41,19 +39,28 @@
                     <!-- Form Usado para cadastrar usuários -->
                     <form method="post" onsubmit="return validateForm(this)" action="/cadastro"
                         class="container-inputs">
-                        {{#if message}}
-                        <div class="error-message">{{message}}</div>
+                        {{#if error}}
+                        <div class="error-message">
+                            {{error}}</div>
                         {{/if}}
+                        {{#if message}}
+                        <div class="success-message">
+                            {{message}}</div>
+                        {{/if}}
+                        <span id="span4"> </span>
+                        <span id="span5"> </span>
+                        <span id="span6"> </span>
+                        <span id="span7"></span>
                         <br />
                         <input type="text" name="nome" placeholder="Nome Completo" id="firstname-id" />
-                        <span id="span4"> </span>
+                        
                         <input type="tel" name="telefone" placeholder="Telefone" id="lastname-id" />
                         <!-- type="text" trocado por type="tel"-->
-                        <span id="span5"> </span>
+                        
                         <input type="address" name="email" placeholder="E-mail" id="email-id" />
-                        <span id="span6"> </span>
+                        
                         <input type="password" name="senha" placeholder="Senha" id="password-id" />
-                        <span id="span7"></span>
+                        
                         <input type="submit" class="button botao_blue-50" value="Cadastrar" />
                         <div class="container-spans">
                             <span class="span2 mensagem">

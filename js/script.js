@@ -1,11 +1,21 @@
 function validateForm(event) {
+    const infoSpan = document.querySelector('.info'); // Span que será ocultado
+    const disposicaoTitulos=document.querySelector('.disposicao_titulos');//sera oculto
+    infoSpan.style.display='none';//oculta o span info
+    disposicaoTitulos.style.display='none';//oculta o span info
 
-    // Resetando mensagens de erro
+        
     document.getElementById("span4").innerHTML = '';
     document.getElementById("span5").innerHTML = '';
     document.getElementById("span6").innerHTML = '';
     document.getElementById("span7").innerHTML = '';
-    //pegando o value dos id
+
+    document.getElementById("span4").classList.remove('error-message');
+    document.getElementById("span5").classList.remove('error-message');
+    document.getElementById("span6").classList.remove('error-message');
+    document.getElementById("span7").classList.remove('error-message');
+
+    // Pegando o value dos id
     const password = document.getElementById("password-id").value;
     const firstname = document.getElementById("firstname-id").value;
     const lastname = document.getElementById('lastname-id').value;
@@ -16,36 +26,45 @@ function validateForm(event) {
 
     // Validar nome (pelo menos 3 caracteres)
     if (firstname.length < 3) {
-        document.getElementById("span4").innerHTML = "nome muito curto";
+        document.getElementById("span4").innerHTML = "Nome muito curto";    
+        document.getElementById("span4").classList.add('error-message'); // Adiciona a classe de erro
         isFieldsValidated = false;
+    }
 
-    }
-    // Validar ultimo nome (pelo menos 3 caracteres)
+    // Validar telefone (pelo menos 10 caracteres)
     if (lastname.length < 10) {
-        document.getElementById("span5").innerHTML = " telefone invalido";
+        document.getElementById("span5").innerHTML = "Telefone inválido";
+        document.getElementById("span5").classList.add('error-message'); // Adiciona a classe de erro
         isFieldsValidated = false;
     }
+
     // Validar email usando expressão regular simples
     if (!emailRegex.test(address)) {
         document.getElementById("span6").innerHTML = 'Email inválido.';
+        document.getElementById("span6").classList.add('error-message'); // Adiciona a classe de erro
         isFieldsValidated = false;
     }
-
 
     // Validar senha (pelo menos 6 caracteres)
     if (password.length < 6) {
-        document.getElementById("span7").innerHTML = 'senha muito curta,(6 caracteres ou mais)';
+        document.getElementById("span7").innerHTML = 'Senha muito curta, (6 caracteres ou mais)';
+        document.getElementById("span7").classList.add('error-message'); // Adiciona a classe de erro
         isFieldsValidated = false;
     }
+
+    // Se todos os campos passarem na validação, o formulário é enviado
     if (isFieldsValidated) {
-        // Redirecionar para a página de login após a validação bem-sucedida
-        window.location.href = '/';
-        return true;
+        return true; // Permite o envio
     }
-    // Se todas as validações passarem, o formulário é enviado
+    const errorMessage = document.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.style.display = 'none';
+      errorMessage.innerHTML = '';
+       // Limpa a mensagem de erro
+    }
+    // Caso contrário, retorna false para evitar o envio
     return false;
 }
-
 
 
 
