@@ -5,96 +5,237 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style2.css" />
-    <title>OPERAÇÃO TAPA BURACOS</title>
+    <link rel="stylesheet" href="/css/style-Ran.css" />
+    <link rel="stylesheet" href="/css/style-form.css" />
+    <link rel="stylesheet" href="/css/pagBase.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Operação tapa buraco - Usuário</title>
 </head>
 
 <body>
-
-    <div class="botoes">
-        <button onclick="showForm('cadastroProblemaForm')">Cadastrar Problema</button>
-        <button onclick="showTable()">Visualizar Problemas</button>
-        <form action="/logout" method="post">
-            <button type="submit">Sair</button>
-        </form>
-        
-
-    </div>
-    <main>
-<button onclick="home()"id="home" style="display: none;" >home</button>
-        <div class="container-formulario" id="cadastroProblemaForm" style="display: none;">
-            <h2>Formulário de Incidentes de Via</h2>
-            <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
-                <h3>Gravidade da Ocorrência:</h3>
-                <div class="container-label">
-                    <label><input type="radio" name="gravidade_da_ocorrencia" value="Baixa" required />
-                        Baixa</label>
-                    <label><input type="radio" name="gravidade_da_ocorrencia" value="Media" required />
-                        Media</label>
-                    <label><input type="radio" name="gravidade_da_ocorrencia" value="Alta" required />
-                        Alta</label>
-                </div>
-                <h3>Detalhes da Ocorrência:</h3>
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="end_ocorrencia" name="end_ocorrencia" maxlength="100" required
-                    placeholder="Digite o endereco" />
-
-                <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="bairro" maxlength="50" required placeholder="Digite o bairro" />
-
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep" maxlength="8" required
-                    placeholder="Digite apenas os 8 dígitos do CEP" />
-
-                <label for="descricao">Descrição da Ocorrência:</label>
-                <textarea id="descricao_da_ocorrencia" name="descricao_da_ocorrencia" required maxlength="255"
-                    placeholder="Exemplo: buracao de tal tamanho localizado na altura da rua tal"></textarea>
-
-                <label for="foto-ocorrencia">Foto da Ocorrência:</label>
-                <input type="file" id="foto_da_ocorrencia" name="foto_da_ocorrencia" accept="image/*" required />
-
-                <label for="foto-mapa">Foto do Mapa da Ocorrência:</label>
-                <input type="file" id="foto_mapa_da_localizacao" name="foto_mapa_da_localizacao" accept="image/*" />
-
-                <input type="submit" value="Enviar" />
+<div>
+    <ul id="menu-user">
+        <li>
+            <div class="container-usuarios">
+                Olá, {{user.nome}}
+            </div>
+        </li>
+        <li>
+            <form action="/logout" method="post">
+                <button class="botao_sair" type="submit">
+                    <span class="icone fa-icon fa-sign-out"></span> <!-- Define icone para o botão -->
+                    Sair
+                </button>
             </form>
-        </div>
+        </li>
+    </ul>
+</div>
+    <div class="section">
+        <div class="container-top">
+            <div>
+                <p>
+                    <span class="login-form-title">
+                        O que você deseja?
+                    </span>
+                </p>
+                
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width="25">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Disambig.svg" width="35"
+                                    height="28">
+                            </td>
+                            <td class="info">
+                                Escolha uma das opções abaixo.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        {{!-- <div class="tabelaproblema" id="tabelaProblema">
-            <h2>PROBLEMAS NAS VIAS</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID-Ocorrência</th>
-                        <th>Descrição</th>
-                        <th>Status</th>
-                        <th>Foto</th>
-                        <th>Detalhes/Solução</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each problemas}}
-                    <tr>
-                        <td>{{this.id_ocorrencia}}</td>
-                        <td>{{this.descricao_da_ocorrencia}}</td>
-                        <td>{{this.status_da_ocorrencia}}</td>
-                        <td>
-                            <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
-                                style="width: 65px; height: 40px;" />
-                        </td>
-                        <td class="acoes">
-                            <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
-                            <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div> --}}
-        <div class="tabelaproblema" id="tabelaProblema">
-            <h2>PROBLEMAS NAS VIAS</h2>
-            <div class="problema-container">
+                <div class="centralizar disposicao_conteudo">
+                    <div id="div1-login-form" class="divs active">
+                        <!--Botoes da tala inicial logada-->
+                        <button class="botao botao_blue-50" onclick="showForm('cadastroProblemaForm')">Cadastrar
+                            Problema</button>
+                        </br>
+                        <button class="botao botao_blue-50" onclick="showTable()">Visualizar Problemas</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Formulário-->
+            <main>
+                <!--Botão(home) fechar telas Form/Table, agora obsoleto!-->
+                <button onclick="home()" id="home" style="display: none;">home</button>
+
+                <!--Esta div contem o NOVO formulário para cadastro de problmas-->
+                <div class="container-formulario col-12 mt-3 mt-md-0 p-0 col-lg-6" id="cadastroProblemaForm" style="display: none;>
+                <div class=" d-block col-12 col-md-11 m-auto">
+
+                    <!--Formulário de cadastro de problemas-->
+                    <form action="/enviar-formulario" method="post" enctype="multipart/form-data">
+
+                        <span class="info">
+                            <p class="login-form-title">
+                                Cadastro de problemas.
+                            </p <p>
+                            Preencha os campos abaixo para informar o problema.</br>
+                            Campos com * são obrigatórios.
+                            </p>
+                        </span>
+
+                        <div class="borda_red-20 borda_arredond-8">
+
+                            <div class="mt-2">
+
+                                <div class="form-row mt-3">
+                                    <div class="col-md-6 col-12">
+                                        <label for="endereco">* Endereço:</label>
+                                        <input class="form-control" type="text" id="end_ocorrencia"
+                                            name="end_ocorrencia" maxlength="100" required
+                                            placeholder="Informe o endereco" />
+                                    </div>
+
+                                    <div class="col-md-4 col-12">
+                                        <label for="bairro">* Bairro:</label>
+                                        <input class="form-control" type="text" id="bairro" name="bairro" maxlength="50"
+                                            required placeholder="Informe o bairro" />
+                                    </div>
+
+                                    <div class="col-md-2 col-12">
+                                        <label for="cep">* CEP:</label>
+                                        <input class="form-control" type="text" id="cep" name="cep" maxlength="8"
+                                            required placeholder="Ex.: 99999999" />
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-row mt-2">
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="pl-2">* Gravidade da Ocorrência:</label>
+                                        <div class="w-100 d-block d-md-flex my-2">
+
+                                            <div class="col-sm-12 col-md-2 my-2 my-md-0">
+                                                <input class="form-control" type="radio" name="gravidade_da_ocorrencia"
+                                                    value="Baixa" required />
+                                                <label tabindex="0" for="Baixa">Baixa</label>
+
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-2 my-2 my-md-0">
+                                                <input class="form-control" type="radio" name="gravidade_da_ocorrencia"
+                                                    value="Media" required />
+                                                <label tabindex="0" for="Media">Media</label>
+
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-2 my-2 my-md-0">
+                                                <input class="form-control" type="radio" name="gravidade_da_ocorrencia"
+                                                    value="Alta" required />
+                                                <label tabindex="0" for="Alta">Alta</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8 col-sm-12">
+                                        <label for="descricao">* Descrição da Ocorrência:</label>
+                                        <textarea class="form-control container-label" id="descricao_da_ocorrencia"
+                                            name="descricao_da_ocorrencia" required="" maxlength="255"
+                                            placeholder="Ex.: Buraco de um metro de largura, dois de prufundidade, localizado na rua Pêra, na altura do número 4."></textarea>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="form-row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label for="foto-ocorrencia">* Foto da Ocorrência:</label>
+                                        <input class="form-control" type="file" id="foto_da_ocorrencia"
+                                            name="foto_da_ocorrencia" accept="image/*" required />
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <label for="foto-mapa">* Mapa da Ocorrência:</label>
+                                        <input class="form-control" type="file" id="foto_mapa_da_localizacao"
+                                            name="foto_mapa_da_localizacao" accept="image/*" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <button onclick="home()" class="mt-2 w-100 botao botao_red-40">Cancelar</button>
+                                    </div>
+                                    
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <button type="submit" id="btn-cadastrar"
+                                            class="mt-2 w-100 botao botao_blue-50">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    {{!-- <div class="tabelaproblema" id="tabelaProblema">
+        <h2>PROBLEMAS NAS VIAS</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID-Ocorrência</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Foto</th>
+                    <th>Detalhes/Solução</th>
+                </tr>
+            </thead>
+            <tbody>
                 {{#each problemas}}
-                <div class="problema-item">
+                <tr>
+                    <td>{{this.id_ocorrencia}}</td>
+                    <td>{{this.descricao_da_ocorrencia}}</td>
+                    <td>{{this.status_da_ocorrencia}}</td>
+                    <td>
+                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+                            style="width: 65px; height: 40px;" />
+                    </td>
+                    <td class="acoes">
+                        <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
+                        <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div> --}}
+
+    <!--Esta seção mostra problemas cadastrados-->
+    <div class="borda_green-40 borda_preenchimento borda_arredond-8 sombra area_conteudo margem_topo-2" style="display: none;>
+				<div class="tabelaproblema" id="tabelaProblema">
+        <span class="info">
+            <p class="login-form-title">
+                Visualização da situação(status).
+            </p <p>
+            Visualização da situação(status) de problemas cadastrados por você.</br>
+            </p>
+        </span>
+        <!--Esta div contem a estrutura que mostra daca linha para cada cadastro -->
+        <div class="borda_red-20 borda_arredond-8">
+            <div class="problema-container ">
+                {{#each problemas}}
+                <div class="problema-item borda_gray-30">
                     <div class="problema-info">
                         <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
                         <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
@@ -104,20 +245,48 @@
                         <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" class="img-problema" />
                     </div>
                     <div class="problema-acoes">
-                        <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Solução</button>
-                        <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Detalhes</button>
+                        <button onclick="showPopupsolucao('{{this.id_ocorrencia}}')">Visualizar</button>
+                        <button onclick="showPopuproblemas('{{this.id_ocorrencia}}')">Ver Detalhes</button>
                     </div>
                 </div>
                 {{/each}}
             </div>
+            <div class="centralizar">
+                <!--Botão fechar telas Form/Table para fechar telas em paginalogada-->
+                <button class="botao botao_red-40" onclick="home()">Fechar</button>
+            </div>
         </div>
-        <div id="popupContainerSolucao" class="popupContainerSolucao" style="display: none;">
-            <span class="closeBtn" onclick="closePopupsolucao()">&times;</span>
-            <h2>Tabela de Soluções</h2>
+    </div>
+    </div>
+    <!--Div com class="fundo" quando o botão Visualizar é clicado. Impede intereçao com janelas abaixo-->
+    <div id="popupDivFundo" class="fundo" style="display: none;"></div>
+
+    </div>
+
+
+
+    <!-- Mostra solução para um problema quando o botão Visualizar(em status) é clicado -->
+    <div class="borda_green-40 borda_preenchimento borda_arredond-8 sombra area_conteudo margem_topo-3 margem_topo popupContainerSolucao"
+        id="popupContainerSolucao" style="display: none;">
+
+        <span class="info">
+            <p class="login-form-title">
+                Descrição da solução.
+                
+            </p <p>
+            Veja a descrição da solução para o problema acompanhada de uma foto da solução.
+            </br>
+            </p>
+        </span>
+
+
+
+        <div class="borda_red-20 borda_arredond-8">
             <div class="solucoes-container">
                 <!-- Loop para cada solução -->
-                {{#each problemas}} <!-- supondo que você tenha um array de solucoes -->
-                <div class="solucao-item" data-id="{{this.id_ocorrencia}}">
+                {{#each problemas}}
+                <!-- supondo que você tenha um array de solucoes -->
+                <div class="solucao-item borda_gray-30" data-id="{{this.id_ocorrencia}}">
                     <div class="descricao-solucao">
                         <p><strong>Descrição da Solução:</strong> {{this.descricao_solucao}}</p>
                     </div>
@@ -138,45 +307,148 @@
                 {{/each}}
                 <!-- Fim do loop -->
             </div>
-        </div>
-
-        <div id="popupContainerproblemas" class="popupContainerproblemas" style="display: none;">
-            <span class="closeBtn" onclick="closePopuproblemas()">&times;</span>
-            <h2>Tabela de Problemas</h2>
-            <div class="vertical-list">
-                {{#each problemas}}
-                <div class="item" data-id="{{this.id_ocorrencia}}">
-                    <p><strong>ID-Ocorrência:</strong> {{this.id_ocorrencia}}</p>
-                    <p><strong>ID-Usuário:</strong> {{this.id_usuario}}</p>
-                    <p><strong>Gravidade:</strong> {{this.gravidade_da_ocorrencia}}</p>
-                    <p><strong>Endereço:</strong> {{this.end_ocorrencia}}</p>
-                    <p><strong>Bairro:</strong> {{this.bairro}}</p>
-                    <p><strong>Descrição:</strong> {{this.descricao_da_ocorrencia}}</p>
-                    <p><strong>Foto da Ocorrência:</strong> <a href="#imagem{{this.id_ocorrencia}}"><img
-                                src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
-                                style="max-width: 50px; max-height: 50px;" /></a></p>
-                    <p><strong>Foto do Mapa:</strong> <a href="#mapa{{this.id_ocorrencia}}"><img
-                                src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa"
-                                style="max-width: 75px; max-height: 75px;" /></a></p>
-                    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
-                        <a href="#" class="fechar">&#x2716;</a>
-                    </div>
-                    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
-                        <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
-                        <a href="#" class="fechar">&#x2716;</a>
-                    </div>
-                </div>
-                {{/each}}
+            <div class="centralizar">
+                <span class="botao botao_red-40" onclick="closePopupsolucao()">Fechar</span>
             </div>
         </div>
+    </div>
+
+
+    <!-- Mostra os detalhes do problema cadastrado quando o botão Detalhes é clicado -->
+    <div class="borda_green-40 borda_preenchimento borda_arredond-8 sombra area_conteudo margem_topo-3 margem_topo popupContainerSolucao"
+        id="popupContainerproblemas" style="display: none;">
+
+        <span class="info">
+            <p class="login-form-title">
+                Detalhes do problema cadastrado.
+            </p <p>
+            Veja abaixo detalhes do problema cadastrado.
+            </br>
+            </p>
+        </span>
+        </br>
+
+        <div class="borda_red-20 borda_arredond-8 col-12 mt-3 mt-md-0 p-0 col-lg-6">
+            <div class="d-block  col-12 col-md-11 m-auto">
+                <div class="w-sm-100 mt-2">
+                    <p class="text-uppercase font-weight-bold text-navy mt-3">
+                        Dados do Usuário
+                    </p>
+
+                    {{#each problemas}}
+                        <div class="item" data-id="{{this.id_ocorrencia}}">
+                                
+                            <div class="form-row">
+                                <div class="col-md-2 col-sm-2 form-group-float">
+                                    <label for="ID Usuário">ID:</label>
+                                    <div class="div_detalhes_problemas">{{this.id_usuario}}</div>
+                                </div>
+                                <div class="col-md-10 col-sm-10 form-group-float">
+                                    <label for="Nome">Nome:</label>
+                                    <div class="div_detalhes_problemas">{{../user.nome}}</div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-uppercase font-weight-bold text-navy mt-3">
+                                Dados da Ocorência
+                            </p>
+                                                                                    
+                            <div class="form-row">
+                                <div class="col-md-2 col-sm-2 form-group-float">
+                                    <label for="ID Ocorrência">ID:</label>
+                                    <div class="div_detalhes_problemas">{{this.id_ocorrencia}}</div>
+                                </div>
+                                
+                                <div class="col-md-10 col-sm-10 form-group-float">
+                                    <label for="Gravide">Gravide:</label>
+                                    <div class="div_detalhes_problemas">{{this.gravidade_da_ocorrencia}}</div>
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="form-row">
+                                
+                                <div class="col-md-8 col-sm-8 form-group-float">
+                                    <label for="Endereço">Endereço:</label>
+                                    <div class="div_detalhes_problemas">{{this.end_ocorrencia}}</div>
+                                </div>
+                                
+                                <div class="col-md-4 col-sm-4 form-group-float">
+                                    <label for="Bairro">Bairro:</label>
+                                    <div class="div_detalhes_problemas">{{this.bairro}}</div>
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="form-row mt-3">
+                                <div class="col-md-12 col-12  form-group-float">
+                                    <label for="Descrição">Descrição:</label>
+                                    <div class="div_detalhes_problemas">{{this.descricao_da_ocorrencia}}</div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6 col-sm-12 form-group-float">
+                                    <label for="Foto da Ocorrência">Foto da Ocorrência:</label>
+                                    <div class="div_detalhes_problemas">
+                                        <a href="#imagem{{this.id_ocorrencia}}"><img
+                                                src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência"
+                                                style="max-width: 50px; max-height: 50px;" />
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12 form-group-float">
+                                    <label for="Foto Mapa da Ocorrência">Foto Mapa da Ocorrência:</label>
+                                    <div class="div_detalhes_problemas">
+                                        <a href="#mapa{{this.id_ocorrencia}}"><img
+                                                src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa"
+                                                style="max-width: 75px; max-height: 75px;" />
+                                        </a>
+                                    </div>
+
+                                    <!--Mostra a foto da ocorrência de forma expandida-->
+                                    <div class="imagem-expandida" id="imagem{{this.id_ocorrencia}}">
+                                        <img src="{{this.foto_da_ocorrencia}}" alt="Foto da Ocorrência" />
+                                        <a href="#" class="fechar">
+                                            <span class="icone fa-icon fa-icon-fexar fa fa-close"></span> <!-- Define icone para o botão -->
+                                            Fechar
+                                        </a>
+                                    </div>
+
+                                    <!--Mostra o mapa da localização da ocorrência de forma expandida-->
+                                    <div class="imagem-expandida" id="mapa{{this.id_ocorrencia}}">
+                                        <img src="{{this.foto_mapa_da_localizacao}}" alt="Foto do Mapa" />
+                                        <a href="#" class="fechar">
+                                            <span class="icone fa-icon fa-icon-fexar fa fa-close"></span> <!-- Define icone para o botão -->
+                                            Fechar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+
+                    <!--Botão Fechar para tela de visualização de detalhes da ocorrênica-->
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 form-group-float">
+                            <div class="centralizar">
+                                <span class="botao botao_red-40" onclick="closePopuproblemas()">Fechar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     </main>
 
     <script>
         function showForm(formId) {
-             //mostra botao home
-                             document.getElementById('home').style.display = 'flex ';
+            //mostra botao home
+            document.getElementById('home').style.display = 'flex';
 
             const forms = document.querySelectorAll('.container-formulario');
             forms.forEach(form => {
@@ -205,19 +477,19 @@
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
             //esconde botao home
-             document.getElementById('home').style.display = 'flex ';
+            document.getElementById('home').style.display = 'flex ';
         }
 
         function showTable() {
             //mostra botao home
-             document.getElementById('home').style.display = 'flex ';
+            document.getElementById('home').style.display = 'flex ';
             const forms = document.querySelectorAll('.container-formulario');
             forms.forEach(form => {
                 form.style.display = 'none';
             });
 
             const tabelaProblema = document.getElementById('tabelaProblema');
-            tabelaProblema.style.display = 'flex';
+            tabelaProblema.style.display = 'block';
 
             const formCadsolucao = document.getElementById('cadastroSolucaoForm');
             formCadsolucao.style.display = 'none';
@@ -225,21 +497,26 @@
             // Oculta a tabela de soluções quando clicar em visualizar problemas
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
-            
-            
+
+
         }
- function home() {
+        function home() {
             // Esconde todos os elementos conforme 
-            
+
             document.getElementById('cadastroProblemaForm').style.display = 'none';
             document.getElementById('tabelaProblema').style.display = 'none';
             //esconde botao home
             document.getElementById('home').style.display = 'none ';
-            }
-            
+        }
+
+        //Seria aqui o controle da jaela  Detalhes do problema cadastrado???
         function showPopuproblemas(id_ocorrencia) {
             var popup = document.getElementById("popupContainerproblemas");
-            popup.style.display = "flex";
+            popup.style.display = "block";
+
+            //Controla o surgimento da div com class="fundo" quando o botão Ver Detalhes é clicado
+            var popupDiv = document.getElementById('popupDivFundo');
+            popupDiv.style.display = 'block';
 
             // Ocultar todas as tabelas inicialmente
             var allTables = document.querySelectorAll("#popupContainerproblemas .item");
@@ -247,15 +524,19 @@
                 table.style.display = "none";
             });
 
-            // Exibir apenas a tabela relevante com base no id_ocorrencia
+            // Exibir apenas a tabela(formada por divs) relevante com base no id_ocorrencia
             var targetTable = document.querySelector(`#popupContainerproblemas .item[data-id="${id_ocorrencia}"]`);
             if (targetTable) {
-                targetTable.style.display = "flex";
+                targetTable.style.display = "block";
             }
         }
 
         function closePopuproblemas() {
             var popup = document.getElementById("popupContainerproblemas");
+            popup.style.display = "none";
+
+            //Muda o propriedade display de popupDivFundo(div com a class="fundo") para none, "fechando" a div de fundo
+            var popup = document.getElementById("popupDivFundo");
             popup.style.display = "none";
         }
 
@@ -265,6 +546,10 @@
 
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "block";
+
+            //Controla o surgimento da div com class="fundo" quando o botão Visualizar é clicado
+            var popupDiv = document.getElementById('popupDivFundo');
+            popupDiv.style.display = 'block';
 
             // Ocultar todos os itens de solução inicialmente
             var solucoes = document.querySelectorAll("#popupContainerSolucao .solucao-item");
@@ -283,6 +568,10 @@
         function closePopupsolucao() {
             var popup = document.getElementById("popupContainerSolucao");
             popup.style.display = "none";
+
+            //Muda o propriedade display de popupDivFundo(div com a class="fundo") para none, "fechando" a div de fundo
+            var popup = document.getElementById("popupDivFundo");
+            popup.style.display = "none";
         }
         document.addEventListener('DOMContentLoaded', function () {
             var statusElements = document.querySelectorAll('.problema-info .status');
@@ -295,6 +584,23 @@
             });
         });
     </script>
+
+    <!--Controla a div com class="fundo" quando o botão Visualizar é clicado-->
+
+    </div>
+    </div>
+
+    <div class="section" id="bottomRange">
+        Aplicação Tapa Buraco V0.1 Beta Test
+    </div>
+
+        <footer>
+            <div class="centralizar rodape">
+                PI-2 GRUPO-012 Sertãozinho-SP - UNIVESP
+            </div>
+        </footer>
+    
+
 </body>
 
 </html>

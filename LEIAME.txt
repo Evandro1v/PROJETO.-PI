@@ -1,0 +1,22 @@
+Pasta de desenvolvimento da Aplicação Tapa Buraco V0.1 Beta Test  - EV_RA
+-----------------------------------------------------------------------------------------------
+
+Aviso:
+Não contêm a pasta node_modules
+
+
+Para rodar:
+--------------
+1- Faça backup dos seus arquivos da aplicação, ou os mova para outra pasta.
+
+
+2- Coloque o conteúdo desta distribuição no mesmo local onde estavam os arquivos da sua versão. Mantenha sua pasta node_modules inalterada.
+
+
+3- A senha para conexão ao banco de dados nesta versão está definida da seguinte forma:
+password: ' ',
+
+Mude, conforme necessário de acordo com a senha definida para o MySQL em seu computador.
+
+
+4- Rode o comando node app.js no terminal do VSCode.

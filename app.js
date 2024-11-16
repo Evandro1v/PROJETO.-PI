@@ -14,16 +14,15 @@ const nodemailer = require('nodemailer');
 const app = express(); // Cria uma instância do aplicativo Express.
 
 const admin = require('firebase-admin');
-
-  // Configure Firebase Admin SDK com as credenciais da variável de ambiente
-  admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
-    storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
-  });
-// admin.initializeApp({
-//   credential: admin.credential.cert('sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json'),
-//   storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
-// });
+  // // Configure Firebase Admin SDK com as credenciais da variável de ambiente
+  // admin.initializeApp({
+  //   credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
+  //   storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
+  // });
+admin.initializeApp({
+  credential: admin.credential.cert('sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json'),
+  storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
+});
 
 
 app.engine('handlebars', engine()); // Configura o motor de visualização Handlebars no Express.
@@ -49,7 +48,6 @@ const conexao = mysql.createConnection({
 //   database: 'tapaburaco',
 //   port: '3306'
 // }); // Cria uma conexão com o banco de dados MySQL local.
-
 conexao.connect(function (erro) {
   if (erro) throw erro; // Se ocorrer um erro na conexão, lança uma exceção.
   console.log('Conexão efetuada com sucesso'); // Loga uma mensagem informando que a conexão foi estabelecida com sucesso.

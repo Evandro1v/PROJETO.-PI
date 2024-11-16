@@ -1,0 +1,132 @@
+
+html {
+  background: #DCE3E6;
+  padding: 0 3%
+}
+
+#menu-user {
+    position: fixed;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 65px;
+    background: hsl(0, 0%, 35.3%);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    padding: 0.5em 0.5em 0.5em 2.2em;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  #menu-user li {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  #menu-user a {
+    color: inherit
+  }
+
+  /* Make menu-user absolute, not fixed, on IE 5 & 6 */
+  #menu-user {
+    position: absolute
+    z-index 4;
+  }
+
+  *>#menu-user {
+    position: fixed
+
+  }
+
+body {
+  max-width: 46em;
+  padding: 0 20px;
+  /*A propriedade margin em CSS define o espaço ao redor de um elemento.
+  No caso de margin: 6em auto 19em;, os valores são aplicados da seguinte forma:
+    6em: Margem superior (top) de 6em.
+    auto: Margem direita (right) e esquerda (left) automáticas. Isso é usado para centralizar o elemento horizontalmente dentro de seu contêiner.
+    6em: Margem inferior (bottom) de 6em. */
+    margin: 6em auto 6em;
+  background: #fff;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  font: 1.156em/1.3 My Gill Sans, Lato, sans-serif;
+  font-size-adjust: 0.45; /* Ajusta a altura das letras minúsculas em relação ao tamanho da fonte */
+  position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 8px;
+  border: 2px;
+  border: 2px solid #60d399;
+ /* text-align: center; CONFLITA COM style-form. Centraliza conteúdo*/
+
+}
+
+/*Define fontes de texto*/
+body>h1,
+.section>h2:first-child,
+.aside h3 {
+  letter-spacing: .051em;
+  font: normal 1.5em/1.1 OFL Sorts Mill Goudy, Noto Nastaliq Urdu,
+    My Noto Nastaliq Urdu, Georgia, serif;
+  font-size-adjust: 0.43
+}
+
+body>h1 {
+  column-span: all;
+  margin: 0 -20px 3em -20px;
+  /* Room below for #banner menu */
+  padding: .6em 1em;
+  height: 3.3em;
+  border-left: solid transparent 90px;
+  /* Room for W3C logo */
+  border-right: solid transparent 110px;
+  /* Room for language link */
+  color: #666;
+  background: #eee
+}
+
+
+.section {
+  /*break-inside: avoid;
+  margin: 0 0 2em 0;*/
+  padding: 1.3em 1em 0 1em;
+  
+}
+
+.fixed-element {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Adicione largura e altura conforme necessário */
+}
+
+#rodape {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0;
+  break-inside: auto;
+}
+
+#bottomRange.section.section.section.section.section {
+  column-span: all;
+  clear: both;
+  font-size: .9em;
+  text-align: left;
+  margin: 1em -20px 0 -20px;
+  color: #666;
+  padding: 1.11em;
+  border-radius: 0px 0px 8px 8px;
+  background-color: #f0faf5;
+  border-bottom: 2px solid #f0faf5;
+}
+
+#bottomRange p {
+  text-transform: uppercase;
+  margin: 0
+}
+
+

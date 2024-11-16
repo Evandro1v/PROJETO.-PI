@@ -1,0 +1,80 @@
+- -----------------------------------------------------
+-- cria banco de dados"tapaburaco"
+-------------------------------------------------------
+
+CREATE SCHEMA `tapaburaco` DEFAULT CHARACTER SET utf8mb4 ;
+
+- -----------------------------------------------------
+-- seleciona banco de dados`tapaburaco`
+-------------------------------------------------------
+USE tapaburaco;
+
+
+- -----------------------------------------------------
+-- Table `tapaburaco`.`cad_usuarios`
+-------------------------------------------------------
+CREATE TABLE cad_usuario (
+  id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  telefone VARCHAR(20) NULL DEFAULT NULL,
+  `e-mail`VARCHAR(60) NOT NULL,
+  senha VARCHAR(100) NOT NULL
+);
+
+-- -----------------------------------------------------
+-- Table `tapaburaco`.`cad_problema`
+-- -----------------------------------------------------
+CREATE TABLE  cad_problema (
+	  id_ocorrencia INT NOT NULL AUTO_INCREMENT  PRIMARY KEY,
+	  id_usuario INT NOT NULL,
+	  end_ocorrencia VARCHAR(100) NOT NULL,
+	  bairro VARCHAR(50) NOT NULL,
+      cep VARCHAR(10) NOT NULL,
+	  gravidade_da_ocorrencia VARCHAR(10) NOT NULL,
+	  descricao_da_ocorrencia VARCHAR(255) NOT NULL,
+	  foto_da_ocorrencia VARCHAR(200) NOT NULL,
+	  foto_mapa_da_localizacao VARCHAR(200) NOT NULL,
+	  status_da_ocorrencia VARCHAR(15) NOT NULL,
+FOREIGN KEY (id_usuario) REFERENCES cad_usuario (id_usuario)
+);
+-- -----------------------------------------------------
+-- Table `tapaburaco`.`cadastrol_solucao`
+-- -----------------------------------------------------
+CREATE TABLE cad_solucao (
+	  id_ocorrencia INT NOT NULL,
+	  id_usuario INT NOT NULL,
+	  descricao_solucao VARCHAR(255) NOT NULL,
+	  foto_da_solucao VARCHAR(200) NOT NULL,
+FOREIGN KEY (id_ocorrencia) REFERENCES cad_problema(id_ocorrencia),
+FOREIGN KEY (id_usuario) REFERENCES cad_usuario(id_usuario)
+);
+
+
+INSERT INTO cad_usuario (nome, telefone, `e-mail`, senha)
+VALUES('Maria', '169999999', 'marizinha@gmail.com', '12345');
+
+
+INSERT INTO cad_problema (id_ocorrencia, id_usuario, end_ocorrencia, bairro,cep, gravidade_da_ocorrencia,
+descricao_da_ocorrencia, foto_da_ocorrencia, foto_mapa_da_localizacao, status_da_ocorrencia)
+VALUES('1', '1', 'Av. Das pedras bla bla bla bla bla', 'Pedrosa','14155-545' ,'Media', 'Buraco no asfalto', 'www.google.imgs','www.google.local', 'em andamento');
+
+
+INSERT INTO cad_solucao (id_ocorrencia, id_usuario, descricao_solucao, foto_da_solucao)
+VALUES('1', '1', 'Buraco no asfalto', 'www.google.imgs');
+
+drop table cad_usuario;
+drop table cad_problema;
+drop table  cad_solucao;
+USE tapaburaco;
+SELECT * FROM cad_problema;
+SELECT * FROM cad_solucao;
+SELECT * FROM cad_usuario;
+ALTER TABLE cad_usuario
+CHANGE COLUMN email `e-mail` VARCHAR(255) NOT NULL;
+select * from cad_problema cp
+inner join cad_usuario  cu on cp.id_usuario = cu.id_usuario
+inner join cad_solucao cs on cu.id_usuario = cs.id_usuario;
+
+SELECT id_usuario, nome
+    FROM cad_usuario
+    WHERE email = ? AND senha = ?

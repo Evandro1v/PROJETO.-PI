@@ -1,0 +1,1008 @@
+/* # id */
+/* . class */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --blue-70: #002238;
+    --blue-60: #014a82;
+    --blue-50: #0089e3;
+    --blue-40: #4fb3f6;
+    --blue-30: #b9e2fe;
+    --blue-20: #d9f0ff;
+    --blue-10: #edf8ff;
+    --green-70: #002e13;
+    --green-60: #00672e;
+    --green-50: #24a865;
+    --green-40: #60d399;
+    --green-30: #9ce8c2;
+    --green-20: #e3f7ed;
+    --green-10: #f0faf5;
+    --indigo-70: #0c114d;
+    --indigo-60: #133191;
+    --indigo-50: #163bf3;
+    --indigo-40: #6d83f3;
+    --indigo-30: #bdc7fb;
+    --indigo-20: #ebeeff;
+    --indigo-10: #f2f4ff;
+    --red-70: #8d1a00;
+    --red-60: #cf1d00;
+    --red-50: #ff341a;
+    --red-40: #ff7968;
+    --red-30: #ffc7bf;
+    --red-20: #ffe8e5;
+    --red-10: #fff1f0;
+    --yellow-70: #5b3100;
+    --yellow-60: #935000;
+    --yellow-50: #c98600;
+    --yellow-40: #fbbe2e;
+    --yellow-30: #fedd8e;
+    --yellow-20: #fff3d6;
+    --yellow-10: #fffaf0;
+    --gray-70: #323c45;
+    --gray-60: #46535f;
+    --gray-50: #687b8c;
+    --gray-40: #c3d1dd;
+    --gray-45: #DDDDDC;/*Bordas de inputs*/
+    --gray-30: #e1eaf1;
+    --gray-20: #ebf2f7;
+    --gray-10: #f5f8fa;
+    --text-black: #000000;
+    --text-white: #ffffff;
+    --text-blue-60: #014a82;
+    --text-blue-40: #4fb3f6;
+    --text-green-60: #00672e;
+    --text-green-40: #60d399;
+    --text-indigo-60: #133191;
+    --text-indigo-40: #6d83f3;
+    --text-red-60: #cf1d00;
+    --text-red-40: #ff7968;
+    --text-yellow-60: #935000;
+    --text-yellow-40: #fbbe2e;
+    --text-gray-70: #323c45;
+    --text-gray-60: #46535f;
+    --text-gray-50: #687b8c;
+    --text-gray-40: #c3d1dd;
+    --icon-black: #000000;
+    --icon-white: #ffffff;
+    --icon-blue-60: #014a82;
+    --icon-blue-50: #0089e3;
+    --icon-green-60: #00672e;
+    --icon-green-50: #24a865;
+    --icon-indigo-60: #133191;
+    --icon-indigo-50: #163bf3;
+    --icon-red-60: #cf1d00;
+    --icon-red-50: #ff341a;
+    --icon-yellow-60: #935000;
+    --icon-yellow-50: #c98600;
+    --icon-gray-70: #323c45;
+    --icon-gray-60: #46535f;
+    --icon-gray-50: #687b8c;
+    --icon-gray-40: #c3d1dd;
+
+}
+.error-message {
+    color: red;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    height: 40px;
+    background-color: #f0c0c0;
+    align-items: center;
+    align-content: center
+}
+/* Define/coonfigura div com mensagens de erro*/
+
+
+
+/* Define/coonfigura div com mensagens de erro*/
+.message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: white;
+    display: none;
+}
+
+.error {
+    background-color: red;
+}
+
+.success {
+    background-color: green;
+}
+
+/* Define/coonfigura o comportamento das mensagens de aviso dos campos prenchidos incorretamte*/
+/*Obsoleto!??*/
+#span4,
+#span5,
+#span6,
+#span7 {
+    display: block;
+    font-family: "Roboto", sans-serif;
+    color: #980c13;
+    font-weight: bold;
+    /*background: #FCE4E5;
+    padding: 10px 20px 9px 20px;
+    border-right: 23px solid rgb(255, 255, 255);
+    border-left: 23px solid rgb(255, 255, 255);
+    */
+
+}
+
+
+body {
+    /*height: 100%;
+    margin: 0px;*/
+    background-color: var(--gray-40);
+    /*Cor do background para a aplicação*/
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+
+    /*display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;*/
+
+
+}
+
+/* Define/coonfigura o comportamento da imagem de fundo*/
+body.bgSizeCover {
+    background-image: url('https://blog.vittaresidencial.com.br/wp-content/uploads/2022/04/212cd555766074b980974659ccf6ba55.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    background-color: var(--gray-10);
+    /*Cor do background para aplicar efeito enevoado em imagem de fundo*/
+}
+
+/* Define/coonfigura o comportamento do body na páginalogada*/
+.bodyPagLogada {
+    /*
+    max-width: 60em;
+    padding: 0 20px;
+    margin: 6em auto 19em;
+    background: #fff;
+    position: relative;
+    */
+    max-width: 60em;
+    padding: 0 20px;
+    margin: 6em auto 19em;
+    background: #fff;
+    color: #333;
+    font: 1.156em/1.3 My Gill Sans, Lato, sans-serif;
+    font-size-adjust: none;
+    font-size-adjust: 0.45;
+    position: relative;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 8px;
+    border: 2px;
+    border: 2px solid #60d399;
+}
+
+.mensagem {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: #4fb3f6;
+    border: none;
+    outline: none;
+
+}
+
+
+.borda_red-20 {
+    border: 2px solid var(--red-20);
+    padding-top: 1.7em;
+    /*padding-top: 1em;*/
+}
+
+.borda_gray-30 {
+    border: 2px solid var(--gray-30);
+    /*padding-top: 1em;*/
+}
+
+.borda_green-40 {
+    border: 2px solid var(--green-40);
+}
+
+.borda_gray-45 {
+    border: 2px solid var(--gray-45);
+}
+
+.borda_blue-40 {
+    border: 2px solid var(--blue-40);
+}
+
+.borda_arredond-8 {
+    border-radius: 8px;
+}
+
+/*Preenchimento interno à borda*/
+.borda_preenchimento {
+    padding: 1.6em;
+}
+
+/*Posiciona telas na paginalogada*/
+.margem_topo{
+    margin-top: -16.2em;
+}
+
+.margem_topo-2{
+    margin-top: -16.2em;
+    z-index: 1;
+}
+
+
+.margem_topo-3{
+
+    margin: -42em auto 6em;
+    z-index: 2;
+}
+
+/*Fundo para telas na paginalogada. Bloqueia telas atrás da ação do mouse*/
+.fundo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #c3d1dd99;
+    /*fullscreen*/
+        width: 100vw;
+        height: 100vh;
+    z-index: 2;
+    /*margin-top: -61.2em;*/
+}
+
+/*Reposiciona o fundo e popupContainerSolucao quando resolução de tela muda NÃO FUNCIONOU BEM DEVE CAIR EM DESUSO*/
+
+
+
+/*Preenchimento interno à borda com porcentagem PARECE NÃO USADO!!*/
+.borda_preenchimento-2 {
+    padding: 10px 30% 20px;
+    /*  10px acima          */
+    /*  3% esquerda e direita */
+    /*  20px abaixo       */
+}
+
+.area_conteudo {
+    background-color: #fff;
+    position: relative;
+}
+
+/* Define/coonfigura o comportamento da div contendo as telas de login, cadastro e recuperação de senha */
+.tam_min-max {
+    min-height: 350px;
+    min-width: 350px;
+    /*max-height: 650px;*/
+    max-width: 450px;
+    margin-bottom: 10px;
+}
+
+/* Define/coonfigura o comportamento da div contendo o corpo do site */
+.tam_min-max-2 {
+    /* min-height:350px;
+    min-width: 350px;
+    max-height: 650px;
+    max-width: 850px;
+    margin-bottom: 10px;
+    margin-top: 70px;*/
+    /* vh (viewport height) e vw (viewport width) são unidades relativas
+    à altura e largura da área de visualização do navegador, respectivamente */
+    width: 90vw;
+    /*   75% da largura da viewport */
+    min-height: 80vh;
+    /*  75% da altura da viewport */
+    max-width: 860px;
+    /* Define o valor máximo de largura */
+}
+
+.titulos {
+    font-size: 18px;
+    text-align: justify;
+    font-weight: bold;
+    line-height: 1.2;
+    border-radius: 8px 8px 0px 0px;
+    /* superior-esquerda | superior-direita | inferior-direita | inferior-esquerda */
+    background-color: #f0faf5;
+    border-bottom: 2px solid #f0faf5;
+    padding: 1px;
+}
+
+/*Texto de informações na telas*/
+.info {
+    font-style: italic;
+    text-align: left;
+}
+
+/* linha horizontal */
+hr {
+    border: 0;
+    border-top-color: currentcolor;
+    border-top-style: none;
+    border-top-width: 0px;
+    border-top: 2px solid #c3d1dd;
+    margin: -14px 0px 9px 0px;
+    /* valores para margens: superior direita abaixo esquerda */
+}
+
+
+
+/*.popupContainerSolucao {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0 0 0);
+  }
+*/
+.rodape {
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    padding-top: 1em;
+    color: #000000;
+}
+
+/*Disposição, espaçamento de conteúdo dentro de elementos, como divs com títulos*/
+.disposicao_titulos {
+    padding: 0px 20px 0px 20px;
+}
+
+/*Disposição, espaçamento de conteúdo dentro de elementos, como divs*/
+.disposicao_conteudo {
+    padding: 24px;
+}
+
+.cor_fundo_div {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "tutoring-banner tutoring-banner"
+        "author author"
+        "content content"
+        "blockade blockade"
+        "below-blockade below-blockade"
+        "search-entry-point search-entry-point"
+        "ginny-simplify-expand ginny-simplify-expand"
+        "actions actions"
+        "options options"
+        "quick-comments quick-comments"
+        "actions-banner actions-banner"
+        "ask_tutor_low_tier ask_tutor_low_tier"
+        "single-entrypoint-in-answer single-entrypoint-in-answer"
+        "comments comments"
+        "trials trials"
+        "task-force-banner task-force-banner"
+        "native-buttons native-buttons";
+    padding: 16px;
+    background-color: #fff;
+}
+
+/* Parece desnecessário ???
+.form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 27px;
+}
+*/
+
+/* Define estilos para campos do tipo "input" e "select" */
+input,
+select,
+textarea {
+    width: 90%;
+    padding: 10px 20px 9px 20px;
+    margin: 9px 0;
+    box-sizing: border-box;
+    border: 2px solid var(--gray-45);
+    border-radius: 0.6em;
+    background-color: #f9f9fa;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input::placeholder {
+    color: #737374;
+    /*Define a cor para o placeholder*/
+}
+
+input:focus::placeholder {
+    color: transparent;
+    /*Faz o placeholder desaparecer quando input rece o foco */
+}
+
+input:hover, textarea:hover {
+    border: 2px solid #c9c9c9;
+}
+
+input:focus, textarea:focus {
+    border: 2px solid #4fb3f6;
+}
+
+.div_detalhes_problemas{
+    padding: 7px 6px 5px 12px;
+    box-sizing: border-box;
+    border: 1.5px solid var(--gray-45);
+    border-radius: 0.4em;
+    background-color: #f9f9fa;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    outline: none;
+    font-size: 1em;
+    color: black;
+}
+
+
+/*TESTE COM LABEL DE CAMPOS*/
+
+.form {
+    position: relative;
+    /* width: 20rem;
+    height: 3rem;*/
+}
+
+/* .form__input {
+    width: 100%;
+    height: 100%;
+    color: black;
+    outline: none;
+     Change border when input focus
+  }*/
+
+.form__label {
+    position: absolute;
+    top: -0.4rem;
+    left: 1.9rem;
+    /*left: 2.6rem;
+    top: 1.2rem;*/
+    font-size: 0.9rem;
+    color: #ffffff00;
+    /* padding: 0 0.5rem;
+    background-color: #f9f9fa;
+    cursor: text;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;*/
+}
+
+.form__label-2 {
+    top: -0.4rem;
+    left: 1.9rem;
+    /*background-color: #4fb3f6;*/
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #BCBCBC;
+}
+
+/* 
+  1. When the input is in the focus state
+  reduce the size of the label and move upwards 
+  
+  2. Keep label state when content is in input field 
+  */
+.form__input:focus~.form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus)~.form__label {
+    top: -0.4rem;
+    left: 1.9rem;
+    /*background-color: #4fb3f6;*/
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #BCBCBC;
+    transition: 0.5s ease-in-out;
+    /*Faz o label aparecer suavemente*/
+}
+
+
+
+/*TESTE COM LABEL DE CAMPOS*/
+
+
+
+
+/* Div que ficar dentro desta seção com nome de "centrar" ficará centralizada. */
+/* Mantem a translação da div pai centralizada. */
+centrar {
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+/*centralizar conteúdo de div*/
+.div-center {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;*/
+
+    display: grid;
+    place-items: center;
+
+}
+
+/*Código aintigo? Configura botõs na barra de navegação na paginalogada
+.botoes {
+    width: 100%;
+    background-color: #73d9e2;
+    display: flex;
+    position: fixed;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+*/
+
+.botao {
+    display: inline-block;
+    width: 90%;
+    /* Largura padrão */
+    max-width: 90%;
+    /* Largura máxima */
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid #DDDDDC;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    line-height: 1.5;
+    border-radius: .70rem;
+    margin: 10px;
+    /* todos os lados: margem de 10px */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+    }
+
+    .botao_blue-50 {
+        background: var(--blue-50);
+    }
+
+    .botao_red-40 {
+        background: var(--red-40);
+    }
+
+    .botao_blue-50:hover,
+    .botao_blue-50:active,
+    .botao_blue-50:focus{
+        background: var(--blue-60);
+    }
+
+    .botao_red-40:hover,
+    .botao_red-40:active,
+    .botao_red-40:focus{
+        background: var(--red-70);
+}
+
+.botao_sair {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-transform: uppercase;
+    line-height: inherit;
+    cursor: pointer;
+    padding: inherit10px 0px 9px -30px;
+    outline: none;
+    display: block;
+    text-align: left;
+    line-height: 1.5;
+    margin-top: -0.21em;
+    margin-left: -0.2em;
+}
+
+
+/*
+.botao_sair {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #898A8A;
+    width: 80px;
+    border: 2px solid #DDDDDC;
+    padding: 10px 0px 9px 25px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 11px;
+    margin-top: 10px;
+    margin-right: 0px; 
+    margin-bottom: 10px;
+    margin-left: auto;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+    display: block; 
+}
+*/
+
+/* Mantem o botão Sair sobre todos os elementos */
+.topo-1 {
+    z-index: 1;
+}
+
+/* Mantem a translação do botão à direta da tela. Usado no botão sair. */
+.translacao_botao_sair {
+    position: absolute;
+    top: 0;
+    right: 0px;
+}
+
+/* Icone para o botão sair */
+.icone {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    /* font-size: inherit;*/
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+/* Classe específica para o ícone para evitar conflitos. Usado no botão sair. */
+.fa-icon {
+    font-family: "FontAwesome";
+    /* Ajuste o tamanho do ícone conforme necessário */
+    font-size: 20px;
+    /* Tente manter o mesmo tamanho do texto do botão, se possível */
+    /* outros estilos do ícone */
+    position: absolute;
+    margin-top: 3px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 45px;
+}
+
+.fa-icon-fexar {
+margin-left: 57px;
+}
+
+/*Animação sobre o fa-icon e o  botão Sair*/
+.botao_sair:hover .fa-icon,
+.botao_sair:active .fa-icon,
+.botao_sair:focus .fa-icon,
+.botao_sair:hover,
+.botao_sair:active,
+.botao_sair:focus {
+    transform: translateX(0.2em);
+    /* Desloca o ícone 10px para a direita */
+    transition: 0.2s ease-in-out;
+}
+
+.bt_estado-conclu {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #9BEBC0;
+    width: 100px;
+    border: 2px solid;
+    border-color: #60d399;
+    padding: 3px;
+    color: #000000;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-radius: 7px;
+    margin: 2px;
+    /* todos os lados: margem de 2 */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+
+.bt_estado-conclu:hover,
+.bt_estado-conclu:active,
+.bt_estado-conclu:focus {
+    background: #1db78e;
+}
+
+.bt_estado-pend {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #FCC78C;
+    width: 100px;
+    border: 2px solid;
+    border-color: #FEA69A;
+    padding: 3px;
+    color: #000000;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: not-allowed;
+    border-radius: 7px;
+    margin: 2px;
+    /* todos os lados: margem de 2 */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+
+.bt_estado-des {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 0;
+    background: #e1eaf1;
+    width: 100px;
+    border: 2px solid;
+    border-color: #DDDDDC;
+    padding: 3px;
+    color: #b8b8b8;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: not-allowed;
+    border-radius: 7px;
+    margin: 2px;
+    /* todos os lados: margem de 2 */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+
+.centralizar {
+    text-align: center;
+}
+
+
+/*Coloca o conteudeo interno a este seção acima de todos os intens e centraliza*/
+section {
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+/* Mantem a translação no lado */
+#translations {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5em;
+    margin: 0 1em
+}
+
+#translations ul {
+    padding-left: 1em
+}
+
+.sombra {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+/*Configura títulos na páginalogada*/
+.login-form-title {
+    border-bottom: inset;    font-size: 18px;
+    line-height: 1.2;
+    text-align: justify;
+    display: block;
+    font-weight: bold
+}
+
+
+
+
+
+
+/* Tabelas EV*/
+table {
+    /*display: flex !important;*/
+    flex-wrap: wrap !important;
+
+}
+
+th,
+td {
+    flex: 1 1 150px !important;
+}
+
+table.linhasAlternadas {
+    border-collapse: collapse;
+    /* CSS2 */
+    background: #FFFFF0;
+    border: solid green 1px;
+}
+
+table.linhasAlternadas tr:nth-child(even)
+
+/* CSS3 */
+    {
+    background: #F0FFFF;
+}
+
+
+
+/*Parece estilizar janelas cadastrar problemas e visualizar problemas.
+Essas propriedades juntas fazem com que o elemento ocupe toda a largura e
+altura do seu contêiner pai, tenha uma margem superior de 60 pixels, e organize
+seus filhos em uma coluna centralizada verticalmente.*/
+/*  main {
+    width: 100%; /*Define que a largura do elemento será 100% da largura do seu elemento pai.*
+    height: 100%; /*Define que a altura do elemento será 100% da altura do seu elemento pai.*
+    /*margin-top: 60px; Adiciona uma margem de 60 pixels no topo do elemento, empurrando-o para baixo.*
+    display: flex; /*Define que o elemento será um contêiner flexível, ativando o Flexbox.*
+    flex-direction: column; /*Define que os itens dentro do contêiner flexível serão organizados em uma coluna, ou seja, de cima para baixo.*
+    justify-content: center; /*Alinha os itens dentro do contêiner flexível ao centro verticalmente.*
+
+  }
+*/
+
+.tabelaproblema {
+    width: 100%;
+    font: status-bar;
+}
+
+/*  .table {
+    width: 100%;
+    font: status-bar;
+    border-collapse: collapse;
+   border-bottom-style:solid;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    color: black; 
+    
+  }*/
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    /*border: 1px solid #c3d1dd;*/
+    /* white-space: nowrap;  nowrap, recolhe os espaços em branco como no normal, mas suprime as quebras de linha (quebra de texto) no texto */
+    border-spacing: 0;
+    /* overflow: hidden; */
+}
+
+.table th {
+    background-color: #c3d1dd;
+    font-weight: bold;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #ebeeff;
+    border-bottom: 1px solid #b5c2cd
+}
+
+.table tr:nth-child(even) {
+    background-color: #f5f8fa;
+    border-bottom: 1px solid #b5c2cd
+}
+
+.table img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* .table td:first-child,
+  .table th:first-child {
+    padding-left: 20px;
+  } */
+
+
+.table td,
+.table th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+._3FJUujaFqziB7j-41O2Smn {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: min-content fit-content(100%) 1fr;
+    grid-template-areas:
+        "icon headline signals"
+        "subheader subheader subheader";
+    padding: 16px;
+    border-bottom: 2px solid #e1eaf1;
+}
+
+.caixa_checagem {
+    border-radius: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    box-shadow: none;
+    border: 1px solid currentColor;
+}
+
+/*Reposiciona o formulário de cadsolucao quando resolução de tela muda*/
+@media (min-width:280px) {
+    .container-formulario form,.cadsolucao form {
+        margin-top: -19.2em;
+    }
+}
+
+/*Define/coonfigura forms usados na aplicação*/
+.container-formulario form,
+.cadsolucao form {
+    display: flex;
+    width: 100%;
+    margin-top: -16.2em;
+    flex-direction: column;
+    /*color: #636267;*/
+    gap: 5px;
+    background-color: #fff;
+    padding: 1.6em;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border: 2px solid #60d399;
+    border-radius: 8px;
+
+}
+
+
+
+
+    
+/*  @media (min-width:576px) {
+        .container-formulario form,.cadsolucao form {
+            margin-top: -18.2em;
+        }
+    }
+
+
+@media (min-width: 100px) and (max-width: 576px) {
+    .container-formulario form,.cadsolucao form {
+        margin-top: -16.2em;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 576px) {
+    .container-formulario form,.cadsolucao form {
+        margin-top: -18.2em;
+    }
+}*/

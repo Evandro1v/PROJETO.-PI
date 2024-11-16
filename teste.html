@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<title>Recuperar senha</title>
+		<link rel="stylesheet" href="/css/style-Ran.css" />
+	</head>
+	<body class="bgSizeCover">
+		<section>
+			<!-- Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai centralizado -->
+			{{#if messages.error}}
+			<div class="error-message">{{messages.error}}</div>
+			{{/if}}
+			
+			<div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+				<main>
+					<header>
+						<div class="titulos borda_arredond-8">
+							<h5 class="disposicao_titulos">
+								Este site foi desenvolvido para...
+							</h5>
+						</div>
+					</header>
+					
+					<div class="centralizar disposicao_conteudo">
+						<span class="info">
+							<p>
+								Recuperação de senha.
+								<hr>
+							</p>
+							<p>
+								Informe seu e-mail para receber a sua senha.
+							</p>
+						</span>
+						
+						<!-- Form Usado para recuperação de senha pelos usuários cadastrados -->
+						<form method="post" action="/esqueceusenha" class="container-inputs" onsubmit="return validateEsqueceu(this);">
+							<div class="form">
+								<input type="email" name="email" id="email-id" placeholder="E-mail" required class="form__input" />
+								<label for="email" class="form__label">E-mail</label>
+							</div>
+							
+							<input type="submit" value="Enviar" class="button botao_blue-50" />
+							
+							<div class="container-spans">
+								<span class="span2 mensagem">Não é cadastrado?</span>
+								<span class="span3"><a href="/paginadecadastro">Fazer cadastro</a></span>
+							</div>
+							
+							<div class="container-spans">
+								<span class="span3"><a href="/">Voltar para página de login e entrar</a></span>
+							</div>
+						</form>
+						
+						<div class="error-message" style="display: none;"></div>
+					</div>
+					
+				</main>
+			</div>
+			
+			<footer>
+				<div class="centralizar rodape">
+					<p class="attribution" id="attr"></p>
+				</div>
+			</footer>
+			
+		</section>
+		
+		<script type="text/javascript" src="./script1.js"></script>
+	</body>
+</html>
