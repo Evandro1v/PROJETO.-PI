@@ -6,14 +6,9 @@ html {
 
 #menu-user {
     position: fixed;
-<<<<<<< HEAD
-    left: 0;
-    top: 0px;
-=======
     z-index: 4;
     left: 0;
     top: -20px;
->>>>>>> 6903d30 (versao ranieri css)
     width: 100%;
     height: 65px;
     background: hsl(0, 0%, 35.3%);

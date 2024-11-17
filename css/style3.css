@@ -1,9 +1,4 @@
 :root {
-<<<<<<< HEAD
-    
-    --gray-10: #f5f8fa;
-    
-=======
     /* --black: #000000;
     --white: #ffffff;
     --blue-70: #002238;
@@ -81,7 +76,6 @@
     --icon-gray-50: #687b8c;
     --icon-gray-40: #c3d1dd;
      */
->>>>>>> 6903d30 (versao ranieri css)
 }
 .error-message {
     color: red;
