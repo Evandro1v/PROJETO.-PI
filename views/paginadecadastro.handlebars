@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -85,3 +86,94 @@
         </footer>
     </section>
 </body>
+=======
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>Operação tapa buraco - Cadastro</title>
+		<!-- <link rel="stylesheet" href="/css/style3.css" /> -->
+		<link rel="stylesheet" href="/css/style-Ran.css" />
+		
+	</head>
+	
+	<body class="bgSizeCover ">
+		<section>
+			<!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
+			{{#if messages.error}}
+			<div class="error-message">{{messages.error}}</div>
+			{{/if}}
+			
+			<div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+				<main>
+					<header>
+						<div class="titulos borda_arredond-8">
+							<h5 class="disposicao_titulos">
+								Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
+								reclamações referentes a infraestrutura asfáltica da cidade.
+							</h5>
+						</div>
+					</header>
+
+					<div class="centralizar disposicao_conteudo">
+						<span class="info">
+							<p>
+								Cadastro.
+								<hr>
+							</p>
+							<p>
+								Informe seu Nome, Telefone, E-mail e Senha para fazer o cadastro.
+							</p>
+						</span>
+						<!-- Form Usado para cadastrar usuários -->
+						<form method="post" onsubmit="return validateForm(this)" action="/cadastro"
+                        class="container-inputs">
+							
+							<div class="error-message"></div>
+							
+							<div class="form">
+								<input type="text" name="nome" id="firstname-id" placeholder="Nome Completo" class="form__input" />
+								<label for="nome" class="form__label">Nome Completo</label>
+							</div>
+							
+							<!-- type="text" trocado por type="tel"-->
+							<div class="form">
+								<input type="tel" name="telefone" id="lastname-id" placeholder="Telefone Ex.: 99-999999999" class="form__input" />
+								<label for="tel" class="form__label">Telefone</label>
+							</div>
+							
+							<div class="form">
+								<input type="address" name="email" id="email-id" placeholder="E-mail" class="form__input" />
+								<label for="address" class="form__label">E-mail</label>
+							</div>                     
+							
+							<div class="form">
+								<input type="password" name="senha" id="password-id" placeholder="Senha" class="form__input" />
+								<label for="password" class="form__label">Senha</label>
+							</div>                       
+							
+							<input type="submit" class="botao botao_blue-50" value="Cadastrar" />
+							
+							<div class="container-spans">
+								<span class="span2 mensagem">
+									Já está cadastrado?
+									</span><span class="span3"> <a href="/">Entrar</a>
+								</span>
+							</div>
+						</form>
+						
+						
+					</div>
+					
+				</main>
+			</div>
+			<footer>
+				<div class="centralizar rodape">
+					<p class="attribution" id="attr">
+						PI-2 GRUPO-012 Sertãozinho-SP - UNIVESP
+					</p>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+>>>>>>> 6903d30 (versao ranieri css)

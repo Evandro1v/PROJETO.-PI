@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style2.css" />
     <link rel="stylesheet" href="/css/style-Ran.css" />
@@ -12,10 +13,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Operação tapa buraco - Usuário</title>
+=======
+    <title>Operação tapa buraco - Adm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style2.css" />
+	<link rel="stylesheet" href="/css/style3.css" />
+	<link rel="stylesheet" href="/css/style-Ran.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+>>>>>>> 6903d30 (versao ranieri css)
 </head>
 
 <body>
 
+<<<<<<< HEAD
     <ul id="menu-user">
         <li>
             <div class="container-usuarios">
@@ -75,6 +86,26 @@
         <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
         
 
+=======
+    <div class="botoes">
+        <!-- Mostra dados do usuário -->
+        <div class="container-usuarios">
+            <p>Olá, {{user.nome}}</p>
+            <form action="/logout" method="post">
+            <button class="bt_sair sombra" type="submit">
+             <span class="icone fa-icon fa-sign-out"></span> <!-- Define icone para o botão -->
+             Sair
+            </button>
+            </form>
+        </div>
+
+        <button onclick="showForm('cadastroSolucaoForm')">Cadastrar Solução</button>
+        <button onclick="showTable()">Visualizar Problemas</button>
+    </div>
+
+    <main>
+        <div class="cadsolucao" id="cadastroSolucaoForm" style="display: none;">
+>>>>>>> 6903d30 (versao ranieri css)
             <form action="/enviar-solucao" method="post" enctype="multipart/form-data">
                 {{#if error}}
                 <div class="error-message">{{error}}</div>
@@ -91,9 +122,13 @@
                 <label for="foto_da_solucao">Foto da Solução:</label>
                 <input type="file" id="foto_da_solucao" name="foto_da_solucao" accept="image/*" required />
                 <input type="submit" value="Enviar" />
+<<<<<<< HEAD
  
             </form>
             
+=======
+            </form>
+>>>>>>> 6903d30 (versao ranieri css)
         </div>
 
 
@@ -201,7 +236,10 @@
             // Oculta a tabela de soluções quando mudar de formulário
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
+<<<<<<< HEAD
             document.getElementById('home').style.display = 'flex';
+=======
+>>>>>>> 6903d30 (versao ranieri css)
         }
 
         function showTable() {
@@ -219,6 +257,7 @@
             // Oculta a tabela de soluções quando clicar em visualizar problemas
             const popupContainerSolucao = document.getElementById('popupContainerSolucao');
             popupContainerSolucao.style.display = 'none';
+<<<<<<< HEAD
             document.getElementById('home').style.display = 'flex';
         }function home() {
             // Esconde todos os elementos conforme pedido
@@ -226,6 +265,8 @@
             document.getElementById('cadastroSolucaoForm').style.display = 'none';
             document.getElementById('tabelaProblema').style.display = 'none';
             document.getElementById('home').style.display = 'none ';
+=======
+>>>>>>> 6903d30 (versao ranieri css)
         }
 
         function showPopuproblemas(id_ocorrencia) {

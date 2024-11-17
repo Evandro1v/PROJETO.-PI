@@ -14,11 +14,20 @@ const nodemailer = require('nodemailer');
 const app = express(); // Cria uma instância do aplicativo Express.
 
 const admin = require('firebase-admin');
+<<<<<<< HEAD
   // Configure Firebase Admin SDK com as credenciais da variável de ambiente
   admin.initializeApp({
     credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
     storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
   });
+=======
+
+// Configure Firebase Admin SDK com as credenciais da variável de ambiente
+admin.initializeApp({
+  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_SDK)),
+  storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
+});
+>>>>>>> 6903d30 (versao ranieri css)
 // admin.initializeApp({
 //   credential: admin.credential.cert('sitetapburaco-firebase-adminsdk-gnu38-c2134532bb.json'),
 //   storageBucket: 'gs://sitetapburaco.appspot.com' // Substitua 'seu_bucket' pelo nome do seu bucket no Firebase Storage
@@ -151,7 +160,11 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
     conexao.query(sql, function (error, results) {
       if (error) {
         console.error('Error retrieving data from cad_problema table:', error);
+<<<<<<< HEAD
         return res.status(500).send('Error retrieving data from cad_problema table');
+=======
+        return res.status(500).send('Erro ao recuperar dados da tabela cad_problema.');
+>>>>>>> 6903d30 (versao ranieri css)
       }
       console.log(results); // Logging the retrieved results to check if it's retrieved successfully
       // Rendering the 'paginaadm' page with user data and retrieved problems
@@ -180,7 +193,11 @@ app.get('/paginalogada', isLoggedIn, function (req, res) {
     conexao.query(sql, function (error, results) {
       if (error) {
         console.error('Error retrieving data from cad_problema table:', error);
+<<<<<<< HEAD
         return res.status(500).send('Error retrieving data from cad_problema table');
+=======
+        return res.status(500).send('Erro ao recuperar dados da tabela cad_problema.');
+>>>>>>> 6903d30 (versao ranieri css)
       }
       console.log(results); // Logging the retrieved results to check if it's retrieved successfully
       // Rendering the 'paginalogada' page with user data and retrieved problems
@@ -198,13 +215,21 @@ app.post('/cadastro', function (req, res) {
   conexao.query(sqlCheckEmail, [email], function (error, results) {
     if (error) {
       console.error('Erro ao verificar email:', error);
+<<<<<<< HEAD
       return res.status(500).send('Erro ao cadastrar usuário');
+=======
+      return res.status(500).send('Erro ao cadastrar usuário.');
+>>>>>>> 6903d30 (versao ranieri css)
     }
 
     if (results.length > 0) {
       // Se o email já existe, retorna uma mensagem de erro
+<<<<<<< HEAD
       return res.render('paginadecadastro', { error: 'Email já cadastrado' });
       
+=======
+      return res.render('paginadecadastro', { message: 'Email já cadastrado' });
+>>>>>>> 6903d30 (versao ranieri css)
     }
 
     // Se o email não existe, procede com o cadastro
@@ -212,17 +237,26 @@ app.post('/cadastro', function (req, res) {
     conexao.query(sqlInsertUser, [nome, telefone, email, senha], function (error, results) {
       if (error) {
         console.error('Erro ao cadastrar usuário:', error);
+<<<<<<< HEAD
         return res.status(500).send('Erro ao cadastrar usuário');
+=======
+        return res.status(500).send('Erro ao cadastrar usuário.');
+>>>>>>> 6903d30 (versao ranieri css)
       }
       console.log('Usuário cadastrado com sucesso:', results);
 
       // Após o cadastro bem-sucedido, redireciona para a página de login
+<<<<<<< HEAD
       res.render('paginadecadastro', { message: 'Email cadastrado com sucesso!' });
+=======
+      res.redirect('/');
+>>>>>>> 6903d30 (versao ranieri css)
     });
   });
 })
 app.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
+<<<<<<< HEAD
     if (err) { 
       return next(err); 
     }
@@ -233,6 +267,18 @@ app.post('/login', function (req, res, next) {
     req.logIn(user, function (err) {
       if (err) { 
         return next(err); 
+=======
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      // Se o usuário não for encontrado, renderize a mesma página com a mensagem de erro
+      return res.status(401).render('index', { error: 'E-mail ou senha incorretos. Tente novamente.' });
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+>>>>>>> 6903d30 (versao ranieri css)
       }
       return res.redirect('/paginalogada'); // Redireciona para a página logada se a autenticação for bem-sucedida
     });
@@ -280,14 +326,22 @@ app.post('/enviar-formulario', isLoggedIn, upload.fields([
     conexao.query(sqlInsertOcorrencia, values, function (error, results) {
       if (error) {
         console.error('Erro ao inserir ocorrência:', error);
+<<<<<<< HEAD
         return res.status(500).send('Erro ao enviar ocorrência');
+=======
+        return res.status(500).send('Erro ao enviar ocorrência.');
+>>>>>>> 6903d30 (versao ranieri css)
       }
       console.log('Ocorrência inserida com sucesso:', results);
       res.redirect(req.get('referer'));
     });
   } catch (error) {
     console.error('Erro ao fazer upload de imagens:', error);
+<<<<<<< HEAD
     res.status(500).send('Erro ao fazer upload de imagens');
+=======
+    res.status(500).send('Erro ao fazer upload de imagens.');
+>>>>>>> 6903d30 (versao ranieri css)
   }
 });
 
@@ -370,6 +424,21 @@ app.get('/exibir-imagem', async (req, res) => {
     res.status(400).send('A URI da imagem não foi fornecida.');
   }
 });
+<<<<<<< HEAD
+=======
+
+//Exibir informações no rodapé
+//app.get('/', (req, res) => {
+//  fs.readFile('rodape.txt', 'utf8', (err, data) => {
+//    if (err) {
+//      return res.status(500).send('Erro ao ler o arquivo');
+//    }
+//    res.render('index', { content: data });
+//  });
+//});
+
+
+>>>>>>> 6903d30 (versao ranieri css)
 /// Endpoint para enviar a solução
 app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async function (req, res) {
   const { id_ocorrencia, descricao_solucao } = req.body;
@@ -381,7 +450,11 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
       foto_da_solucao = await uploadImage(req.file); // Faz o upload da foto da solução para o Firebase Storage
     } catch (error) {
       console.error('Erro ao fazer upload da foto da solução:', error);
+<<<<<<< HEAD
       return res.status(500).send('Erro ao enviar a solução');
+=======
+      return res.status(500).send('Erro ao enviar a solução.');
+>>>>>>> 6903d30 (versao ranieri css)
     }
   }
 
@@ -397,7 +470,11 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
   conexao.query(checkIdQuery, [id_ocorrencia], function (error, results) {
     if (error) {
       console.error('Erro ao verificar ID da ocorrência:', error);
+<<<<<<< HEAD
       return res.status(500).send('Erro ao verificar ID da ocorrência');
+=======
+      return res.status(500).send('Erro ao verificar ID da ocorrência.');
+>>>>>>> 6903d30 (versao ranieri css)
     }
 
     // Se o ID da ocorrência não existir na tabela cad_problema, exibe uma mensagem de erro
@@ -410,7 +487,11 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
     conexao.query(updateStatusQuery, [id_ocorrencia], function (error, results) {
       if (error) {
         console.error('Erro ao atualizar o status da ocorrência:', error);
+<<<<<<< HEAD
         return res.status(500).send('Erro ao atualizar o status da ocorrência');
+=======
+        return res.status(500).send('Erro ao atualizar o status da ocorrência.');
+>>>>>>> 6903d30 (versao ranieri css)
       }
       console.log('Status da ocorrência atualizado com sucesso:', results);
     });
@@ -420,7 +501,11 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
     conexao.query(checkSolutionQuery, [id_ocorrencia], function (error, results) {
       if (error) {
         console.error('Erro ao verificar solução existente:', error);
+<<<<<<< HEAD
         return res.status(500).send('Erro ao verificar solução existente');
+=======
+        return res.status(500).send('Erro ao verificar solução existente.');
+>>>>>>> 6903d30 (versao ranieri css)
       }
 
       // Se já existir uma solução para essa ocorrência, substitui a solução existente pela nova
@@ -449,7 +534,12 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
             return res.status(500).send('Erro ao enviar solução: ' + error.message); // Enviando mensagem de erro específica
           }
           console.log('Solução enviada com sucesso:', results);
+<<<<<<< HEAD
           res.redirect(req.get('referer'));        });
+=======
+          res.redirect(req.get('referer'));
+        });
+>>>>>>> 6903d30 (versao ranieri css)
       }
     });
   });
@@ -481,15 +571,30 @@ app.post('/enviar-solucao', isLoggedIn, upload.single('foto_da_solucao'), async 
 //     });
 //   });
 // });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6903d30 (versao ranieri css)
 app.post('/esqueceusenha', function (req, res) {
   const { email } = req.body; // Obtém o e-mail fornecido pelo usuário no formulário de recuperação de senha.
 
   // Consulta SQL para buscar a senha correspondente ao e-mail no banco de dados
   const sql = `SELECT senha FROM cad_usuario WHERE \`e-mail\` = ?`;
   conexao.query(sql, [email], function (error, results) {
+<<<<<<< HEAD
     if (results.length === 0) {
       // Caso o e-mail não seja encontrado, renderiza a página com a mensagem de erro
       return res.status(401).render('esqueceusenha', { error: 'Erro ao enviar o e-mail de recuperação de senha ', success: false });
+=======
+    if (error) {
+      console.error('Erro ao buscar a senha:', error);
+      return res.status(500).send('Erro ao buscar a senha.');
+    }
+
+    if (results.length === 0) {
+      // Se nenhum resultado for retornado, significa que o e-mail não está cadastrado
+      return res.status(404).send('E-mail não encontrado.');
+>>>>>>> 6903d30 (versao ranieri css)
     }
 
     const senha = results[0].senha; // Obtém a senha do primeiro resultado
@@ -499,10 +604,16 @@ app.post('/esqueceusenha', function (req, res) {
       service: 'gmail',
       auth: {
         user: 'tapaburacosite@gmail.com', // Substitua pelo seu e-mail
+<<<<<<< HEAD
         pass: 'fexg pizo edyt zpqe' // Substitua pela senha de aplicativo gerada
       }
     });
 
+=======
+        pass: 'fexg pizo edyt zpqe	' // Substitua pela senha de aplicativo gerada
+      }
+    });
+>>>>>>> 6903d30 (versao ranieri css)
     // Configuração do e-mail a ser enviado
     let mailOptions = {
       from: 'tapaburacosite@gmail.com', // Seu endereço de e-mail
@@ -514,6 +625,7 @@ app.post('/esqueceusenha', function (req, res) {
     // Envio do e-mail de recuperação de senha
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
+<<<<<<< HEAD
         return res.status(401).render('esqueceusenha', { error: 'Erro ao enviar e-mail', success: false });
       } else {
         return res.status(200).render('esqueceusenha', { error: 'E-mail de recuperação de senha enviado com sucesso!', success: true });
@@ -521,6 +633,19 @@ app.post('/esqueceusenha', function (req, res) {
     });
   });
 });
+=======
+        console.log(error); // Em caso de erro
+        res.status(500).send('Erro ao enviar e-mail de recuperação de senha.'); // Retorna um status 500 em caso de erro no envio do e-mail
+      } else {
+        console.log('E-mail de recuperação de senha enviado com sucesso: ' + info.response); // Se o e-mail for enviado com sucesso
+        res.status(200).send('E-mail de recuperação de senha enviado com sucesso!'); // Retorna um status 200 em caso de sucesso no envio do e-mail
+      }
+    });
+  });
+
+});
+
+>>>>>>> 6903d30 (versao ranieri css)
 app.listen(8082, function () {
   console.log('Servidor iniciado na porta 8082!'); // Inicia o servidor na porta 8082 e loga uma mensagem informando que o servidor foi iniciado com sucesso.
 });

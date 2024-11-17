@@ -82,6 +82,7 @@
     --icon-gray-40: #c3d1dd;
 
 }
+<<<<<<< HEAD
 .error-message {
     color: red;
     display: flex;
@@ -94,6 +95,49 @@
 }
 /* Define/coonfigura div com mensagens de erro*/
 
+=======
+
+/* Define/coonfigura div com mensagens de erro*/
+.error-message,
+.errorValidEmail {
+    /*color: red;
+    background-color: #f0c0c0;
+    background: #FFE0C9;
+    border-color: #FFE0C9;
+    color: #FF6B00;
+        border: 2px solid #F00;
+        margin: 9px 0px 9px 19px;
+        width: 66%;
+        -webkit-transition: all 0.3 ease;
+        transition: 0.5s;
+    */
+    margin: 9px 0;
+    font-family: "Roboto", sans-serif;
+    background: #FCE4E5;
+    color: #980c13;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 1px;
+    /* Padding padrão quando div de mensagem não está vazio */
+
+    /*border-top: 1px solid rgba(51, 51, 51, 0);Permite simular um espaçamento do conteúdo em relação a borda superior
+	border-right: 0px solid rgba(51, 51, 51, 0);*/
+    /*border-bottom: 1px solid rgba(51, 51, 51, 0);Permite simular um espaçamento do conteúdo em relação a borda inferior
+	border-left: 0px solid rgba(51, 51, 51, 0);*/
+}
+
+.error-message:empty {
+    padding: 0px;
+    /* Padding quando div de mensagem está vazio */
+    background: #FCE4E500;
+}
+
+.errorValidEmail:empty {
+    padding: 0px;
+    /* Padding quando div de mensagem está vazio */
+    background: #FCE4E500;
+}
+>>>>>>> 6903d30 (versao ranieri css)
 
 
 /* Define/coonfigura div com mensagens de erro*/
@@ -253,7 +297,11 @@ a:focus {
 
 .margem_topo-3{
 
+<<<<<<< HEAD
     margin: -42em auto 6em;
+=======
+    margin: -53em auto 6em;
+>>>>>>> 6903d30 (versao ranieri css)
     z-index: 2;
 }
 
@@ -824,7 +872,11 @@ section {
 
 /*Configura títulos na páginalogada*/
 .login-form-title {
+<<<<<<< HEAD
     border-bottom: inset;    font-size: 18px;
+=======
+    font-size: 18px;
+>>>>>>> 6903d30 (versao ranieri css)
     line-height: 1.2;
     text-align: justify;
     display: block;

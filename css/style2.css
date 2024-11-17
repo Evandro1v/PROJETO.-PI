@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   margin: 0;
   padding: 0;
@@ -486,6 +487,520 @@ table {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+=======
+ /* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 900;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+*/
+
+/*
+  body {
+    color: rgba(0, 0, 0, 0.884);
+    width: 100%;
+    height: 100%;
+    background-image: url(/images/backgroundbody.jpeg);
+    display: flex;
+    background-size: cover;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    align-items: center;
+  }
+  */
+
+/*  .botoes {
+    width: 100%;
+    background-color: #000000db;
+    display: flex;
+    position: fixed;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+*/
+
+/*Estilo para botões
+  .botoes button {
+    gap: 5px;
+    margin: 10px 0;
+    width: 175px;
+    border-radius: 6px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .botoes form {
+    box-shadow: none;
+  }
+*/
+
+/*Parece estilizar janelas cadastrar problemas e visualizar problemas
+  main {
+    width: 100%; /"Define que a largura do elemento será 100% da largura do seu elemento pai."/
+    height: 100%;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+*/
+
+/*===============
+  .cadsolucao {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cadsolucao form {
+    width: 70%;
+  }
+
+  .cadsolucao input {
+    border: 1px solid #a7a7a7;
+    background-color: #ffffff;
+    border-radius: 14px;
+  }
+
+  .container-formulario {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2, h1 {
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+   /* box-shadow: 1px 1px 1px black;
+  }
+*/
+/*
+  .container-formulario form,
+  .cadsolucao form {
+    display: flex;
+    width: 70%;
+    margin-top: 20px;
+    flex-direction: column;
+    color: #636267;
+    gap: 5px;
+    background-color: white;
+    padding: 29px;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 7px;
+  }
+
+  .container-formulario h3,
+  .cadsolucao h3 {
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+
+    background-color: #9b999996;
+    color: #000000;
+    align-self: center;
+    word-wrap: break-word;
+  }
+
+
+  .container-formulario input,
+  .cadsolucao input {
+    border: 1px solid #a7a7a7;
+    background-color: #ffffff;
+    border-radius: 14px;
+  }
+
+  .container-formulario textarea,
+  .cadsolucao textarea {
+    border-radius: 14px;
+    height: 170px;
+  }
+
+  .container-label {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .container-formulario label {
+    color: #000000;
+  }
+
+
+  .container-formulario input[type="file"],
+  .cadsolucao input[type="file"] {
+    border: none;
+
+  }
+
+  .container-formulario input[type="submit"],
+  .cadsolucao input[type="submit"] {
+    background-color: #6fa750;
+    width: 175px;
+    height: 50px;
+    margin-top: 15px;
+    align-self: center;
+    cursor: pointer;
+  }
+*/
+  .tabelaproblema {
+    margin-top: 15px;
+    display: none;
+    overflow-x: scroll;
+    width: 100%;
+    font: status-bar;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+  table {
+    overflow-x: scroll;
+    width: 90%;
+    display: table;
+    /*font: status-bar; EV parece obsoleto agora. CAUSA CONFLITO COM .info */
+    /*border-collapse: collapse; EV parece obsoleto agora. CAUSA CONFLITO COM .info */
+    margin-top: 20px;
+    color: black;
+    border-radius: 10px !important;
+  }
+
+  .table th,
+  .table td {
+    padding: 15px 5px;
+    text-align: left;
+    border-right: 1px solid #333;
+    word-wrap: break-word;
+    padding-top: 15px;
+  }
+
+  .table th {
+    background-color: #c3c3c3;
+    font-weight: bold;
+    border: 1px solid black;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #828D9C;
+  }
+
+  .table tr:nth-child(odd) {
+    background-color: #485460;
+  }
+
+  .table img {
+    display: block;
+    margin: 0 auto;
+  }
+
+
+
+
+/*
+  .acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .acoes button {
+    background-color: rgb(49, 110, 180);
+    width: 145px;
+    color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .confirmação_formulario {
+    display: none;
+  }
+
+  .popupContainerSolucao {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0 0 0);
+  }
+
+  .popupContainerSolucao table {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+
+  .popupContainerSolucao th,
+  .popupContainerSolucao td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  .closeBtn {
+    padding: 10px;
+    align-self: flex-end;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .closeBtn:hover,
+  .closeBtn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .popupContainerproblemas {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+  }
+
+  .vertical-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    width: 90%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .vertical-list .item {
+    display: flex;
+    flex-direction: column;
+    /* padding: 13px 0px; */
+    /* border-bottom: 1px solid #ccc; 
+  }
+*/
+  .vertical-list .item:last-child {
+    border-bottom: none;
+  }
+
+  .vertical-list .item p:nth-child(even) {
+    background-color: #c3d5e6;
+    display: flex;
+    padding: 12px;
+    border: 1px solid #ddd;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vertical-list .item p:nth-child(odd) {
+    background-color: #828D9C;
+    display: flex;
+    padding: 12px;
+    border: 1px solid #ddd;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vertical-list .item img {
+
+    margin-top: 5px;
+  }
+
+
+  .imagem-expandida {
+    display: none;
+    position: fixed;
+    top: 0;
+    /* margin: auto 0; */
+    left: 0;
+    width: 90%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4em;
+  }
+
+  .imagem-expandida img {
+    width: 80%;
+    height: 80%;
+  }
+
+  .imagem-expandida .fechar {
+    position: absolute;
+    top: 0.2em;
+    right: 1.6em;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1em;
+  }
+
+  .imagem-expandida .fechar:hover {
+    color: var(--red-50);
+
+  }
+
+  .imagem-expandida:target {
+    display: flex;
+  }
+
+  .erro-message {
+    display: flex;
+  }
+
+  .concluido {
+    /*
+    background-color: rgba(103, 247, 103, 0.692);
+    border-radius: 5px;*/
+    padding: 5px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    background-color: #AADBC7;
+    border: 1px solid #60d399;
+    border-radius: 7px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .em-andamento {
+    padding: 5px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    background-color: #FCC78C;
+    border: 1px solid #EB8F00;
+    border-radius: 7px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  @media (max-width: 500px) {
+
+    /* Ajuste este valor conforme necessário */
+    .tabelaproblema {
+      overflow-x: auto;
+      /* Aplicar rolagem apenas quando a largura da tela for menor */
+      width: min-content;
+      /* Largura mínima da tabela */
+    }
+
+    /* Esconde a coluna de fotos quando a largura da tela for menor que 500px */
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+      display: none;
+    }
+
+  }
+
+  @media (max-width:700px) {
+
+    .container-formulario form,
+    .cadsolucao form {
+      width: 90%;
+    }
+  }.solucoes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaço entre os itens */
+    padding: 10px;
+}
+
+.solucao-item {
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid #ddd;*/
+    padding: 10px;
+    /*width: 300px;  Ajuste conforme necessário */
+    width: auto;
+    background-color: #f9f9f9;
+}
+
+.descricao-solucao {
+    margin-bottom: 10px;
+}
+
+.foto-solucao {
+    display: flex;
+    justify-content: center;
+}
+
+.img-solucao {
+    max-width: 100%;
+    height: auto;
+}
+
+.imagem-expandida {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.imagem-expandida img {
+    max-width: 100%;
+    height: auto;
+}
+
+.problema-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaço entre os itens */
+  padding: 10px;
+}
+
+.problema-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*border: 1px solid #ddd;*/
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.problema-info {
+  flex-grow: 1;
+}
+
+.problema-foto {
+  flex-shrink: 0;
+  margin-left: 20px;
+>>>>>>> 6903d30 (versao ranieri css)
 }
 
 .img-problema {
@@ -513,6 +1028,7 @@ table {
 
 .problema-acoes button:hover {
   background-color: #0056b3;
+<<<<<<< HEAD
 }
 
 @media only screen and (max-width: 768px) {
@@ -532,4 +1048,6 @@ table {
     gap: 20px;
     padding: 10px;
   }
+=======
+>>>>>>> 6903d30 (versao ranieri css)
 }

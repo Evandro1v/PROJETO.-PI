@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   <!DOCTYPE html>
   <html lang="pt-br">
 
@@ -115,3 +116,135 @@
       </footer>
     </section>
   </body>
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Operação tapa buraco - Recupar senha</title>
+	<!-- <link rel="stylesheet" href="/css/style3.css" /> -->
+	<link rel="stylesheet" href="/css/style-Ran.css" />
+ <script type="Text/javascript" src="/js/scriptValEmail.js" defer></script>
+		<!--<script type="Text/javascript" src="/js/script-email - OK spans.js" defer></script> -->
+
+</head>
+
+<body class="bgSizeCover ">
+	<section>
+		<!--Div que ficar dentro desta seção ficará centralizado, Usar para manter div pai cenralizado -->
+
+
+
+
+
+		<div class="area_conteudo borda_green-40 borda_arredond-8 tam_min-max sombra">
+			<main>
+				<header>
+					<div class="titulos borda_arredond-8">
+						<h5 class="disposicao_titulos">
+							Este site foi desenvolvido para que a população de Sertãozinho-SP tenha um canal para fazer
+							reclamações
+							referentes
+							a infraestrutura asfáltica da cidade.
+						</h5>
+					</div>
+				</header>
+
+				<div class="centralizar disposicao_conteudo">
+					<span class="info">
+						<p>
+							Recuperaçao de senha.
+							<hr>
+						</p>
+						<p>
+							Informe seu e-mail para receber a sua senha.
+						</p>
+					</span>
+
+					<!-- Form Usado para recuparação de senha pelos usuários cadastrados-->
+						{{!-- novalidate tira a validacao padrao do html no navegador(as mensagens de erro) --}}
+						<form method="post" onsubmit="return validateEsqueceu(this)" action="/esqueceusenha" class="container-inputs" novalidate> 
+
+							<div class="error-message"></div>
+
+							<div class="form">
+								<input type="email" name="email" id="email-id" placeholder="E-mail" required class="form__input" />
+								<label for="email" class="form__label">E-mail</label>
+							</div>
+
+							<input type="submit" value="Enviar" class="botao botao_blue-50" />
+			
+			
+																				 
+		  
+			 
+						<div class="container-spans">
+							<span class="span2 mensagem">Não é cadastrado?</span>
+							<span class="span3"><a href="/paginadecadastro">Fazer cadastro</a></span>
+					 
+				  
+											  
+			
+						</div>
+
+										   
+						<div class="container-spans">
+							<span class="span3"><a href="/">Voltar para página de login e entrar</a></span>
+		  
+							  
+			
+		   
+	   
+		  
+													
+		   
+	   
+			 
+				   
+																									 
+				
+						</div>
+			 
+																				
+																							  
+																																
+												 
+																				  
+																		  
+									
+															   
+																				 
+			 
+									
+																						
+			 
+					</form>
+
+
+		   
+							 
+	 
+		   
+		 
+		   
+									
+									  
+											 
+		 
+				</div>
+
+			</main>
+		</div>
+		<footer>
+			<div class="centralizar rodape">
+				<p class="attribution" id="attr">
+					PI1 GRUPO-005 Sertãozinho-SP - UNIVESP
+				</p>
+			</div>
+		</footer>
+	</section>
+
+</body>
+</html>
+>>>>>>> 6903d30 (versao ranieri css)
